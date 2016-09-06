@@ -1,0 +1,6 @@
+<h2>Songs</h2>
+<ul class="songs">
+  <li *ngFor="let song of songs" (click)="onSelect(song)">
+    <span class="badge">{{song.name}}</span>
+  </li>
+</ul>
