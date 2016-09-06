@@ -14,5 +14,8 @@ Start local server with `npm start`. Go to [http://localhost:8080](http://localh
 ### Building files
 Build project with `npm run build`. Output will be located in `/dist`.
 
+### Testing
+Run tests with `npm test`.
+
 ## License
 Code is licensed under [Apache 2.0](/LICENSE).
