@@ -1,0 +1,6 @@
+<h2>Songs</h2>
+<ul class="songTags">
+  <li *ngFor="let songTag of songTags">
+    <a [routerLink]="['/song', songTag.id]" class="badge">{{songTag.name}}</a>
+  </li>
+</ul>

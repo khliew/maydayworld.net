@@ -3,22 +3,18 @@ import { BrowserModule }  from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-import { SongsComponent } from './songs.component';
-import { SongDetailComponent } from './song-detail.component';
-import { SongService }  from './song.service';
+import { SharedModule } from './shared/shared.module';
+import { SongModule } from './song/song.module';
 
 @NgModule({
   imports: [
     BrowserModule,
+    SharedModule,
+    SongModule,
     routing
   ],
   declarations: [
-    AppComponent,
-    SongsComponent,
-    SongDetailComponent
-  ],
-  providers: [
-    SongService
+    AppComponent
   ],
   bootstrap: [ AppComponent ]
 })

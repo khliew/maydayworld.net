@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Song } from './song';
+import { SongTag } from '../model';
 import { SongService } from './song.service';
 
 @Component({
@@ -11,19 +11,19 @@ import { SongService } from './song.service';
 })
 
 export class SongsComponent implements OnInit {
-  songs: Song[];
+  songTags: SongTag[];
 
   constructor(private router: Router, private songService: SongService) { }
 
   ngOnInit() {
-    this.getSongs();
+    this.getSongTags();
   }
 
-  getSongs(): void {
-    this.songService.getSongs().then(songs => this.songs = songs);
+  getSongTags(): void {
+    this.songService.getSongTags().then(songTags => this.songTags = songTags);
   }
 
-  onSelect(song: Song): void {
-    this.router.navigate(['/song', song.id]);
+  onSelect(songTag: SongTag): void {
+    this.router.navigate(['/song', songTag.id]);
   }
 }
