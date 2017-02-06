@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Lyrics } from '../model';
 
 @Component({
-  selector: 'song-lyrics',
+  selector: 'mdw-song-lyrics',
   templateUrl: './song-lyrics.component.html',
   styleUrls: ['./song-lyrics.component.css']
 })

@@ -7,7 +7,7 @@ import { SongDetailComponent } from './song/song-detail.component';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/songs',
+    redirectTo: '/albums',
     pathMatch: 'full'
   }
 ];

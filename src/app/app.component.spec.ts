@@ -36,14 +36,23 @@ describe('AppComponent', () => {
     expect(comp instanceof AppComponent).toBe(true, 'should create AppComponent');
   });
 
+  it ('should display the title', () => {
+    let headerDe = fixture.debugElement.query(By.css('h1'));
+    let el = headerDe.nativeElement;
+
+    fixture.detectChanges();
+    expect(el.textContent).toContain(comp.title);
+  });
+
   it('can get RouterLinks from template', () => {
-   expect(links.length).toBe(1, 'should have 1 link');
-   expect(links[0].linkParams).toBe('/songs', '1st link should go to Songs');
+   expect(links.length).toBe(2, 'should have 2 link');
+   expect(links[0].linkParams).toBe('/albums', '1st link should go to Albums');
+   expect(links[1].linkParams).toBe('/songs', '2nd link should go to Songs');
  });
 
  it('can click Songs link in template', () => {
-   const songsLinkDe = linkDes[0];
-   const songsLink = links[0];
+   const songsLinkDe = linkDes[1];
+   const songsLink = links[1];
 
    expect(songsLink.navigatedTo).toBeNull('link should not have navigated yet');
 

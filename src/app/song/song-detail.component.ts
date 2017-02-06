@@ -5,13 +5,14 @@ import { Lyrics, SongTag } from '../model';
 import { SongService } from './song.service';
 
 @Component({
-  selector: 'song-detail',
+  selector: 'mdw-song-detail',
   templateUrl: './song-detail.component.html',
   styleUrls: ['./song-detail.component.css']
 })
 export class SongDetailComponent implements OnInit {
-  songTag: SongTag;
+  errorMessage: string;
   lyrics: Lyrics;
+  songTag: SongTag;
 
   constructor(private route: ActivatedRoute, private songService: SongService) { }
 
@@ -19,9 +20,11 @@ export class SongDetailComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       let id = params['id'];
       this.songService.getSongTag(id)
-        .then(songTag => this.songTag = songTag);
+        .subscribe(songTag => this.songTag = songTag);
       this.songService.getSongLyrics(id)
-        .then(lyrics => this.lyrics = lyrics);
+        .subscribe(
+          lyrics => this.lyrics = lyrics,
+          error =>  this.errorMessage = <any>error);
     });
   }
 }

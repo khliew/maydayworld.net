@@ -1,0 +1,6 @@
+<h2>Albums</h2>
+<ul class="albums">
+  <li *ngFor="let album of albums">
+    <a [routerLink]="['/album', album.id]" class="badge">{{album.name}}</a>
+  </li>
+</ul>

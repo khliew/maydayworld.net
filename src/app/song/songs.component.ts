@@ -5,11 +5,10 @@ import { SongTag } from '../model';
 import { SongService } from './song.service';
 
 @Component({
-  selector: 'songs',
+  selector: 'mdw-songs',
   templateUrl: './songs.component.html',
   styleUrls: ['./songs.component.css']
 })
-
 export class SongsComponent implements OnInit {
   songTags: SongTag[];
 
@@ -20,7 +19,7 @@ export class SongsComponent implements OnInit {
   }
 
   getSongTags(): void {
-    this.songService.getSongTags().then(songTags => this.songTags = songTags);
+    this.songService.getSongTags().subscribe(songTags => this.songTags = songTags);
   }
 
   onSelect(songTag: SongTag): void {

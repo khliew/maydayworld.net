@@ -1,4 +1,4 @@
-import { Lyrics, SongTag } from '../model';
+﻿import { Lyrics, SongTag } from '../model';
 
 export var SONG_TAGS: SongTag[] = [
   {id: 'wr05', name: '溫柔 (還你自由版)', composers: ['composer'], lyricists: ['lyricist']},

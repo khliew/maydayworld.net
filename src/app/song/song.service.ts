@@ -1,22 +1,47 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Headers, RequestOptions } from '@angular/http';
 
-import { SONG_LYRICS, SONG_TAGS } from './test-songs';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+
+import { SONG_TAGS } from './test-songs';
 import { Lyrics, SongTag } from '../model';
 
 @Injectable()
 export class SongService {
 
-  getSongTags(): Promise<SongTag[]> {
-    return Promise.resolve(SONG_TAGS);
+  constructor (private http: Http) {}
+
+  getSongTags(): Observable<SongTag[]> {
+    return Observable.of(SONG_TAGS); // TODO: use http call?
   }
 
-  getSongTag(id: string): Promise<SongTag> {
-    return this.getSongTags()
-      .then(songTags => songTags.find(songTag => songTag.id === id));
+    getSongTag(id: string): Observable<SongTag> {
+      return Observable.from(SONG_TAGS).filter(songTag => songTag.id === id); // TODO: use http call?
+    }
+
+  getSongLyrics(id: string): Observable<Lyrics> {
+    return this.http.get('public/lyrics/' + id + '.json')
+                    .map(this.extractLyricsData)
+                    .catch(this.handleError);
   }
 
-  getSongLyrics(id: string): Promise<Lyrics> {
-    return Promise.resolve(SONG_LYRICS)
-      .then(songLyrics => songLyrics.find(lyrics => lyrics.id === id));
+  private extractLyricsData(res: Response) {
+    return res.json() || { };
+  }
+
+  private handleError (error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 }
