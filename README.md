@@ -1,6 +1,6 @@
 # maydayworld.net
 
-This is a website built using Angular 2.
+This is a website built using Angular.
 
 ## Getting Started
 This project requires Node (`v4.5.x`+) and npm (`3.10.x`+).
@@ -9,13 +9,13 @@ This project requires Node (`v4.5.x`+) and npm (`3.10.x`+).
 Install dependencies with `npm install` from root directory.
 
 ### Running locally
-Start local server with `npm start`. Go to [http://localhost:8080](http://localhost:8080) from a web browser.
+Start a local server with `ng serve`. Go to [http://localhost:4200](http://localhost:4200) from a web browser.
 
 ### Building files
-Build project with `npm run build`. Output will be located in `/dist`.
+Build project with `ng build`. Output will be located in `/dist`. To build for production, use the `-prod` flag.
 
 ### Testing
-Run tests with `npm test`.
+Run unit tests with `ng test`. After starting a local server, run end-to-end tests with `ng e2e`.
 
 ## License
 Code is licensed under [Apache 2.0](/LICENSE).
