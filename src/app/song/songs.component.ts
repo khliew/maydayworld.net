@@ -5,7 +5,7 @@ import { SongTag } from '../model';
 import { SongService } from './song.service';
 
 @Component({
-  selector: 'mdw-songs',
+  selector: 'app-songs',
   templateUrl: './songs.component.html',
   styleUrls: ['./songs.component.css']
 })

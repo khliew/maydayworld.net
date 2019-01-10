@@ -4,7 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { SongDetailComponent } from './song-detail.component';
 import { SongLyricsComponent } from './song-lyrics.component';
-import { SongService }  from './song.service';
+import { SongService } from './song.service';
 import { SongsComponent } from './songs.component';
 import { songsRouting } from './songs.routing';
 

@@ -1,8 +1,6 @@
 import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-import { SongsComponent } from './song/songs.component';
-import { SongDetailComponent } from './song/song-detail.component';
 
 const appRoutes: Routes = [
   {

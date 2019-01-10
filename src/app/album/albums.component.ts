@@ -6,7 +6,7 @@ import { Album } from '../model';
 import { SONG_TAGS } from '../song/test-songs';
 
 @Component ({
-    selector: 'mdw-albums',
+    selector: 'app-albums',
     templateUrl: './albums.component.html',
     styleUrls: ['./albums.component.css']
 })
@@ -24,7 +24,7 @@ export class AlbumsComponent implements OnInit {
     this.albums = [
       { id: '8', name: '第二人生 Second Round', songs: null },
       { id: '9', name: '自傳 History of Tomorrow', songs: SONG_TAGS }
-    ]
+    ];
   }
 
   onSelect(album: Album): void {

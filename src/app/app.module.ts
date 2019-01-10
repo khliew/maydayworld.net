@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { AlbumModule } from './album/album.module';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -21,6 +20,6 @@ import { SongModule } from './song/song.module';
   declarations: [
     AppComponent
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

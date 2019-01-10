@@ -1,9 +1,9 @@
-import { NgModule }      from '@angular/core';
-import { CommonModule }  from '@angular/common';
-import { FormsModule }   from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [ CommonModule ],
+  imports: [CommonModule],
   exports: [
     CommonModule,
     FormsModule
