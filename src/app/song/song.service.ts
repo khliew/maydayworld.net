@@ -19,10 +19,9 @@ export class SongService {
   }
 
   getSongLyrics(id: string): Observable<Lyrics> {
-    return this.http.get<HttpResponse<Lyrics>>('public/lyrics/' + id + '.json')
+    return this.http.get<HttpResponse<Lyrics>>(`assets/lyrics/${id}.json`)
       .pipe(
         map(response => {
-          console.log('getSongLyrics: response', response);
           return response.body;
         }),
         catchError(this.handleError<Lyrics>('getSongLyrics'))
@@ -32,8 +31,7 @@ export class SongService {
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error); // log to console instead
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
+      return of(result as T); // let the app keep running by returning an empty result.
     };
   }
 }
