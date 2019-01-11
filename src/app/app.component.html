@@ -1,8 +1,8 @@
-<main>
-  <h1>{{title}}</h1>
-  <nav>
-    <a routerLink="/albums" routerLinkActive="active">Albums</a>
-    <a routerLink="/songs" routerLinkActive="active">Songs</a>
-  </nav>
+<main class="mat-typography container">
+  <mat-toolbar color="primary">
+    <span class="toolbar-title">Mayday World 五月天世界</span>
+    <a mat-button routerLink="/albums">Albums</a>
+    <a mat-button routerLink="/songs">All Songs</a>
+  </mat-toolbar>
   <router-outlet></router-outlet>
 </main>
