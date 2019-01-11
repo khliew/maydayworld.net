@@ -1,7 +1,11 @@
 .album-list {
+  width: 400px;
+  margin: 0 auto;
 }
-.card-album {
-  width: 300px;
-  margin: 0 auto 16px;
+.album-card {
+  margin: 0 0 16px;
   cursor: pointer;
+}
+.album-card:hover {
+  background-color: rgba(0, 0, 0, 0.04);
 }

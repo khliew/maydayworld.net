@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
 import { Album } from '../model';
-
 import { AlbumService } from './album.service';
 
 @Component ({
@@ -13,7 +10,7 @@ import { AlbumService } from './album.service';
 export class AlbumsComponent implements OnInit {
   albums: Album[];
 
-  constructor(private router: Router, private albumService: AlbumService) { }
+  constructor(private albumService: AlbumService) { }
 
   ngOnInit() {
     this.getAlbums();
@@ -21,17 +18,6 @@ export class AlbumsComponent implements OnInit {
 
   getAlbums(): void {
     this.albumService.getAlbums()
-      .subscribe(albums => {
-        this.albums = albums;
-      });
-  }
-
-  onSelect(album: Album): void {
-    this.router.navigate(['/album', album.id]);
+      .subscribe(albums => this.albums = albums);
   }
 }
-
-/*
-TODO
-- create album list
- */

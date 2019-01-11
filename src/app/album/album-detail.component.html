@@ -1,8 +1,8 @@
-<div *ngIf="album">
+<div class="container">
   <h2>{{album.title}}</h2>
-  <ul class="tracks">
-    <li *ngFor="let track of album.tracks">
-      <a [routerLink]="['/song', track.id]" class="badge">{{track.title}}</a>
-    </li>
-  </ul>
+  <mat-nav-list class="track-list">
+    <a mat-list-item *ngFor="let track of album.tracks" [routerLink]="['/song', track.id]" class="track-card">
+      {{track.number}}. {{track.title}}
+    </a>
+  </mat-nav-list>
 </div>

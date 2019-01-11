@@ -1,0 +1,9 @@
+.container {
+  padding: 32px;
+}
+.track-list {
+  width: 400px;
+}
+.track-card {
+  margin: 0 0 16px;
+}
