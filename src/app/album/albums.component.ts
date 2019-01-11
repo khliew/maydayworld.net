@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Album } from '../model';
 
-import { SONG_TAGS } from '../song/test-songs';
+import { AlbumService } from './album.service';
 
 @Component ({
     selector: 'app-albums',
@@ -13,18 +13,17 @@ import { SONG_TAGS } from '../song/test-songs';
 export class AlbumsComponent implements OnInit {
   albums: Album[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private albumService: AlbumService) { }
 
   ngOnInit() {
     this.getAlbums();
   }
 
   getAlbums(): void {
-    // TODO: use a service instead?
-    this.albums = [
-      { id: '8', name: '第二人生 Second Round', songs: null },
-      { id: '9', name: '自傳 History of Tomorrow', songs: SONG_TAGS }
-    ];
+    this.albumService.getAlbums()
+      .subscribe(albums => {
+        this.albums = albums;
+      });
   }
 
   onSelect(album: Album): void {

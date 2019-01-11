@@ -1,7 +1,8 @@
-import { SongTag } from './song-tag';
+import { Track } from './track';
 
 export class Album {
   id: string;
-  name: string;
-  songs: SongTag[];
+  title: string;
+  releaseDate?: string;
+  tracks: Track[];
 }

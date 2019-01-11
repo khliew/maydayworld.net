@@ -1,9 +1,9 @@
 ﻿import { Lyrics, SongTag } from '../model';
 
 export const SONG_TAGS: SongTag[] = [
-  {id: 'wr05', name: '溫柔 (還你自由版)', composers: ['composer'], lyricists: ['lyricist']},
-  {id: 'jjl', name: '將軍令', composers: ['composer'], lyricists: ['lyricist']},
-  {id: 'hldwm', name: '後來的我們', composers: ['composer'], lyricists: ['lyricist']}
+  {id: 'wr05', title: '溫柔 (還你自由版)', composers: ['composer'], lyricists: ['lyricist']},
+  {id: 'jjl', title: '將軍令', composers: ['composer'], lyricists: ['lyricist']},
+  {id: 'hldwm', title: '後來的我們', composers: ['composer'], lyricists: ['lyricist']}
 ];
 
 export const SONG_LYRICS: Lyrics[] = [

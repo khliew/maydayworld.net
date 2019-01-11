@@ -1,8 +1,8 @@
 <div *ngIf="album">
-  <h2>{{album.name}}</h2>
-  <ul class="songTags">
-    <li *ngFor="let songTag of album.songs">
-      <a [routerLink]="['/song', songTag.id]" class="badge">{{songTag.name}}</a>
+  <h2>{{album.title}}</h2>
+  <ul class="tracks">
+    <li *ngFor="let track of album.tracks">
+      <a [routerLink]="['/song', track.id]" class="badge">{{track.title}}</a>
     </li>
   </ul>
 </div>

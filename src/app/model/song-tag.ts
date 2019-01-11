@@ -1,6 +1,6 @@
 export class SongTag {
   id: string;
-  name: string;
-  composers: string[];
-  lyricists: string[];
+  title: string;
+  composers?: string[];
+  lyricists?: string[];
 }
