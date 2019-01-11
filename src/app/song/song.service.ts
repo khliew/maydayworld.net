@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Lyrics, SongTag } from '../model';
@@ -8,7 +8,7 @@ import { SONG_TAGS } from './test-songs';
 @Injectable()
 export class SongService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getSongTags(): Observable<SongTag[]> {
     return of(SONG_TAGS);
@@ -19,27 +19,21 @@ export class SongService {
   }
 
   getSongLyrics(id: string): Observable<Lyrics> {
-    return this.http.get('public/lyrics/' + id + '.json')
+    return this.http.get<HttpResponse<Lyrics>>('public/lyrics/' + id + '.json')
       .pipe(
-        map(response => response.json()),
-        catchError(this.handleError)
+        map(response => {
+          console.log('getSongLyrics: response', response);
+          return response.body;
+        }),
+        catchError(this.handleError<Lyrics>('getSongLyrics'))
       );
   }
 
-  private extractLyricsData(res: Response) {
-    return res.json() || {};
-  }
-
-  private handleError(error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error); // log to console instead
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 }

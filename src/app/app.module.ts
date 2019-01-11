@@ -1,24 +1,35 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { JsonpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlbumModule } from './album/album.module';
+import { AlbumService } from './album/album.service';
+import { AppMaterialModule } from './app-material.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { routing } from './app.routing';
 import { SharedModule } from './shared/shared.module';
 import { SongModule } from './song/song.module';
+import { SongService } from './song/song.service';
 
 @NgModule({
   imports: [
-    AlbumModule,
     BrowserModule,
-    HttpModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     JsonpModule,
+    AppMaterialModule,
     SharedModule,
+    AlbumModule,
     SongModule,
-    routing
+    AppRoutingModule
   ],
   declarations: [
     AppComponent
+  ],
+  providers: [
+    AlbumService,
+    SongService
   ],
   bootstrap: [AppComponent]
 })
