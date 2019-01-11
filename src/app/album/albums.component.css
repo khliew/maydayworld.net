@@ -1,0 +1,7 @@
+.album-list {
+}
+.card-album {
+  width: 300px;
+  margin: 0 auto 16px;
+  cursor: pointer;
+}

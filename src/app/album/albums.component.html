@@ -1,6 +1,10 @@
-<h2>Albums</h2>
-<ul class="albums">
-  <li *ngFor="let album of albums">
-    <a [routerLink]="['/album', album.id]" class="badge">{{album.title}}</a>
-  </li>
-</ul>
+<div class="container">
+  <mat-nav-list class="album-list">
+    <mat-card mat-list-item *ngFor="let album of albums" [routerLink]="['/album', album.id]" class="card-album">
+      <mat-card-content>
+        <h2>{{album.title}}</h2>
+        <h3>{{album.releaseDate}}</h3>
+      </mat-card-content>
+    </mat-card>
+  </mat-nav-list>
+</div>

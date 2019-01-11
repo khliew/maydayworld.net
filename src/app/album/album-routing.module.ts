@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlbumDetailComponent } from './album-detail.component';
 import { AlbumsComponent } from './albums.component';
 
-
 const albumRoutes: Routes = [
   { path: 'album/:id', component: AlbumDetailComponent },
   { path: 'albums', component: AlbumsComponent }
