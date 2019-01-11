@@ -43,4 +43,4 @@ yarn-error.log
 Thumbs.db
 
 # Song lyrics
-/public/lyrics
+/src/assets/lyrics
