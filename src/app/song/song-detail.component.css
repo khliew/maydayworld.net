@@ -1,0 +1,9 @@
+.container {
+  padding: 32px;
+}
+.song-header {
+  margin-bottom: 32px;
+}
+.song-title {
+  font-size: 20px;
+}

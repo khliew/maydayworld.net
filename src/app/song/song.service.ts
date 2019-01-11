@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Lyrics, SongTag } from '../model';
+import { SongTag } from '../model';
+import { Song } from '../model/song';
 import { SONG_TAGS } from './test-songs';
 
 @Injectable()
@@ -18,13 +19,10 @@ export class SongService {
     return this.getSongTags().pipe(map((songTags: SongTag[]) => songTags.find(songTag => songTag.id === id)));
   }
 
-  getSongLyrics(id: string): Observable<Lyrics> {
-    return this.http.get<HttpResponse<Lyrics>>(`assets/lyrics/${id}.json`)
+  getSongLyrics(id: string): Observable<Song> {
+    return this.http.get<Song>(`assets/lyrics/${id}.json`)
       .pipe(
-        map(response => {
-          return response.body;
-        }),
-        catchError(this.handleError<Lyrics>('getSongLyrics'))
+        catchError(this.handleError<Song>('getSongLyrics'))
       );
   }
 

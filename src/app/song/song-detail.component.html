@@ -1,5 +1,32 @@
-<div *ngIf="songTag">
-  <h2>{{songTag.name}}</h2>
-  <p>
-  <app-song-lyrics [lyrics]=lyrics *ngIf="lyrics"></app-song-lyrics>
+<div class="container">
+  <ng-container *ngIf="song">
+    <div class="song-header">
+      <div class="song-title">
+        <b>{{song.title.zht}}</b>
+        <br>
+        {{song.title.zhp}}
+        <br>
+        {{song.title.eng}}
+      </div>
+    </div>
+    <div class="song-content">
+      <div *ngFor="let lyric of song.lyrics">
+        <ng-container [ngSwitch]="lyric.type">
+          <p *ngSwitchCase="'lyric'">
+            {{lyric.zht}}
+            <br>
+            {{lyric.zhp}}
+            <br>
+            {{lyric.eng}}
+          </p>
+          <p *ngSwitchCase="'break'">
+            <br>
+          </p>
+          <p *ngSwitchCase="'text'">
+            {{lyric.text}}
+          </p>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
 </div>
