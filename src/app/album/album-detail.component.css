@@ -1,9 +1,14 @@
-.container {
-  padding: 32px;
+.sidenav-container {
+  width: 100%;
 }
-.track-list {
-  width: 400px;
+.sidenav {
+  width: 280px;
+  top: 64px !important; /* offset so it appears below the toolbar */
 }
-.track-card {
-  margin: 0 0 16px;
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+}
+.album-title {
+  padding: 16px 16px 0 16px;
 }

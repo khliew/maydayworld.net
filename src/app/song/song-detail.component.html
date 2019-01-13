@@ -1,5 +1,5 @@
 <div class="container">
-  <ng-container *ngIf="song">
+  <ng-container *ngIf="song$ | async as song">
     <div class="song-header">
       <div class="song-title">
         <b>{{song.title.zht}}</b>

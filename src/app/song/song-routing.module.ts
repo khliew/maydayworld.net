@@ -4,7 +4,7 @@ import { SongDetailComponent } from './song-detail.component';
 import { SongsComponent } from './songs.component';
 
 const songRoutes: Routes = [
-  { path: 'song/:id', component: SongDetailComponent },
+  { path: 'album/:id/song/:songId', component: SongDetailComponent },
   { path: 'songs',  component: SongsComponent }
 ];
 
