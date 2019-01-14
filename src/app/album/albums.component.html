@@ -1,12 +1,12 @@
 <div class="container">
-  <mat-grid-list class="album-list" cols="2" rowHeight="138px">
+  <mat-grid-list class="album-list" cols="2" rowHeight="102px" gutterSize="16px">
     <mat-grid-tile *ngFor="let album of albums">
       <div [routerLink]="['/album', album.id]" class="album-card">
           <div class="album-title">
             <div class="title-chinese">{{album.title.chinese.zht}}</div>
             <div class="title-english">{{album.title.english}}</div>
           </div>
-          <p class="release-date">{{ album.releaseDate | date }}</p>
+          <div class="release-date">{{ album.releaseDate | date }}</div>
       </div>
     </mat-grid-tile>
   </mat-grid-list>

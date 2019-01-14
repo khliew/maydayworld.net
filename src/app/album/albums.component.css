@@ -1,12 +1,12 @@
 .album-list {
-  width: 500px;
-  margin: 16px auto;
+  width: 496px;
+  margin: 32px auto;
 }
 .album-card {
   width: 100%;
   cursor: pointer;
   border: 1px solid gray;
-  margin: 8px;
+  border-radius: 4px;
   padding: 16px;
 }
 .album-card:hover {
