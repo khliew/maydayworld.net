@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -20,13 +20,13 @@ export class SongService {
   }
 
   getSongLyrics(id: string): Observable<Song> {
-    return this.http.get<Song>(`assets/lyrics/${id}.json`)
+    return this.http.get<Song>(`assets/songs/${id}.json`)
       .pipe(
         catchError(this.handleError<Song>('getSongLyrics'))
       );
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error); // log to console instead
       return of(result as T); // let the app keep running by returning an empty result.

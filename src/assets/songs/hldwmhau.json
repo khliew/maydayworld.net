@@ -1,0 +1,44 @@
+{
+  "id": "hldwm",
+  "title": {
+    "chinese": {
+      "zht": "後來的我們",
+      "zhp": "hòu lái de wǒ men",
+      "eng": "later we"
+    },
+    "english": "Here, After, Us"
+  },
+  "lyricist": "阿信",
+  "composer": "怪獸",
+  "arranger": "阿信",
+  "lyrics": [
+    {
+      "type": "lyric",
+      "zht": "然後呢",
+      "zhp": "rán hòu ne",
+      "eng": "And then?"
+    },
+    {
+      "type": "lyric",
+      "zht": "他們說你的心 似乎痊癒了",
+      "zhp": "tā men shuō nǐ de xīn sì hū quán yù le",
+      "eng": "They said that your heart seems to be healed"
+    },
+    {
+      "type": "break"
+    },
+    {
+      "type": "lyric",
+      "zht": "也開始有個人 為你守護著",
+      "zhp": "yě kāi shǐ yǒu gè rén wèi nǐ shǒu hù zhe",
+      "eng": "I also started to have someone guarding you"
+    }
+  ],
+  "dict": {
+    "zhp": {
+      "然": "rán",
+      "後": "hòu",
+      "呢": "ne"
+    }
+  }
+}
