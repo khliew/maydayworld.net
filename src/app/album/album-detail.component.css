@@ -12,6 +12,8 @@
 .album-title {
   font-size: 20px;
   padding: 16px;
+  margin: 0 auto;
+  width: 496px;
 }
 .title-chinese {
   font-weight: bold;
@@ -28,5 +30,6 @@
 }
 .track-list {
   width: 496px;
+  margin: 0 auto;
   padding-bottom: 32px;
 }
