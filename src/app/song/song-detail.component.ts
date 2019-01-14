@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class SongDetailComponent implements OnInit {
   song$: Observable<Song>;
+  isTitleTranslationVisible: boolean;
 
   constructor(private route: ActivatedRoute, private songService: SongService) { }
 
@@ -21,5 +22,9 @@ export class SongDetailComponent implements OnInit {
       switchMap((params: ParamMap) =>
         this.songService.getSongLyrics(params.get('songId')))
     );
+  }
+
+  toggleTitleTranslation(): void {
+    this.isTitleTranslationVisible = !this.isTitleTranslationVisible;
   }
 }

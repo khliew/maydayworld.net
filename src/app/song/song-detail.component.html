@@ -2,11 +2,13 @@
   <ng-container *ngIf="song$ | async as song">
     <div class="song-header">
       <div class="song-title">
-        <b>{{song.title.zht}}</b>
-        <br>
-        {{song.title.zhp}}
-        <br>
-        {{song.title.eng}}
+        <div class="title-chinese" (click)="toggleTitleTranslation()">{{song.title.chinese.zht}}</div>
+        <div class="title-translation" *ngIf="isTitleTranslationVisible">
+          {{song.title.chinese.zhp}}
+          <br>
+          {{song.title.chinese.eng}}
+        </div>
+        <div class="title-english">{{song.title.english}}</div>
       </div>
     </div>
     <div class="song-content">
