@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Album } from '../model';
+import { Discography } from '../model';
 import { AlbumService } from './album.service';
 
 @Component({
@@ -8,18 +8,19 @@ import { AlbumService } from './album.service';
   styleUrls: ['./albums.component.css']
 })
 export class AlbumsComponent implements OnInit {
-  albums: Album[];
+  discography: Discography;
 
   constructor(private albumService: AlbumService) { }
 
   ngOnInit() {
-    this.getAlbums();
+    this.getDiscography();
   }
 
-  getAlbums(): void {
-    this.albumService.getAlbums()
-      .subscribe(albums => {
-        this.albums = albums;
-      }, error => console.log(error));
+  getDiscography(): void {
+    this.albumService.getDiscography()
+      .subscribe(
+        discography => this.discography = discography,
+        error => console.log(error)
+      );
   }
 }

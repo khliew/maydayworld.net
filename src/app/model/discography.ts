@@ -2,9 +2,9 @@ import { Album } from '.';
 
 export class Discography {
   artist: string;
-  discography: [
+  sections: [
     {
-      section: string;
+      label: string;
       albums: Album[];
     }
   ];

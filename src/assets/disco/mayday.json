@@ -1,8 +1,8 @@
 {
   "artist": "Mayday",
-  "discography": [
+  "sections": [
     {
-      "section": "Studio Albums",
+      "label": "Studio Albums",
       "albums": [
         {
           "id": "id3ct0",
@@ -96,7 +96,7 @@
           "tracks": null
         },
         {
-          "id": "fnhz0y",
+          "id": "derssr",
           "title": {
             "chinese": {
               "zht": "第二人生",
@@ -145,10 +145,10 @@
       ]
     },
     {
-      "section": "Compilations",
+      "label": "Compilations",
       "albums": [
         {
-          "id": "asdf",
+          "id": "waestbo",
           "title": {
             "chinese": {
               "zht": "步步自選作品輯",
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "section": "EP",
+      "label": "EP",
       "albums": [
         {
           "id": "fdas",
@@ -179,6 +179,10 @@
           "tracks": null
         }
       ]
+    },
+    {
+      "label": "Other",
+      "albums": []
     }
   ]
 }

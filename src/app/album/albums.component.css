@@ -1,6 +1,10 @@
-.album-list {
+.section {
   width: 496px;
   margin: 32px auto;
+}
+.section-header {
+}
+.album-list {
 }
 .album-card {
   width: 100%;
