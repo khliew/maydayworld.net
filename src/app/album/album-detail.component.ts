@@ -10,11 +10,16 @@ import { AlbumService } from './album.service';
 })
 export class AlbumDetailComponent implements OnInit {
   album: Album;
+  isTitleTranslationVisible: boolean;
 
   constructor(private route: ActivatedRoute, private albumService: AlbumService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('albumId');
     this.albumService.getAlbum(id).subscribe(album => this.album = album);
+  }
+
+  toggleTitleTranslation(): void {
+    this.isTitleTranslationVisible = !this.isTitleTranslationVisible;
   }
 }

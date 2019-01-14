@@ -2,9 +2,13 @@
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav class="sidenav" mode="side" opened="true" fixedInViewport="true">
       <div class="album-title">
-        <b>{{album.title.zht}}</b>
-        <br>
-        {{album.title.eng}}
+        <div class="title-chinese" (click)="toggleTitleTranslation()">{{album.title.chinese.zht}}</div>
+        <div class="title-translation" *ngIf="isTitleTranslationVisible">
+          {{album.title.chinese.zhp}}
+          <br>
+          {{album.title.chinese.eng}}
+        </div>
+        <div class="title-english">{{album.title.english}}</div>
       </div>
       <mat-nav-list>
         <a mat-list-item *ngFor="let track of album.tracks" [routerLink]="['/album', album.id, 'song', track.id]"
