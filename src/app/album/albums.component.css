@@ -1,8 +1,9 @@
 .album-list {
-  width: 400px;
-  margin: 0 auto;
+  width: 500px;
+  margin: 16px auto;
 }
 .album-card {
+  width: 100%;
   cursor: pointer;
   border: 1px solid gray;
   margin: 8px;
