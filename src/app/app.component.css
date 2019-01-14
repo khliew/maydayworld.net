@@ -1,3 +1,11 @@
+.toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+}
 .toolbar-title {
   margin-right: 16px
+}
+.app-container {
+  padding-top: 64px; /* offset so it appears below the toolbar */
 }

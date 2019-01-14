@@ -18,11 +18,6 @@ export class AlbumDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('albumId');
     this.albumService.getAlbum(id).subscribe(album => {
       this.album = album;
-
-      // navigate to first track if none is selected.
-      if (this.route.snapshot.children.length === 0 && this.album.tracks.length > 0) {
-        this.router.navigate(['song', this.album.tracks[0].id], { relativeTo: this.route });
-      }
     });
   }
 

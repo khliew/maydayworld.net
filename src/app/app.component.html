@@ -1,8 +1,10 @@
 <main class="mat-typography container">
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" class="toolbar">
     <span class="toolbar-title">Mayday World 五月天世界</span>
     <a mat-button routerLink="/albums">Albums</a>
     <a mat-button routerLink="/songs">All Songs</a>
   </mat-toolbar>
-  <router-outlet></router-outlet>
+  <div class="app-container">
+    <router-outlet></router-outlet>
+  </div>
 </main>

@@ -10,7 +10,7 @@
         </div>
         <div class="title-english">{{album.title.english}}</div>
       </div>
-      <mat-nav-list>
+      <mat-nav-list class="track-list">
         <a mat-list-item *ngFor="let track of album.tracks" [routerLink]="['/album', album.id, 'song', track.id]"
           routerLinkActive="active-nav-item" class="track-item">
           {{track.number}}. {{track.title}}

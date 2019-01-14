@@ -3,7 +3,7 @@
 }
 .sidenav {
   width: 280px;
-  top: 64px !important; /* offset so it appears below the toolbar */
+  padding-top: 64px; /* offset so it appears below the toolbar */
 }
 .sidenav-content {
   display: flex;
@@ -25,4 +25,7 @@
 .title-english {
   font-size: 20px;
   padding-top: 8px;
+}
+.track-list {
+  padding-bottom: 32px;
 }
