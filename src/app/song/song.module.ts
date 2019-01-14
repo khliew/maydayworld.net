@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { SongDetailComponent } from './song-detail.component';
+import { SongListComponent } from './song-list.component';
 
 @NgModule({
   imports: [
@@ -9,7 +10,8 @@ import { SongDetailComponent } from './song-detail.component';
     SharedModule,
   ],
   declarations: [
-    SongDetailComponent
+    SongDetailComponent,
+    SongListComponent
   ]
 })
 export class SongModule { }

@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { SongModule } from '../song/song.module';
 import { AlbumDetailComponent } from './album-detail.component';
+import { AlbumListComponent } from './album-list.component';
 import { AlbumRoutingModule } from './album-routing.module';
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AlbumRoutingModule } from './album-routing.module';
     AlbumRoutingModule
   ],
   declarations: [
-    AlbumDetailComponent
+    AlbumDetailComponent,
+    AlbumListComponent
   ]
 })
 export class AlbumModule { }

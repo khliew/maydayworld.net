@@ -1,17 +1,12 @@
 .container {
   background-color: white;
+  padding: 32px 16px;
 }
-.sidenav {
-  width: 280px;
-  margin-top: 64px; /* offset so it appears below the toolbar */
+.song-header {
+  margin-bottom: 64px;
 }
-.sidenav-content {
-  display: flex;
-  flex-direction: column;
-}
-.album-title {
+.song-title {
   font-size: 20px;
-  padding: 16px;
 }
 .title-chinese {
   font-weight: bold;
@@ -25,8 +20,4 @@
 .title-english {
   font-size: 20px;
   padding-top: 8px;
-}
-.track-list {
-  width: 496px;
-  padding-bottom: 32px;
 }

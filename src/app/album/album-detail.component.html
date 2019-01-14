@@ -1,24 +1,18 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav class="sidenav" mode="side" opened="true" fixedInViewport="true">
-    <ng-container *ngIf="album">
-      <div class="album-title">
-        <div class="title-chinese" (click)="toggleTitleTranslation()">{{album.title.chinese.zht}}</div>
-        <div class="title-translation" *ngIf="isTitleTranslationVisible">
-          {{album.title.chinese.zhp}}
-          <br>
-          {{album.title.chinese.eng}}
-        </div>
-        <div class="title-english">{{album.title.english}}</div>
+<div class="container">
+  <ng-container *ngIf="album$ | async as album">
+    <div class="album-title">
+      <div class="title-chinese" (click)="toggleTitleTranslation()">{{album.title.chinese.zht}}</div>
+      <div class="title-translation" *ngIf="isTitleTranslationVisible">
+        {{album.title.chinese.zhp}}
+        <br>
+        {{album.title.chinese.eng}}
       </div>
-      <mat-nav-list class="track-list">
-        <a mat-list-item *ngFor="let track of album.tracks" [routerLink]="['/album', album.id, 'song', track.id]"
-          routerLinkActive="active-nav-item" class="track-item">
-          {{track.number}}. {{track.title}}
-        </a>
-      </mat-nav-list>
-    </ng-container>
-  </mat-sidenav>
-  <mat-sidenav-content class="sidenav-content">
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+      <div class="title-english">{{album.title.english}}</div>
+    </div>
+    <mat-nav-list class="track-list">
+      <a mat-list-item *ngFor="let track of album.tracks" [routerLink]="['/album', album.id, 'song', track.id]" class="track-item">
+        {{track.number}}. {{track.title}}
+      </a>
+    </mat-nav-list>
+  </ng-container>
+</div>

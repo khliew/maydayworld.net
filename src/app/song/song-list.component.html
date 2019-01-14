@@ -1,0 +1,34 @@
+<div class="container">
+    <ng-container *ngIf="song$ | async as song">
+      <div class="song-header">
+        <div class="song-title">
+          <div class="title-chinese" (click)="toggleTitleTranslation()">{{song.title.chinese.zht}}</div>
+          <div class="title-translation" *ngIf="isTitleTranslationVisible">
+            {{song.title.chinese.zhp}}
+            <br>
+            {{song.title.chinese.eng}}
+          </div>
+          <div class="title-english">{{song.title.english}}</div>
+        </div>
+      </div>
+      <div class="song-content">
+        <div *ngFor="let lyric of song.lyrics">
+          <ng-container [ngSwitch]="lyric.type">
+            <p *ngSwitchCase="'lyric'">
+              {{lyric.zht}}
+              <br>
+              {{lyric.zhp}}
+              <br>
+              {{lyric.eng}}
+            </p>
+            <p *ngSwitchCase="'break'">
+              <br>
+            </p>
+            <p *ngSwitchCase="'text'">
+              {{lyric.text}}
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </div>

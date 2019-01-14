@@ -1,0 +1,26 @@
+.sidenav-container {
+  width: 100%;
+}
+.sidenav {
+  width: 280px;
+  margin-top: 64px; /* offset so it appears below the toolbar */
+  padding-bottom: 32px;
+}
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+}
+.title-chinese {
+  /* font-size: 14px; */
+}
+.title-english {
+  /* color: gray; */
+  font-size: 12px;
+}
+.album-list {
+}
+.album-item {
+}
+.section-header {
+  padding-top: 40px;
+}
