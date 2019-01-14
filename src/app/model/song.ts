@@ -1,5 +1,4 @@
-import { Line } from './line';
-import { Title } from './title';
+import { Line, Title } from '.';
 
 export class Song {
   id: string;

@@ -1,5 +1,4 @@
-import { Track } from './track';
-import { Title } from './title';
+import { Track, Title } from '.';
 
 export class Album {
   id: string;
