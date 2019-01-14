@@ -29,3 +29,20 @@ $activated-item: mat-color($mat-light-blue, A100);
 .active-nav-item {
   background-color: $activated-item !important;
 }
+
+// styling for sidenav
+.mat-drawer-inner-container {
+  overflow: hidden !important;
+}
+.mat-drawer-inner-container:hover {
+  overflow: overlay !important;
+}
+.mat-drawer-inner-container::-webkit-scrollbar {
+  width: 6px,
+}
+.mat-drawer-inner-container::-webkit-scrollbar-track {
+  background-color: #f0f0f0,
+}
+.mat-drawer-inner-container::-webkit-scrollbar-thumb {
+  background-color: lightgray,
+}

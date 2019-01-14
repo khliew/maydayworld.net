@@ -3,7 +3,7 @@
 }
 .sidenav {
   width: 280px;
-  padding-top: 64px; /* offset so it appears below the toolbar */
+  margin-top: 64px; /* offset so it appears below the toolbar */
 }
 .sidenav-content {
   display: flex;
