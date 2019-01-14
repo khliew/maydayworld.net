@@ -1,23 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { SongTag } from '../model';
-import { Song } from '../model/song';
-import { SONG_TAGS } from './test-songs';
+import { catchError } from 'rxjs/operators';
+import { Song } from '../model';
 
 @Injectable()
 export class SongService {
 
   constructor(private http: HttpClient) { }
-
-  getSongTags(): Observable<SongTag[]> {
-    return of(SONG_TAGS);
-  }
-
-  getSongTag(id: string): Observable<SongTag> {
-    return this.getSongTags().pipe(map((songTags: SongTag[]) => songTags.find(songTag => songTag.id === id)));
-  }
 
   getSongLyrics(id: string): Observable<Song> {
     return this.http.get<Song>(`assets/songs/${id}.json`)

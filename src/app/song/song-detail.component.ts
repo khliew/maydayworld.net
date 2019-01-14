@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Song } from '../model/song';
-import { SongService } from './song.service';
-import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
+import { switchMap } from 'rxjs/operators';
+import { Song } from '../model';
+import { SongService } from './song.service';
 
 @Component({
   selector: 'app-song-detail',

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AlbumsComponent } from './album/albums.component';
-import { SongsComponent } from './song/songs.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SongsComponent } from './song/songs.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/albums', pathMatch: 'full' },
