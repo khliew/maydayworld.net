@@ -1,12 +1,9 @@
 import { Line } from './line';
+import { Title } from './title';
 
 export class Song {
   id: string;
-  title: {
-    zht: string;
-    zhp: string;
-    eng: string;
-  };
+  title: Title;
   lyricist: string;
   composer: string;
   arranger: string;

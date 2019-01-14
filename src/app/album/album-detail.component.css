@@ -13,3 +13,14 @@
   font-size: 20px;
   padding: 16px 16px 8px 16px;
 }
+.title-chinese {
+  font-weight: bold;
+  font-size: 20px;
+}
+.title-translation {
+  color: gray;
+  font-size: 14px;
+}
+.title-english {
+  font-size: 20px;
+}

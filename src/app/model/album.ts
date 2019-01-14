@@ -1,11 +1,9 @@
 import { Track } from './track';
+import { Title } from './title';
 
 export class Album {
   id: string;
-  title: {
-    zht: string;
-    eng: string;
-  };
+  title: Title;
   releaseDate?: string;
   tracks: Track[];
 }
