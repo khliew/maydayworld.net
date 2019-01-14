@@ -1,6 +1,6 @@
-<ng-container *ngIf="album">
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav class="sidenav" mode="side" opened="true" fixedInViewport="true">
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav class="sidenav" mode="side" opened="true" fixedInViewport="true">
+    <ng-container *ngIf="album">
       <div class="album-title">
         <div class="title-chinese" (click)="toggleTitleTranslation()">{{album.title.chinese.zht}}</div>
         <div class="title-translation" *ngIf="isTitleTranslationVisible">
@@ -16,9 +16,9 @@
           {{track.number}}. {{track.title}}
         </a>
       </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content class="sidenav-content">
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</ng-container>
+    </ng-container>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
