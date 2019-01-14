@@ -3,8 +3,10 @@
   margin: 0 auto;
 }
 .album-card {
-  margin: 0 0 16px;
   cursor: pointer;
+  border: 1px solid gray;
+  margin: 8px;
+  padding: 16px;
 }
 .album-card:hover {
   background-color: rgba(0, 0, 0, 0.04);
@@ -13,9 +15,9 @@
   padding-bottom: 8px;
 }
 .title-chinese {
-  font-weight: bold;
-  font-size: 20px;
 }
 .title-english {
-  font-size: 20px;
+}
+.release-date {
+  color: gray;
 }

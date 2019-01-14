@@ -1,13 +1,11 @@
 <div class="container">
   <mat-nav-list class="album-list">
-    <mat-card mat-list-item *ngFor="let album of albums" [routerLink]="['/album', album.id]" class="album-card">
-      <mat-card-content>
-        <div class="album-title">
-          <div class="title-chinese">{{album.title.chinese.zht}}</div>
-          <div class="title-english">{{album.title.english}}</div>
-        </div>
-        <h3>{{ album.releaseDate | date }}</h3>
-      </mat-card-content>
-    </mat-card>
+    <div mat-list-item *ngFor="let album of albums" [routerLink]="['/album', album.id]" class="album-card">
+      <div class="album-title">
+        <div class="title-chinese">{{album.title.chinese.zht}}</div>
+        <div class="title-english">{{album.title.english}}</div>
+      </div>
+      <div class="release-date">{{ album.releaseDate | date }}</div>
+    </div>
   </mat-nav-list>
 </div>
