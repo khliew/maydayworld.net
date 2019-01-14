@@ -10,5 +10,6 @@
   flex-direction: column;
 }
 .album-title {
-  padding: 16px 16px 0 16px;
+  font-size: 20px;
+  padding: 16px 16px 8px 16px;
 }

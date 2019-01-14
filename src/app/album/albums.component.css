@@ -9,3 +9,6 @@
 .album-card:hover {
   background-color: rgba(0, 0, 0, 0.04);
 }
+.album-title {
+  font-size: 20px;
+}

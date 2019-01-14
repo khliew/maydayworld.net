@@ -6,6 +6,7 @@ import { AlbumService } from './album/album.service';
 import { AlbumsComponent } from './album/albums.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SharedModule } from './shared/shared.module';
 import { SongService } from './song/song.service';
 import { SongsComponent } from './song/songs.component';
@@ -21,6 +22,7 @@ import { SongsComponent } from './song/songs.component';
   declarations: [
     AppComponent,
     AlbumsComponent,
+    PageNotFoundComponent,
     SongsComponent
   ],
   providers: [

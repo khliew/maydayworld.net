@@ -4,8 +4,7 @@ import { SongDetailComponent } from './song-detail.component';
 import { SongsComponent } from './songs.component';
 
 const songRoutes: Routes = [
-  { path: 'album/:id/song/:songId', component: SongDetailComponent },
-  { path: 'songs',  component: SongsComponent }
+  { path: 'album/:id/song/:songId', component: SongDetailComponent }
 ];
 
 @NgModule({

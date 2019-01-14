@@ -2,7 +2,11 @@
   <mat-nav-list class="album-list">
     <mat-card mat-list-item *ngFor="let album of albums" [routerLink]="['/album', album.id]" class="album-card">
       <mat-card-content>
-        <h2>{{album.title}}</h2>
+        <div class="album-title">
+          <b>{{album.title.zht}}</b>
+          <br>
+          {{album.title.eng}}
+        </div>
         <h3>{{album.releaseDate}}</h3>
       </mat-card-content>
     </mat-card>

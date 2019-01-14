@@ -22,3 +22,10 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($candy-app-theme);
+
+// active item color
+$activated-item: mat-color($mat-light-blue, A100);
+
+.active-nav-item {
+  background-color: $activated-item !important;
+}
