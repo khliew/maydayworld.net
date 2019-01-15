@@ -1,8 +1,12 @@
+.container {
+  margin-bottom: 64px;
+}
 .section {
   width: 496px;
-  margin: 32px auto;
+  margin: 0 auto;
 }
 .section-header {
+  margin: 32px 0 16px;
 }
 .album-list {
 }
