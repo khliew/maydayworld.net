@@ -1,13 +1,6 @@
 .container {
   background-color: white;
-}
-.sidenav {
-  width: 280px;
-  margin-top: 64px; /* offset so it appears below the toolbar */
-}
-.sidenav-content {
-  display: flex;
-  flex-direction: column;
+  padding: 16px 0 64px;
 }
 .album-title {
   font-size: 20px;
@@ -36,7 +29,6 @@
 .track-list {
   width: 496px;
   margin: 0 auto;
-  padding-bottom: 32px;
 }
 .track-item {
   /* border: 1px solid gray; */
