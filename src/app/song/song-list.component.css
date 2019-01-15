@@ -4,7 +4,6 @@
 .sidenav {
   width: 280px;
   margin-top: 64px; /* offset so it appears below the toolbar */
-  padding-bottom: 32px;
 }
 .sidenav-content {
   display: flex;
@@ -24,6 +23,7 @@
   padding-top: 4px;
 }
 .track-list {
+  padding-bottom: 32px;
 }
 .track-item {
 }

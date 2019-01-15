@@ -1,8 +1,8 @@
 <main class="mat-typography container">
   <mat-toolbar color="primary" class="toolbar">
-    <span class="toolbar-title">Mayday World 五月天世界</span>
-    <a mat-button routerLink="/albums">Albums</a>
-    <a mat-button routerLink="/songs">All Songs</a>
+    <a mat-flat-button routerLink="/albums" class="toolbar-home" disableRipple>
+      <span class="home-text">Mayday World 五月天世界</span>
+    </a>
   </mat-toolbar>
   <div class="app-container">
     <router-outlet></router-outlet>
