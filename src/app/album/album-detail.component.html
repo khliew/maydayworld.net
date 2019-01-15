@@ -2,12 +2,13 @@
   <ng-container *ngIf="album$ | async as album">
     <div class="album-title">
       <div class="title-chinese" (click)="toggleTitleTranslation()">{{album.title.chinese.zht}}</div>
-      <div class="title-translation" *ngIf="isTitleTranslationVisible">
+      <div class="title-translation">
         {{album.title.chinese.zhp}}
         <br>
         {{album.title.chinese.eng}}
       </div>
       <div class="title-english">{{album.title.english}}</div>
+      <div class="release-date">{{album.releaseDate | date}}</div>
     </div>
     <mat-nav-list class="track-list">
       <a mat-list-item *ngFor="let track of album.tracks" [routerLink]="['/album', album.id, 'song', track.id]" class="track-item">

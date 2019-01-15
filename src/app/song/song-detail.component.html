@@ -3,7 +3,7 @@
     <div class="song-header">
       <div class="song-title">
         <div class="title-chinese" (click)="toggleTitleTranslation()">{{song.title.chinese.zht}}</div>
-        <div class="title-translation" *ngIf="isTitleTranslationVisible">
+        <div class="title-translation">
           {{song.title.chinese.zhp}}
           <br>
           {{song.title.chinese.eng}}

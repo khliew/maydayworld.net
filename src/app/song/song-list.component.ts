@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { Song } from '../model';
-import { SongService } from './song.service';
+import { AlbumService } from '../album/album.service';
+import { Album } from '../model';
 
 @Component({
   selector: 'app-song-list',
@@ -11,16 +11,17 @@ import { SongService } from './song.service';
   styleUrls: ['./song-list.component.css']
 })
 export class SongListComponent implements OnInit {
-  song$: Observable<Song>;
+  album$: Observable<Album>;
   isTitleTranslationVisible: boolean;
 
-  constructor(private route: ActivatedRoute, private songService: SongService) { }
+  constructor(private route: ActivatedRoute, private albumService: AlbumService) { }
 
   ngOnInit(): void {
-    this.song$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.songService.getSongLyrics(params.get('songId')))
-    );
+    this.album$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => { 
+        return this.albumService.getAlbum(params.get('albumId'));
+      }
+    ));
   }
 
   toggleTitleTranslation(): void {

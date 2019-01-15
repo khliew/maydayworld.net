@@ -22,14 +22,24 @@
 .title-translation {
   color: gray;
   font-size: 14px;
+  line-height: 16px;
   padding-top: 4px;
 }
 .title-english {
   font-size: 20px;
   padding-top: 8px;
 }
+.release-date {
+  font-size: 16px;
+  color: gray;
+  padding-top: 4px;
+}
 .track-list {
   width: 496px;
   margin: 0 auto;
   padding-bottom: 32px;
+}
+.track-item {
+  /* border: 1px solid gray; */
+  /* border-radius: 4px; */
 }

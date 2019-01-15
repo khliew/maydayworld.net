@@ -1,34 +1,28 @@
-<div class="container">
-    <ng-container *ngIf="song$ | async as song">
-      <div class="song-header">
-        <div class="song-title">
-          <div class="title-chinese" (click)="toggleTitleTranslation()">{{song.title.chinese.zht}}</div>
-          <div class="title-translation" *ngIf="isTitleTranslationVisible">
-            {{song.title.chinese.zhp}}
-            <br>
-            {{song.title.chinese.eng}}
-          </div>
-          <div class="title-english">{{song.title.english}}</div>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav class="sidenav" mode="side" opened="true" fixedInViewport="true">
+    <ng-container *ngIf="album$ | async as album"><button mat-icon-button [routerLink]="['./']">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="album-title">
+        <div class="title-chinese" (click)="toggleTitleTranslation()">
+          {{album.title.chinese.zht}}
         </div>
-      </div>
-      <div class="song-content">
-        <div *ngFor="let lyric of song.lyrics">
-          <ng-container [ngSwitch]="lyric.type">
-            <p *ngSwitchCase="'lyric'">
-              {{lyric.zht}}
-              <br>
-              {{lyric.zhp}}
-              <br>
-              {{lyric.eng}}
-            </p>
-            <p *ngSwitchCase="'break'">
-              <br>
-            </p>
-            <p *ngSwitchCase="'text'">
-              {{lyric.text}}
-            </p>
-          </ng-container>
+        <div class="title-translation">
+          {{album.title.chinese.zhp}}
+          <br>
+          {{album.title.chinese.eng}}
         </div>
+        <div class="title-english">{{album.title.english}}</div>
       </div>
+      <mat-nav-list class="track-list">
+        <a mat-list-item *ngFor="let track of album.tracks" [routerLink]="['/album', album.id, 'song', track.id]" class="track-item"
+          routerLinkActive="active-nav-item">
+          {{track.number}}. {{track.title}}
+        </a>
+      </mat-nav-list>
     </ng-container>
-  </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
