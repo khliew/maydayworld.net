@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { AlbumsComponent } from './album/albums.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SongsComponent } from './song/songs.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes,
     {
       // enableTracing: true, // <-- debugging purposes only
-      // preloadingStrategy: PreloadAllModules
+      preloadingStrategy: PreloadAllModules
     }
   )],
   exports: [RouterModule]

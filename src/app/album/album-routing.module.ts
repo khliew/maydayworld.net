@@ -1,29 +1,44 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SongDetailComponent } from '../song/song-detail.component';
-import { SongListComponent } from '../song/song-list.component';
 import { AlbumDetailComponent } from './album-detail.component';
+import { MasterDetailComponent } from './master-detail.component';
 import { AlbumListComponent } from './album-list.component';
+import { SongListComponent } from '../song/song-list.component';
 
 const albumRoutes: Routes = [
   {
     path: '',
-    component: AlbumListComponent,
+    component: MasterDetailComponent,
     children: [
       {
         path: ':albumId',
-        component: AlbumDetailComponent
-      }
-    ]
-  },
-  {
-    path: ':albumId',
-    component: SongListComponent,
-    children: [
+        children: [
+          {
+            path: '',
+            component: AlbumListComponent,
+            outlet: 'sidenav'
+          },
+          {
+            path: '',
+            component: AlbumDetailComponent,
+          },
+        ]
+      },
       {
-        path: 'song/:songId',
-        component: SongDetailComponent
-      }
+        path: ':albumId/song/:songId',
+        children: [
+          {
+            path: '',
+            component: SongListComponent,
+            outlet: 'sidenav'
+          },
+          {
+            path: '',
+            component: SongDetailComponent,
+          },
+        ]
+      },
     ]
   }
 ];

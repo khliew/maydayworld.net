@@ -3,7 +3,6 @@
 }
 .sidenav {
   width: 280px;
-  margin-top: 64px; /* offset so it appears below the toolbar */
 }
 .sidenav-content {
   display: flex;

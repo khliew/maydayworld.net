@@ -16,5 +16,21 @@
   font-size: 20px;
 }
 .app-container {
+  flex: 1;
   padding-top: 64px; /* offset so it appears below the toolbar */
+}
+.app-footer {
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding: 0 16px;
+  color: white;
+}
+.container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.footer-spacer {
+  flex: 1 1 auto;
 }

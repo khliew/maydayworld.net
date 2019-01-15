@@ -19,6 +19,7 @@ export class SongListComponent implements OnInit {
   ngOnInit(): void {
     this.album$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => { 
+        console.log('songlist', params);
         return this.albumService.getAlbum(params.get('albumId'));
       }
     ));

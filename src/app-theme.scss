@@ -46,3 +46,8 @@ $activated-item: mat-color($mat-light-blue, A100);
 .mat-drawer-inner-container::-webkit-scrollbar-thumb {
   background-color: lightgray,
 }
+
+// styling for app footer
+.app-footer {
+  background-color: mat-color($mat-light-blue, 700);
+}
