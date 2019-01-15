@@ -1,7 +1,7 @@
 <div class="container">
-  <ng-container *ngIf="album$ | async as album">
+  <ng-container *ngIf="album">
     <div class="album-title">
-      <div class="title-chinese" (click)="toggleTitleTranslation()">{{album.title.chinese.zht}}</div>
+      <div class="title-chinese">{{album.title.chinese.zht}}</div>
       <div class="title-translation">
         {{album.title.chinese.zhp}}
         <br>

@@ -1,8 +1,8 @@
 <div class="container">
-  <ng-container *ngIf="song$ | async as song">
+  <ng-container *ngIf="song">
     <div class="song-header">
       <div class="song-title">
-        <div class="title-chinese" (click)="toggleTitleTranslation()">{{song.title.chinese.zht}}</div>
+        <div class="title-chinese">{{song.title.chinese.zht}}</div>
         <div class="title-translation">
           {{song.title.chinese.zhp}}
           <br>

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 import { Album } from '../model';
-import { AlbumService } from './album.service';
 
 @Component({
   selector: 'app-album-detail',
@@ -11,19 +8,14 @@ import { AlbumService } from './album.service';
   styleUrls: ['./album-detail.component.css']
 })
 export class AlbumDetailComponent implements OnInit {
-  album$: Observable<Album>;
-  isTitleTranslationVisible: boolean;
+  album: Album;
 
-  constructor(private router: Router, private route: ActivatedRoute, private albumService: AlbumService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.album$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.albumService.getAlbum(params.get('albumId')))
-    );
-  }
-
-  toggleTitleTranslation(): void {
-    this.isTitleTranslationVisible = !this.isTitleTranslationVisible;
+    this.route.data
+      .subscribe((data: { album: Album }) => {
+        this.album = data.album;
+      });
   }
 }

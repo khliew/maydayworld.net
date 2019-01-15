@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 import { Song } from '../model';
-import { SongService } from './song.service';
 
 @Component({
   selector: 'app-song-detail',
@@ -11,19 +8,14 @@ import { SongService } from './song.service';
   styleUrls: ['./song-detail.component.css']
 })
 export class SongDetailComponent implements OnInit {
-  song$: Observable<Song>;
-  isTitleTranslationVisible: boolean;
+  song: Song;
 
-  constructor(private route: ActivatedRoute, private songService: SongService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.song$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.songService.getSongLyrics(params.get('songId')))
-    );
-  }
-
-  toggleTitleTranslation(): void {
-    this.isTitleTranslationVisible = !this.isTitleTranslationVisible;
+    this.route.data
+      .subscribe((data: { song: Song }) => {
+        this.song = data.song;
+      });
   }
 }

@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SongDetailComponent } from '../song/song-detail.component';
-import { AlbumDetailComponent } from './album-detail.component';
-import { MasterDetailComponent } from './master-detail.component';
-import { AlbumListComponent } from './album-list.component';
 import { SongListComponent } from '../song/song-list.component';
+import { SongResolverService } from '../song/song-resolver.service';
+import { AlbumDetailComponent } from './album-detail.component';
+import { AlbumListComponent } from './album-list.component';
+import { AlbumResolverService } from './album-resolver.service';
+import { MasterDetailComponent } from './master-detail.component';
 
 const albumRoutes: Routes = [
   {
@@ -13,6 +15,9 @@ const albumRoutes: Routes = [
     children: [
       {
         path: ':albumId',
+        resolve: {
+          album: AlbumResolverService
+        },
         children: [
           {
             path: '',
@@ -27,6 +32,10 @@ const albumRoutes: Routes = [
       },
       {
         path: ':albumId/song/:songId',
+        resolve: {
+          album: AlbumResolverService,
+          song: SongResolverService
+        },
         children: [
           {
             path: '',

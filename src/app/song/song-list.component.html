@@ -1,9 +1,9 @@
-<ng-container *ngIf="album$ | async as album">
+<ng-container *ngIf="album">
   <a mat-icon-button [routerLink]="['../../../']">
     <mat-icon>arrow_back</mat-icon>
   </a>
   <div class="album-title">
-    <div class="title-chinese" (click)="toggleTitleTranslation()">
+    <div class="title-chinese">
       {{album.title.chinese.zht}}
     </div>
     <div class="title-translation">
