@@ -1,0 +1,16 @@
+.container {
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 8px;
+}
+.lyric {
+  width: 100%;
+}
+.break {
+  width: 100%;
+  color: gray;
+  text-align: center;
+}
+.text {
+  width: 100%;
+}

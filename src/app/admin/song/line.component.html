@@ -1,0 +1,25 @@
+<div class="container">
+  <ng-container [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'lyric'">
+      <mat-form-field class="lyric">
+        <input matInput placeholder="Chinese">
+      </mat-form-field>
+      <mat-form-field class="lyric">
+        <input matInput placeholder="Pinyin">
+      </mat-form-field>
+      <mat-form-field class="lyric">
+        <input matInput placeholder="English">
+      </mat-form-field>
+    </ng-container>
+    <ng-container *ngSwitchCase="'text'">
+      <mat-form-field class="text">
+        <input matInput placeholder="Text">
+      </mat-form-field>
+    </ng-container>
+    <ng-container *ngSwitchCase="'break'">
+      <div class="break">
+        <span>break</span>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

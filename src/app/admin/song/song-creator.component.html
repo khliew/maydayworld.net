@@ -1,3 +1,28 @@
 <div class="container">
   <h2>Song Creator</h2>
+  <mat-menu #lineMenu="matMenu">
+    <button mat-menu-item (click)="changeLineType('lyric')">Lyric</button>
+    <button mat-menu-item (click)="changeLineType('break')">Break</button>
+    <button mat-menu-item (click)="changeLineType('text')">Text</button>
+  </mat-menu>
+  <ng-container *ngFor="let line of lines; let i = index;">
+    <div class="line-container">
+      <app-song-creator-line class="line" [type]="line.type"></app-song-creator-line>
+      <div class="line-controls">
+        <button mat-icon-button [matMenuTriggerFor]="lineMenu" (click)="setMenuLineIndex(i)">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" class="line-close" (click)="removeLine(i)">
+          <mat-icon>close</mat-icon>
+        </button>
+        <button mat-icon-button class="insert-line" (click)="insertLine(i + 1)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+  <button mat-flat-button color="accent" class="add-line" (click)="addLine()">
+    <mat-icon>add</mat-icon>
+    Add Line
+  </button>
 </div>
