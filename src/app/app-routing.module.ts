@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './admin/auth.guard';
+import { AboutUsComponent } from './about-us/about-us.component';
 import { AlbumsComponent } from './album/albums.component';
 import { SongsComponent } from './song/songs.component';
 
 const routes: Routes = [
   { path: 'albums', component: AlbumsComponent },
-  { path: 'songs',  component: SongsComponent },
+  { path: 'songs', component: SongsComponent },
   { path: 'album', loadChildren: './album/album.module#AlbumModule' },
-  { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canLoad: [AuthGuard] },
+  // { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canLoad: [AuthGuard] },
+  { path: 'about', component: AboutUsComponent },
   { path: '', redirectTo: '/albums', pathMatch: 'full' },
   { path: '**', redirectTo: '/albums', pathMatch: 'full' }
 ];

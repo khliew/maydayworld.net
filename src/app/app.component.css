@@ -27,10 +27,13 @@
 .app-footer {
   display: flex;
   align-items: center;
-  height: 72px;
-  padding: 0 16px;
+  min-height: 72px;
+  padding: 16px 32px;
   color: white;
 }
 .footer-spacer {
   flex: 1 1 auto;
+}
+.about-us {
+  margin-right: 16px;
 }

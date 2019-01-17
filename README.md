@@ -1,9 +1,9 @@
-# maydayworld.net
+# maydayworld.com
 
 This is a website built using Angular.
 
 ## Getting Started
-This project requires Node (`v4.5.x`+) and npm (`3.10.x`+).
+This project requires Node (`v11.6.0`+) and npm (`6.5.0`+).
 
 ### Installing
 Install dependencies with `npm install` from root directory.
