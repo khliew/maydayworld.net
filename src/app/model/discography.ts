@@ -1,7 +1,7 @@
 import { Album } from '.';
 
 export class Discography {
-  artist: string;
+  artistId: string;
   sections: [
     {
       label: string;

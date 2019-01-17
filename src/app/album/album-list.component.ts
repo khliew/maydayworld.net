@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 import { Discography } from '../model';
-import { AlbumService } from './album.service';
 
 @Component({
   selector: 'app-album-list',
@@ -10,14 +10,14 @@ import { AlbumService } from './album.service';
 export class AlbumListComponent implements OnInit {
   discography: Discography;
 
-  constructor(private albumService: AlbumService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.getDiscography();
   }
 
   getDiscography(): void {
-    this.albumService.getDiscography()
+    this.dataService.getDiscography()
       .subscribe(
         discography => this.discography = discography,
         error => console.log(error)

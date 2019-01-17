@@ -1,8 +1,8 @@
-import { Track, Title } from '.';
+import { Song, Title } from '.';
 
 export class Album {
-  id: string;
+  albumId: string;
   title: Title;
   releaseDate?: string;
-  tracks: Track[];
+  songs: Song[];
 }

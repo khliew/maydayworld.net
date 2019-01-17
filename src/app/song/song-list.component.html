@@ -14,9 +14,9 @@
     <div class="title-english">{{album.title.english}}</div>
   </div>
   <mat-nav-list class="track-list">
-    <a mat-list-item *ngFor="let track of album.tracks" [routerLink]="['/album', album.id, 'song', track.id]" class="track-item"
-      routerLinkActive="active-nav-item">
-      {{track.number}}. {{track.title}}
+    <a mat-list-item *ngFor="let song of album.songs; let i = index;" [routerLink]="['/album', album.albumId, 'song', song.songId]"
+      class="track-item" routerLinkActive="active-nav-item">
+      {{i + 1}}. {{song.title.chinese.zht}}
     </a>
   </mat-nav-list>
 </ng-container>

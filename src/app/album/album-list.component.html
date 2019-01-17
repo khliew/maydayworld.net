@@ -5,7 +5,7 @@
         <h3 mat-subheader class="section-header">
           {{section.label}}
         </h3>
-        <a mat-list-item *ngFor="let album of section.albums" [routerLink]="['/album', album.id]" routerLinkActive="active-nav-item"
+        <a mat-list-item *ngFor="let album of section.albums" [routerLink]="['/album', album.albumId]" routerLinkActive="active-nav-item"
           class="album-item">
           <div class="album-title">
             <div class="title-chinese">{{album.title.chinese.zht}}</div>
