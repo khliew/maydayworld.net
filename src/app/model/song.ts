@@ -6,5 +6,6 @@ export class Song {
   lyricist: string;
   composer: string;
   arranger: string;
+  disabled: boolean;
   lyrics: Line[];
 }
