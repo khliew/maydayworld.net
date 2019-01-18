@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://api.maydayworld.com'
+  apiBaseUrl: 'http://localhost:3001'
 };
 
 /*
