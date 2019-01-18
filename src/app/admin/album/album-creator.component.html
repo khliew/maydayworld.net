@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>Album Creator</h2>
+  <form [formGroup]="albumForm">
+    <div>albumId: <input matInput formControlName="albumId" class="meta-field"></div>
+    <span>Chinese title, pinyin and translation:</span>
+    <textarea matInput formControlName="chineseTitle" class="title-field" placeholder="Enter each on a new line"></textarea>
+    <div>English title: <input matInput formControlName="englishTitle" class="meta-field"></div>
+    <div>Release date:
+      <input matInput [matDatepicker]="picker" formControlName="releaseDate" placeholder="Click calendar" disabled>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker disabled="false"></mat-datepicker>
+    </div>
+    <span>Song list:</span>
+    <textarea matInput formControlName="songs" class="input-field" placeholder="Enter each songId on a new line"></textarea>
+    <button mat-flat-button color="accent" class="generate-json" (click)="generateJson()">
+      <mat-icon>refresh</mat-icon>
+      Generate JSON
+    </button>
+  </form>
+  <textarea matInput [formControl]="outputForm" [ngClass]="{'output': true, 'hide': hideOutput}"></textarea>
+</div>
