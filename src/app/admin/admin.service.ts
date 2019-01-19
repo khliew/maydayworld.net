@@ -14,7 +14,7 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  setAuth(auth: string) {
+  setAccess(auth: string) {
     this.auth = auth;
   }
 
@@ -30,7 +30,7 @@ export class AdminService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        AUTH_HEADER: this.auth
+        [AdminService.AUTH_HEADER]: this.auth
       })
     };
 
@@ -45,7 +45,7 @@ export class AdminService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        AUTH_HEADER: this.auth
+        [AdminService.AUTH_HEADER]: this.auth
       })
     };
 
@@ -68,7 +68,7 @@ export class AdminService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        AUTH_HEADER: this.auth
+        [AdminService.AUTH_HEADER]: this.auth
       })
     };
 
@@ -83,7 +83,7 @@ export class AdminService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        AUTH_HEADER: this.auth
+        [AdminService.AUTH_HEADER]: this.auth
       })
     };
 
@@ -106,7 +106,7 @@ export class AdminService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        AUTH_HEADER: this.auth
+        [AdminService.AUTH_HEADER]: this.auth
       })
     };
 
@@ -121,7 +121,7 @@ export class AdminService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        AUTH_HEADER: this.auth
+        [AdminService.AUTH_HEADER]: this.auth
       })
     };
 

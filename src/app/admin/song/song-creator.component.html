@@ -30,6 +30,7 @@
     <button mat-flat-button color="accent" class="replace-song" (click)="replaceSong()" [disabled]="buttonsDisabled">
       Replace song
     </button>
+    <span class="access">Access: <input matInput [formControl]="accessForm"></span>
     <div class="response">{{this.response}}</div>
   </div>
   <div class="helper">

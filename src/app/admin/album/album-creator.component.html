@@ -32,6 +32,7 @@
     <button mat-flat-button color="accent" class="replace-album" (click)="replaceAlbum()" [disabled]="buttonsDisabled">
       Replace album
     </button>
+    <span class="access">Access: <input matInput [formControl]="accessForm"></span>
     <div class="response">{{this.response}}</div>
   </div>
 </div>

@@ -1,7 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import * as moment from 'moment';
-import { Album, Title, Discography } from '../../model';
+import { Discography } from '../../model';
 import { AdminService } from '../admin.service';
 import { SectionsParser } from './sections-parser';
 
@@ -16,6 +15,7 @@ export class DiscographyCreatorComponent implements OnInit {
     sections: ['']
   });
   outputForm = this.fb.control('');
+  accessForm = this.fb.control('');
 
   sectionsParser: SectionsParser;
   hideOutput: boolean;
@@ -91,6 +91,8 @@ export class DiscographyCreatorComponent implements OnInit {
   }
 
   createDiscography() {
+    this.adminService.setAccess(this.accessForm.value);
+
     this.response = '';
     this.buttonsDisabled = true;
     this.adminService.createDiscography(this.output)
@@ -104,6 +106,8 @@ export class DiscographyCreatorComponent implements OnInit {
   }
 
   replaceDiscography() {
+    this.adminService.setAccess(this.accessForm.value);
+
     this.response = '';
     this.buttonsDisabled = true;
     this.adminService.replaceDiscography(this.output)
