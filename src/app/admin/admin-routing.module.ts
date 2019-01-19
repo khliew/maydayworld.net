@@ -5,9 +5,9 @@ import { SongCreatorComponent } from './song/song-creator.component';
 import { AlbumCreatorComponent } from './album/album-creator.component';
 
 const routes: Routes = [
+  { path: '', component: AdminComponent },
   { path: 'create-album', component: AlbumCreatorComponent },
-  { path: 'create-song', component: SongCreatorComponent },
-  { path: '', component: AdminComponent }
+  { path: 'create-song', component: SongCreatorComponent }
 ];
 
 @NgModule({

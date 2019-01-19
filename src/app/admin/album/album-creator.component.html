@@ -12,10 +12,19 @@
     </div>
     <span>Song list:</span>
     <textarea matInput formControlName="songs" class="input-field" placeholder="Enter each songId on a new line"></textarea>
-    <button mat-flat-button color="accent" class="generate-json" (click)="generateJson()">
+    <button mat-flat-button color="primary" class="generate-json" (click)="generateJson()">
       <mat-icon>refresh</mat-icon>
       Generate JSON
     </button>
   </form>
-  <textarea matInput [formControl]="outputForm" [ngClass]="{'output': true, 'hide': hideOutput}"></textarea>
+  <div [class.hide]="hideOutput">
+    <textarea matInput [formControl]="outputForm" class="output"></textarea>
+    <button mat-flat-button color="accent" class="create-album" (click)="createAlbum()" [disabled]="buttonsDisabled">
+      Create album
+    </button>
+    <button mat-flat-button color="accent" class="replace-album" (click)="replaceAlbum()" [disabled]="buttonsDisabled">
+      Replace album
+    </button>
+    <div class="response">{{this.response}}</div>
+  </div>
 </div>

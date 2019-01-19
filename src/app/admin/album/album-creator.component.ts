@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import { Album, Title } from '../../model';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-album-creator',
@@ -20,9 +21,13 @@ export class AlbumCreatorComponent implements OnInit {
 
   hideOutput: boolean;
   output: Album;
+  response: string;
+  buttonsDisabled: boolean;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private adminService: AdminService) {
     this.hideOutput = true;
+    this.response = '';
+    this.buttonsDisabled = false;
   }
 
   ngOnInit() {
@@ -67,5 +72,34 @@ export class AlbumCreatorComponent implements OnInit {
 
   parseSongs(songIds: string): string[] {
     return songIds.split('\n').map(token => token.trim()).filter(token => token.length > 0);
+  }
+
+  createAlbum() {
+    this.response = '';
+    this.buttonsDisabled = true;
+    this.adminService.createAlbum(this.output)
+      .subscribe(res => {
+        this.response = 'Album created!';
+        this.buttonsDisabled = false;
+      }, err => {
+        console.log('err', err);
+        this.response = err;
+        this.buttonsDisabled = false;
+      });
+  }
+
+  replaceAlbum() {
+    this.response = '';
+    this.buttonsDisabled = true;
+    this.adminService.replaceAlbum(this.output)
+      .subscribe(res => {
+        console.log('res', res);
+        this.response = 'Album replaced!';
+        this.buttonsDisabled = false;
+      }, err => {
+        console.log('err', err);
+        this.response = err;
+        this.buttonsDisabled = false;
+      });
   }
 }
