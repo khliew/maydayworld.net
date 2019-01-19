@@ -2,4 +2,11 @@
   width: 240px;
 }
 .sidenav-content {
+  display: flex;
+  flex-direction: column;
+}
+.app-container {
+  background-color: white;
+  flex: 1;
+  margin-top: 64px; /* offset so it appears below the toolbar */
 }

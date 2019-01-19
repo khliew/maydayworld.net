@@ -1,12 +1,11 @@
 .container {
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
 }
 .toolbar {
   position: fixed;
   top: 0;
-  z-index: 2;
+  z-index: 999;
   padding-left: 0px;
 }
 .toolbar-home {
@@ -23,22 +22,4 @@
 .app-container {
   flex: 1;
   padding-top: 64px; /* offset so it appears below the toolbar */
-}
-.app-footer {
-  display: flex;
-  align-items: center;
-  min-height: 48px;
-  padding: 8px 32px;
-  color: white;
-}
-.footer-spacer {
-  flex: 1 1 auto;
-}
-.about-us {
-  margin-right: 16px;
-}
-.label {
-  line-height: 14px;
-  text-align: right;
-  font-size: 12px;
 }

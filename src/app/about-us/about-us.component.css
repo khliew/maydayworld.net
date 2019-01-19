@@ -1,7 +1,13 @@
 .container {
-  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content {
   width: 480px;
-  margin: 0 auto;
+  margin: 64px auto 0;
+  padding: 32px;
+  flex: 1;
 }
 .section {
   margin-top: 32px;

@@ -1,6 +1,13 @@
 .container {
-  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content {
+  margin-top: 64px; /* offset so it appears below the toolbar */
   max-width: 720px;
+  padding: 32px;
+  flex: 1;
 }
 .title-field {
   width: 100%;
