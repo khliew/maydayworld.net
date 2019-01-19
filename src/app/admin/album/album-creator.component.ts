@@ -70,6 +70,8 @@ export class AlbumCreatorComponent implements OnInit {
 
   clear() {
     this.albumForm.reset();
+    this.response = '';
+    this.searchError = '';
   }
 
   generateJson() {
@@ -85,6 +87,8 @@ export class AlbumCreatorComponent implements OnInit {
     this.output.songIds = this.parseSongs(this.albumForm.get('songs').value);
 
     this.hideOutput = false;
+    this.response = '';
+    this.searchError = '';
     this.outputForm.setValue(JSON.stringify(this.output, null, 2));
   }
 

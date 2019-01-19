@@ -9,6 +9,7 @@ import { AdminComponent } from './admin.component';
 import { AdminService } from './admin.service';
 import { AlbumCreatorComponent } from './album/album-creator.component';
 import { SongCreatorComponent } from './song/song-creator.component';
+import { DiscographyCreatorComponent } from './discography/discography-creator.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { SongCreatorComponent } from './song/song-creator.component';
   declarations: [
     AdminComponent,
     AlbumCreatorComponent,
+    DiscographyCreatorComponent,
     SongCreatorComponent
   ],
   providers: [

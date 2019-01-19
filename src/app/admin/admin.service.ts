@@ -1,15 +1,51 @@
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { Album, Song } from '../model';
+import { Album, Discography, Song } from '../model';
 
 @Injectable()
 export class AdminService {
   baseUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { }
+
+  getDiscography(artistId: string = 'mayday'): Observable<Discography> {
+    return this.http.get<any>(`${this.baseUrl}/disco/${artistId}`)
+      .pipe(
+        map(response => response.data),
+        catchError(this.handleError)
+      );
+  }
+
+  createDiscography(discography: Discography): Observable<string> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    return this.http.post<any>(`${this.baseUrl}/disco`, discography, httpOptions)
+      .pipe(
+        map(response => response.data),
+        catchError(this.handleError)
+      );
+  }
+
+  replaceDiscography(discography: Discography): Observable<string> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    return this.http.put<any>(`${this.baseUrl}/disco/${discography.artistId}`, discography, httpOptions)
+      .pipe(
+        map(response => response.data),
+        catchError(this.handleError)
+      );
+  }
 
   getAlbum(albumId: string): Observable<Album> {
     return this.http.get<any>(`${this.baseUrl}/albums/${albumId}`)

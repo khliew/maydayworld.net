@@ -91,6 +91,8 @@ export class SongCreatorComponent implements OnInit {
 
   clear() {
     this.songForm.reset();
+    this.response = '';
+    this.searchError = '';
   }
 
   generateJson() {
@@ -108,6 +110,8 @@ export class SongCreatorComponent implements OnInit {
     this.output.lyrics = this.parseLyrics(this.songForm.get('lyrics').value);
 
     this.hideOutput = false;
+    this.response = '';
+    this.searchError = '';
     this.outputForm.setValue(JSON.stringify(this.output, null, 2));
   }
 

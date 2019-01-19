@@ -1,11 +1,6 @@
-import { Album } from '.';
+import { Section } from '.';
 
 export class Discography {
   artistId: string;
-  sections: [
-    {
-      label: string;
-      albums: Album[];
-    }
-  ];
+  sections: Section[];
 }
