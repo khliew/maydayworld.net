@@ -42,10 +42,7 @@ export class AdminService {
 
     return this.http.put<any>(`${this.baseUrl}/albums/${album.albumId}`, album, httpOptions)
       .pipe(
-        map(response => {
-          console.log(response);
-          return response.data;
-        }),
+        map(response => response.data),
         catchError(this.handleError)
       );
   }

@@ -63,7 +63,7 @@ export class AlbumCreatorComponent implements OnInit {
     this.albumForm.get('releaseDate').setValue(album.releaseDate);
 
     const title = album.title;
-    this.albumForm.get('chineseTitle').setValue(title.chinese.zht + '\n' + title.chinese.zhp + '\n' + title.chinese.eng);
+    this.albumForm.get('chineseTitle').setValue(`${title.chinese.zht}\n${title.chinese.zhp}\n${title.chinese.eng}`);
     this.albumForm.get('englishTitle').setValue(title.english);
     this.albumForm.get('songs').setValue(album.songs.map(song => song.songId).join('\n'));
   }

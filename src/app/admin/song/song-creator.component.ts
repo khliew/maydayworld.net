@@ -27,14 +27,67 @@ export class SongCreatorComponent implements OnInit {
   response: string;
   buttonsDisabled: boolean;
 
+  searchDisabled: boolean;
+  searchError: string;
+
   constructor(private fb: FormBuilder, private adminService: AdminService) {
     this.lyricsParser = new LyricsParser();
     this.hideOutput = true;
     this.response = '';
     this.buttonsDisabled = false;
+
+    this.searchDisabled = false;
+    this.searchError = '';
   }
 
   ngOnInit() { }
+
+  searchSong() {
+    const songId = this.songForm.get('songId').value;
+
+    if (!!songId) {
+      this.searchError = '';
+      this.searchDisabled = true;
+
+      this.adminService.getSong(songId)
+        .subscribe(song => {
+          this.searchDisabled = false;
+          this.fillForm(song);
+        }, err => {
+          this.searchDisabled = false;
+          this.searchError = err;
+        });
+    }
+  }
+
+  fillForm(song: Song) {
+    this.songForm.get('songId').setValue(song.songId);
+
+    const title = song.title;
+    this.songForm.get('chineseTitle').setValue(`${title.chinese.zht}\n${title.chinese.zhp}\n${title.chinese.eng}`);
+    this.songForm.get('englishTitle').setValue(title.english);
+
+    this.songForm.get('lyricist').setValue(song.lyricist);
+    this.songForm.get('composer').setValue(song.composer);
+    this.songForm.get('arranger').setValue(song.arranger);
+
+    const lyrics = song.lyrics
+      .map(line => {
+        switch (line.type) {
+          case 'lyric': {
+            return `L\n${line.zht}\n${line.zhp}\n${line.eng}\n`;
+          }
+          case 'break': {
+            return 'B\n\n';
+          }
+          case 'text': {
+            return `T\n${line.text}\n`;
+          }
+        }
+      })
+      .join('\n');
+    this.songForm.get('lyrics').setValue(lyrics);
+  }
 
   clear() {
     this.songForm.reset();
