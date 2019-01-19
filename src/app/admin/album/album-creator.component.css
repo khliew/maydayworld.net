@@ -34,17 +34,3 @@
 .response {
   margin-top: 16px;
 }
-.helper {
-  position: fixed;
-  width: 196px;
-  top: 64px;
-  left: 756px;
-  margin: 32px 0 0 16px;
-  background-color: white;
-  font-size: 12px;
-  line-height: 14px;
-}
-.example {
-  border: 1px solid gray;
-  padding: 4px;
-}

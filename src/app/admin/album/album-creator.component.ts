@@ -39,8 +39,6 @@ export class AlbumCreatorComponent implements OnInit {
   }
 
   generateJson() {
-    console.log(this.albumForm.value);
-
     this.output = new Album();
     this.output.albumId = this.albumForm.get('albumId').value;
     this.output.releaseDate = this.parseDate(this.albumForm.get('releaseDate').value);
@@ -86,7 +84,6 @@ export class AlbumCreatorComponent implements OnInit {
         this.response = 'Album created!';
         this.buttonsDisabled = false;
       }, err => {
-        console.log('err', err);
         this.response = err;
         this.buttonsDisabled = false;
       });
@@ -97,11 +94,9 @@ export class AlbumCreatorComponent implements OnInit {
     this.buttonsDisabled = true;
     this.adminService.replaceAlbum(this.output)
       .subscribe(res => {
-        console.log('res', res);
         this.response = 'Album replaced!';
         this.buttonsDisabled = false;
       }, err => {
-        console.log('err', err);
         this.response = err;
         this.buttonsDisabled = false;
       });

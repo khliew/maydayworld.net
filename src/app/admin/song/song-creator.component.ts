@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Line, Song, Title } from '../../model';
 import { LyricsParser } from './lyrics-parser';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-song-creator',
@@ -20,21 +21,26 @@ export class SongCreatorComponent implements OnInit {
   });
   outputForm = this.fb.control('');
 
+  lyricsParser: LyricsParser;
   hideOutput: boolean;
   output: Song;
-  lyricsParser: LyricsParser;
+  response: string;
+  buttonsDisabled: boolean;
 
-  constructor(private fb: FormBuilder) {
-    this.hideOutput = true;
+  constructor(private fb: FormBuilder, private adminService: AdminService) {
     this.lyricsParser = new LyricsParser();
+    this.hideOutput = true;
+    this.response = '';
+    this.buttonsDisabled = false;
   }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  clear() {
+    this.songForm.reset();
   }
 
   generateJson() {
-    console.log(this.songForm.value);
-
     this.output = new Song();
     this.output.songId = this.songForm.get('songId').value;
     this.output.lyricist = this.songForm.get('lyricist').value;
@@ -68,5 +74,31 @@ export class SongCreatorComponent implements OnInit {
 
   parseLyrics(lyrics: string): Line[] {
     return this.lyricsParser.parse(lyrics);
+  }
+
+  createSong() {
+    this.response = '';
+    this.buttonsDisabled = true;
+    this.adminService.createSong(this.output)
+      .subscribe(res => {
+        this.response = 'Song created!';
+        this.buttonsDisabled = false;
+      }, err => {
+        this.response = err;
+        this.buttonsDisabled = false;
+      });
+  }
+
+  replaceSong() {
+    this.response = '';
+    this.buttonsDisabled = true;
+    this.adminService.replaceSong(this.output)
+      .subscribe(res => {
+        this.response = 'Song replaced!';
+        this.buttonsDisabled = false;
+      }, err => {
+        this.response = err;
+        this.buttonsDisabled = false;
+      });
   }
 }

@@ -9,12 +9,23 @@
     <div>Composer: <input matInput formControlName="composer" class="meta-field"></div>
     <div>Arranger: <input matInput formControlName="arranger" class="meta-field"></div>
     <textarea matInput formControlName="lyrics" class="input-field" placeholder="Enter lyrics"></textarea>
-    <button mat-flat-button color="accent" class="generate-json" (click)="generateJson()">
-      <mat-icon>refresh</mat-icon>
+    <button mat-flat-button color="primary" class="generate-json" (click)="generateJson()">
       Generate JSON
     </button>
+    <button mat-flat-button color="primary" class="clear-input" (click)="clear()">
+      Clear
+    </button>
   </form>
-  <textarea matInput [formControl]="outputForm" [ngClass]="{'output': true, 'hide': hideOutput}"></textarea>
+  <div [class.hide]="hideOutput">
+    <textarea matInput [formControl]="outputForm" class="output" readonly></textarea>
+    <button mat-flat-button color="accent" class="create-song" (click)="createSong()" [disabled]="buttonsDisabled">
+      Create song
+    </button>
+    <button mat-flat-button color="accent" class="replace-song" (click)="replaceSong()" [disabled]="buttonsDisabled">
+      Replace song
+    </button>
+    <div class="response">{{this.response}}</div>
+  </div>
   <div class="helper">
     <p>
       <strong>L</strong> - translated song lyric<br>
