@@ -34,6 +34,10 @@ export class AlbumCreatorComponent implements OnInit {
     this.albumForm.get('releaseDate').disable();
   }
 
+  clear() {
+    this.albumForm.reset();
+  }
+
   generateJson() {
     console.log(this.albumForm.value);
 
