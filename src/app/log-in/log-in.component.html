@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>Log In</h2>
+  <div>Access Code:
+    <input matInput [formControl]="accessForm">
+  </div>
+  <button mat-flat-button color="primary" class="log-in" (click)="logIn()" [disabled]="disabled">
+    Log in
+  </button>
+</div>

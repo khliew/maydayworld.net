@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -32,6 +32,18 @@ export class DataService {
       .pipe(
         map(response => response.data),
         catchError(this.handleError<Song>('getSongLyrics'))
+      );
+  }
+
+  logIn(access: string): Observable<boolean> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'X-MDW-Auth': access })
+    };
+
+    return this.http.get<any>(`${this.baseUrl}/login`, httpOptions)
+      .pipe(
+        map(response => response.data),
+        catchError(this.handleError<boolean>('logIn', false))
       );
   }
 

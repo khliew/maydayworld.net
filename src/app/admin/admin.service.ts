@@ -7,9 +7,16 @@ import { Album, Discography, Song } from '../model';
 
 @Injectable()
 export class AdminService {
+  private static readonly AUTH_HEADER = 'X-MDW-Auth';
+
   baseUrl = environment.apiBaseUrl;
+  auth: string;
 
   constructor(private http: HttpClient) { }
+
+  setAuth(auth: string) {
+    this.auth = auth;
+  }
 
   getDiscography(artistId: string = 'mayday'): Observable<Discography> {
     return this.http.get<any>(`${this.baseUrl}/disco/${artistId}`)
@@ -23,6 +30,7 @@ export class AdminService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        AUTH_HEADER: this.auth
       })
     };
 
@@ -37,6 +45,7 @@ export class AdminService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        AUTH_HEADER: this.auth
       })
     };
 
@@ -59,6 +68,7 @@ export class AdminService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        AUTH_HEADER: this.auth
       })
     };
 
@@ -73,6 +83,7 @@ export class AdminService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        AUTH_HEADER: this.auth
       })
     };
 
@@ -95,6 +106,7 @@ export class AdminService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        AUTH_HEADER: this.auth
       })
     };
 
@@ -109,6 +121,7 @@ export class AdminService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        AUTH_HEADER: this.auth
       })
     };
 

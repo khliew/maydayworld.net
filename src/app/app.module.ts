@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { SharedModule } from './shared/shared.module';
 import { SongsComponent } from './song/songs.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { LogInComponent } from './log-in/log-in.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     AboutUsComponent,
     AppComponent,
     AlbumsComponent,
+    LogInComponent,
     PageNotFoundComponent,
     SongsComponent
   ],

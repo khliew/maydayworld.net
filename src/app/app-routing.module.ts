@@ -4,9 +4,11 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { AlbumsComponent } from './album/albums.component';
 import { SongsComponent } from './song/songs.component';
 import { AuthGuard } from './admin/auth.guard';
+import { LogInComponent } from './log-in/log-in.component';
 
 const routes: Routes = [
   { path: 'albums', component: AlbumsComponent },
+  { path: 'login', component: LogInComponent },
   { path: 'songs', component: SongsComponent },
   { path: 'album', loadChildren: './album/album.module#AlbumModule' },
   { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canLoad: [AuthGuard] },
