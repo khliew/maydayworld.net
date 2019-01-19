@@ -24,14 +24,48 @@ export class AlbumCreatorComponent implements OnInit {
   response: string;
   buttonsDisabled: boolean;
 
+  searchDisabled: boolean;
+  searchError: string;
+
   constructor(private fb: FormBuilder, private adminService: AdminService) {
     this.hideOutput = true;
     this.response = '';
     this.buttonsDisabled = false;
+
+    this.searchDisabled = false;
+    this.searchError = '';
   }
 
   ngOnInit() {
     this.albumForm.get('releaseDate').disable();
+  }
+
+  searchAlbum() {
+    const albumId = this.albumForm.get('albumId').value;
+
+    if (!!albumId) {
+      this.searchError = '';
+      this.searchDisabled = true;
+
+      this.adminService.getAlbum(albumId)
+        .subscribe(album => {
+          this.searchDisabled = false;
+          this.fillForm(album);
+        }, err => {
+          this.searchDisabled = false;
+          this.searchError = err;
+        });
+    }
+  }
+
+  fillForm(album: Album) {
+    this.albumForm.get('albumId').setValue(album.albumId);
+    this.albumForm.get('releaseDate').setValue(album.releaseDate);
+
+    const title = album.title;
+    this.albumForm.get('chineseTitle').setValue(title.chinese.zht + '\n' + title.chinese.zhp + '\n' + title.chinese.eng);
+    this.albumForm.get('englishTitle').setValue(title.english);
+    this.albumForm.get('songs').setValue(album.songs.map(song => song.songId).join('\n'));
   }
 
   clear() {

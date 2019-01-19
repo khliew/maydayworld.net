@@ -11,6 +11,14 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
+  getAlbum(albumId: string): Observable<Album> {
+    return this.http.get<any>(`${this.baseUrl}/albums/${albumId}`)
+      .pipe(
+        map(response => response.data),
+        catchError(this.handleError)
+      );
+  }
+
   createAlbum(album: Album): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -38,6 +46,14 @@ export class AdminService {
           console.log(response);
           return response.data;
         }),
+        catchError(this.handleError)
+      );
+  }
+
+  getSong(songId: string): Observable<Song> {
+    return this.http.get<any>(`${this.baseUrl}/songs/${songId}`)
+      .pipe(
+        map(response => response.data),
         catchError(this.handleError)
       );
   }
