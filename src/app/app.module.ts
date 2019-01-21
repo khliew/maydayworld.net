@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { DataService } from './data.service';
 import { LogInComponent } from './log-in/log-in.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 import { SidenavService } from './service/sidenav.service';
 import { SharedModule } from './shared/shared.module';
 import { SongsComponent } from './song/songs.component';
@@ -29,6 +30,7 @@ import { SongsComponent } from './song/songs.component';
     AlbumsComponent,
     LogInComponent,
     PageNotFoundComponent,
+    PrivacyComponent,
     SongsComponent
   ],
   providers: [

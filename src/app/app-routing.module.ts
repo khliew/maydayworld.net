@@ -5,6 +5,7 @@ import { AlbumsComponent } from './album/albums.component';
 import { SongsComponent } from './song/songs.component';
 import { AuthGuard } from './admin/auth.guard';
 import { LogInComponent } from './log-in/log-in.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 const routes: Routes = [
   { path: 'albums', component: AlbumsComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'album', loadChildren: './album/album.module#AlbumModule' },
   { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canLoad: [AuthGuard] },
   { path: 'about', component: AboutUsComponent },
+  { path: 'privacy', component: PrivacyComponent },
   { path: '', redirectTo: '/albums', pathMatch: 'full' },
   { path: '**', redirectTo: '/albums', pathMatch: 'full' }
 ];
