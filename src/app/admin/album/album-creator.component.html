@@ -1,40 +1,38 @@
-<div class="container">
-  <div class="content">
-    <h2>Album Creator</h2>
-    <form [formGroup]="albumForm">
-      <div>albumId: <input matInput formControlName="albumId" class="meta-field">
-        <button mat-icon-button (click)="searchAlbum()" [disabled]="searchDisabled">
-          <mat-icon>search</mat-icon>
-        </button>
-        <span class="search-error">{{this.searchError}}</span>
-      </div>
-      <span>Chinese title, pinyin and translation:</span>
-      <textarea matInput formControlName="chineseTitle" class="title-field" placeholder="Enter each on a new line"></textarea>
-      <div>English title: <input matInput formControlName="englishTitle" class="meta-field"></div>
-      <div>Release date:
-        <input matInput [matDatepicker]="picker" formControlName="releaseDate" placeholder="Click calendar" disabled>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker disabled="false"></mat-datepicker>
-      </div>
-      <span>Song list:</span>
-      <textarea matInput formControlName="songs" class="input-field" placeholder="Enter each songId on a new line"></textarea>
-      <button mat-flat-button color="primary" class="generate-json" (click)="generateJson()">
-        Generate JSON
+<div class="content">
+  <h2>Album Creator</h2>
+  <form [formGroup]="albumForm">
+    <div>albumId: <input matInput formControlName="albumId" class="meta-field">
+      <button mat-icon-button (click)="searchAlbum()" [disabled]="searchDisabled">
+        <mat-icon>search</mat-icon>
       </button>
-      <button mat-flat-button color="primary" class="clear-input" (click)="clear()">
-        Clear
-      </button>
-    </form>
-    <div [class.hide]="hideOutput">
-      <textarea matInput [formControl]="outputForm" class="output" readonly></textarea>
-      <button mat-flat-button color="accent" class="create-album" (click)="createAlbum()" [disabled]="buttonsDisabled">
-        Create album
-      </button>
-      <button mat-flat-button color="accent" class="replace-album" (click)="replaceAlbum()" [disabled]="buttonsDisabled">
-        Replace album
-      </button>
-      <span class="access">Access: <input matInput [formControl]="accessForm"></span>
-      <div class="response">{{this.response}}</div>
+      <span class="search-error">{{this.searchError}}</span>
     </div>
+    <span>Chinese title, pinyin and translation:</span>
+    <textarea matInput formControlName="chineseTitle" class="title-field" placeholder="Enter each on a new line"></textarea>
+    <div>English title: <input matInput formControlName="englishTitle" class="meta-field"></div>
+    <div>Release date:
+      <input matInput [matDatepicker]="picker" formControlName="releaseDate" placeholder="Click calendar" disabled>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker disabled="false"></mat-datepicker>
+    </div>
+    <span>Song list:</span>
+    <textarea matInput formControlName="songs" class="input-field" placeholder="Enter each songId on a new line"></textarea>
+    <button mat-flat-button color="primary" class="generate-json" (click)="generateJson()">
+      Generate JSON
+    </button>
+    <button mat-flat-button color="primary" class="clear-input" (click)="clear()">
+      Clear
+    </button>
+  </form>
+  <div [class.hide]="hideOutput">
+    <textarea matInput [formControl]="outputForm" class="output" readonly></textarea>
+    <button mat-flat-button color="accent" class="create-album" (click)="createAlbum()" [disabled]="buttonsDisabled">
+      Create album
+    </button>
+    <button mat-flat-button color="accent" class="replace-album" (click)="replaceAlbum()" [disabled]="buttonsDisabled">
+      Replace album
+    </button>
+    <span class="access">Access: <input matInput [formControl]="accessForm"></span>
+    <div class="response">{{this.response}}</div>
   </div>
 </div>

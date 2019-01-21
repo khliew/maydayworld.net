@@ -1,62 +1,60 @@
-<div class="container">
-  <div class="content">
-    <h2>Song Creator</h2>
-    <form [formGroup]="songForm">
-      <div>songId:
-        <input matInput formControlName="songId" class="meta-field">
-        <button mat-icon-button (click)="searchSong()" [disabled]="searchDisabled">
-          <mat-icon>search</mat-icon>
-        </button>
-        <span class="search-error">{{this.searchError}}</span>
-      </div>
-      <span>Chinese title, pinyin and translation:</span>
-      <textarea matInput formControlName="chineseTitle" class="title-field" placeholder="Enter each on a new line"></textarea>
-      <div>English title: <input matInput formControlName="englishTitle" class="meta-field"></div>
-      <div>Lyricist: <input matInput formControlName="lyricist" class="meta-field"></div>
-      <div>Composer: <input matInput formControlName="composer" class="meta-field"></div>
-      <div>Arranger: <input matInput formControlName="arranger" class="meta-field"></div>
-      <textarea matInput formControlName="lyrics" class="input-field" placeholder="Enter lyrics"></textarea>
-      <button mat-flat-button color="primary" class="generate-json" (click)="generateJson()">
-        Generate JSON
+<div class="content">
+  <h2>Song Creator</h2>
+  <form [formGroup]="songForm">
+    <div>songId:
+      <input matInput formControlName="songId" class="meta-field">
+      <button mat-icon-button (click)="searchSong()" [disabled]="searchDisabled">
+        <mat-icon>search</mat-icon>
       </button>
-      <button mat-flat-button color="primary" class="clear-input" (click)="clear()">
-        Clear
-      </button>
-    </form>
-    <div [class.hide]="hideOutput">
-      <textarea matInput [formControl]="outputForm" class="output" readonly></textarea>
-      <button mat-flat-button color="accent" class="create-song" (click)="createSong()" [disabled]="buttonsDisabled">
-        Create song
-      </button>
-      <button mat-flat-button color="accent" class="replace-song" (click)="replaceSong()" [disabled]="buttonsDisabled">
-        Replace song
-      </button>
-      <span class="access">Access: <input matInput [formControl]="accessForm"></span>
-      <div class="response">{{this.response}}</div>
+      <span class="search-error">{{this.searchError}}</span>
     </div>
-    <div class="helper">
-      <p>
-        <strong>L</strong> - translated song lyric<br>
-        <strong>B</strong> - paragraph break<br>
-        <strong>T</strong> - text
-      </p>
-      <p>Blank lines before control letters are optional.</p>
-      <b>Example:</b>
-      <p class="example">
-        L<br>
-        然後呢<br>
-        rán hòu ne<br>
-        And then?<br>
-        <br>
-        B<br>
-        <br>
-        L<br>
-        他們說你的心<br>
-        tā men shuō nǐ de xīn<br>
-        They said that your heart<br>
-        T<br>
-        Note: "好好" can mean "very good"
-      </p>
-    </div>
+    <span>Chinese title, pinyin and translation:</span>
+    <textarea matInput formControlName="chineseTitle" class="title-field" placeholder="Enter each on a new line"></textarea>
+    <div>English title: <input matInput formControlName="englishTitle" class="meta-field"></div>
+    <div>Lyricist: <input matInput formControlName="lyricist" class="meta-field"></div>
+    <div>Composer: <input matInput formControlName="composer" class="meta-field"></div>
+    <div>Arranger: <input matInput formControlName="arranger" class="meta-field"></div>
+    <textarea matInput formControlName="lyrics" class="input-field" placeholder="Enter lyrics"></textarea>
+    <button mat-flat-button color="primary" class="generate-json" (click)="generateJson()">
+      Generate JSON
+    </button>
+    <button mat-flat-button color="primary" class="clear-input" (click)="clear()">
+      Clear
+    </button>
+  </form>
+  <div [class.hide]="hideOutput">
+    <textarea matInput [formControl]="outputForm" class="output" readonly></textarea>
+    <button mat-flat-button color="accent" class="create-song" (click)="createSong()" [disabled]="buttonsDisabled">
+      Create song
+    </button>
+    <button mat-flat-button color="accent" class="replace-song" (click)="replaceSong()" [disabled]="buttonsDisabled">
+      Replace song
+    </button>
+    <span class="access">Access: <input matInput [formControl]="accessForm"></span>
+    <div class="response">{{this.response}}</div>
+  </div>
+  <div class="helper">
+    <p>
+      <strong>L</strong> - translated song lyric<br>
+      <strong>B</strong> - paragraph break<br>
+      <strong>T</strong> - text
+    </p>
+    <p>Blank lines before control letters are optional.</p>
+    <b>Example:</b>
+    <p class="example">
+      L<br>
+      然後呢<br>
+      rán hòu ne<br>
+      And then?<br>
+      <br>
+      B<br>
+      <br>
+      L<br>
+      他們說你的心<br>
+      tā men shuō nǐ de xīn<br>
+      They said that your heart<br>
+      T<br>
+      Note: "好好" can mean "very good"
+    </p>
   </div>
 </div>
