@@ -9,3 +9,6 @@
 .github {
   margin-left: 8px;
 }
+.github:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
