@@ -15,14 +15,17 @@
   padding-left: 8px;
   font-size: 20px;
 }
+.sidenav-container {
+  height: 100vh;
+}
 .sidenav {
   width: 240px;
 }
 .sidenav-content {
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
 }
 .content-container {
-  /* flex: 1; */
+  flex: 1;
   padding-top: 64px; /* offset so it appears below the toolbar */
 }

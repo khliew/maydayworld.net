@@ -1,16 +1,11 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+.content {
+  margin-bottom: 64px;
+  max-width: 480px;
+  margin: 0 auto;
   padding: 32px;
 }
-.content {
-  flex: 1;
-  margin-bottom: 64px;
-}
 .section {
-  width: 496px;
-  margin: 0 auto 32px;
+  margin-bottom: 32px;
 }
 .section-header {
   margin-bottom: 16px;
