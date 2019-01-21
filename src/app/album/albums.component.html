@@ -5,9 +5,9 @@
         <h3 class="section-header">
           {{section.label}}
         </h3>
-        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px grid">
+        <div gdColumns="1fr 1fr" gdColumns.lt-sm="1fr" gdGap="16px">
           <div *ngFor="let album of section.albums" [routerLink]="['/album', album.albumId]" class="album-card"
-            matRipple fxFlex="calc(50% - 16px)" fxFlex.lt-sm="100">
+            matRipple>
             <div class="album-title">
               <div class="title-chinese">{{album.title.chinese.zht}}</div>
               <div class="title-english">{{album.title.english}}</div>
