@@ -16,3 +16,8 @@
 }
 .track-item {
 }
+.track-item.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: lightgray;
+}

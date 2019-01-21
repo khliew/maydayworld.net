@@ -15,7 +15,7 @@
   </div>
   <mat-nav-list class="track-list">
     <a mat-list-item *ngFor="let song of album.songs; let i = index;" [routerLink]="['/album', album.albumId, 'song', song.songId]"
-      class="track-item" routerLinkActive="active-nav-item">
+      class="track-item" [class.disabled]="song.disabled" routerLinkActive="active-nav-item">
       {{i + 1}}. {{song.title.chinese.zht}}
     </a>
   </mat-nav-list>
