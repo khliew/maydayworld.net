@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Album } from '../model';
+import { SidenavService } from '../service/sidenav.service';
 
 @Component({
   selector: 'app-album-detail',
@@ -10,11 +11,14 @@ import { Album } from '../model';
 export class AlbumDetailComponent implements OnInit {
   album: Album;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private sidenavService: SidenavService) { }
 
   ngOnInit(): void {
+    this.sidenavService.setOpen(true);
+
     this.route.data
-      .subscribe((data: { album: Album }) => {
+      .subscribe(data => {
+        console.log('AlbumDetail: data', data);
         this.album = data.album;
       });
   }

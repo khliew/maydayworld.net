@@ -2,19 +2,18 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding: 32px;
 }
 .content {
-  margin-top: 64px; /* offset so it appears below the toolbar */
-  padding: 32px;
   flex: 1;
   margin-bottom: 64px;
 }
 .section {
   width: 496px;
-  margin: 0 auto;
+  margin: 0 auto 32px;
 }
 .section-header {
-  margin: 32px 0 16px;
+  margin-bottom: 16px;
 }
 .album-list {
 }

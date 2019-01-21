@@ -1,16 +1,10 @@
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
 
-$config: mat-typography-config(
-  $font-family: 'Roboto, "Noto Sans TC", sans-serif'
-);
-
-@include mat-core($config);
-
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-// @include mat-core();
+@include mat-core();
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -28,6 +22,12 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($candy-app-theme);
+
+// include custom Chinese font in mat-typography
+$custom-typography: mat-typography-config(
+  $font-family: 'Roboto, "Noto Sans TC", sans-serif'
+);
+@include angular-material-typography($custom-typography);
 
 $primary: mat-color($mat-light-blue, 700);
 
