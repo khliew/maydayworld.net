@@ -18,7 +18,6 @@ export class AlbumDetailComponent implements OnInit {
 
     this.route.data
       .subscribe(data => {
-        console.log('AlbumDetail: data', data);
         this.album = data.album;
       });
   }
