@@ -2,7 +2,8 @@
   position: fixed;
   top: 0;
   z-index: 999;
-  padding-left: 0px;
+}
+.toolbar-menu {
 }
 .toolbar-home {
   display: flex;

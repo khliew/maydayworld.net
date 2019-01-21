@@ -1,6 +1,6 @@
 .content {
   margin-bottom: 64px;
-  max-width: 480px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 32px;
 }
@@ -13,12 +13,12 @@
 .album-list {
 }
 .album-card {
-  width: 100%;
+  /* width: 100%; */
   cursor: pointer;
   border: 1px solid gray;
   border-radius: 4px;
   padding: 16px;
-}
+} 
 .album-card:hover {
   background-color: rgba(0, 0, 0, 0.04);
 }

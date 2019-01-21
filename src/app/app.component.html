@@ -4,8 +4,8 @@
   </a>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container mat-typography">
-  <mat-sidenav #sidenav class="sidenav" mode="side" role="navigation" fixedInViewport="true" fixedTopGap="64"
-    disableClose="true">
+  <mat-sidenav #sidenav fxHide.lt-sm class="sidenav" mode="side" role="navigation" fixedInViewport="true"
+    fixedTopGap="64" disableClose="true">
     <router-outlet name="sidenav"></router-outlet>
   </mat-sidenav>
   <mat-sidenav-content class="sidenav-content">

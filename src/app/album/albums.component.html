@@ -5,17 +5,16 @@
         <h3 class="section-header">
           {{section.label}}
         </h3>
-        <mat-grid-list class="album-list" cols="2" rowHeight="102px" gutterSize="16px">
-          <mat-grid-tile *ngFor="let album of section.albums">
-            <div [routerLink]="['/album', album.albumId]" class="album-card" matRipple>
-              <div class="album-title">
-                <div class="title-chinese">{{album.title.chinese.zht}}</div>
-                <div class="title-english">{{album.title.english}}</div>
-              </div>
-              <div class="release-date">{{ album.releaseDate | date }}</div>
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px grid">
+          <div *ngFor="let album of section.albums" [routerLink]="['/album', album.albumId]" class="album-card"
+            matRipple fxFlex="calc(50% - 16px)" fxFlex.lt-sm="100">
+            <div class="album-title">
+              <div class="title-chinese">{{album.title.chinese.zht}}</div>
+              <div class="title-english">{{album.title.english}}</div>
             </div>
-          </mat-grid-tile>
-        </mat-grid-list>
+            <div class="release-date">{{ album.releaseDate | date }}</div>
+          </div>
+        </div>
       </div>
     </ng-container>
   </ng-container>
