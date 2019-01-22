@@ -32,12 +32,20 @@
   max-width: 496px;
 }
 .track-item {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
   border: 1px solid gray;
   border-radius: 4px;
-  margin: 8px;
+  padding: 16px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+.track-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
 }
 .track-item.disabled {
   pointer-events: none;
@@ -45,10 +53,13 @@
   color: lightgray;
   border: initial;
 }
+.track-title {
+  margin-left: 16px;
+}
 .track-english {
   color: gray;
-  padding-left: 8px;
-  font-size: 14px;
+  font-size: 16px;
+  margin-top: 4px;
 }
 .track-item.disabled .track-english {
   color: lightgray;

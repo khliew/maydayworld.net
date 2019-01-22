@@ -13,12 +13,11 @@
 .album-list {
 }
 .album-card {
-  /* width: 100%; */
   cursor: pointer;
   border: 1px solid gray;
   border-radius: 4px;
   padding: 16px;
-} 
+}
 .album-card:hover {
   background-color: rgba(0, 0, 0, 0.04);
 }
