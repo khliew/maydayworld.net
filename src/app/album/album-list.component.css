@@ -11,3 +11,9 @@
 .title-english {
   font-size: 12px;
 }
+.list-item {
+  
+}
+.list-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
