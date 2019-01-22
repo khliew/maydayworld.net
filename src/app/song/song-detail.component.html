@@ -6,29 +6,35 @@
         <div class="title-translation">
           {{song.title.chinese.zhp}}
           <br>
-          {{song.title.chinese.eng}}
+          <span class="trans-english">{{song.title.chinese.eng}}</span>
         </div>
         <div class="title-english">{{song.title.english}}</div>
       </div>
     </div>
     <div class="song-content">
-      <div *ngFor="let lyric of song.lyrics">
+      <ng-container *ngFor="let lyric of song.lyrics">
         <ng-container [ngSwitch]="lyric.type">
           <p *ngSwitchCase="'lyric'">
-            {{lyric.zht}}
+            <span class="lyrics-chinese">
+              {{lyric.zht}}
+            </span>
             <br>
-            {{lyric.zhp}}
+            <span class="lyrics-pinyin">
+              {{lyric.zhp}}
+            </span>
             <br>
-            {{lyric.eng}}
+            <span class="lyrics-english">
+              {{lyric.eng}}
+            </span>
           </p>
-          <p *ngSwitchCase="'break'">
+          <p *ngSwitchCase="'break'"  class="line-break">
             <br>
           </p>
-          <p *ngSwitchCase="'text'">
+          <p *ngSwitchCase="'text'"  class="line-text">
             {{lyric.text}}
           </p>
         </ng-container>
-      </div>
+      </ng-container>
     </div>
   </ng-container>
 </div>
