@@ -48,8 +48,8 @@
   align-self: normal;
 }
 .track-chinese {
-  font-size: 18px;
+  font-size: 18px !important;
 }
 .track-english {
-  font-size: 16px;
+  font-size: 16px !important;
 }

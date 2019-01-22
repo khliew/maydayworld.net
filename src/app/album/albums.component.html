@@ -6,14 +6,12 @@
           {{section.label}}
         </h2>
         <div gdColumns="1fr 1fr" gdColumns.lt-sm="1fr" gdGap="16px">
-          <div *ngFor="let album of section.albums" [routerLink]="['/album', album.albumId]" class="album-card"
-            matRipple>
-            <div class="album-title">
-              <a class="title-chinese link" [routerLink]="['/album', album.albumId]">{{album.title.chinese.zht}}</a>
-              <div class="title-english">{{album.title.english}}</div>
-            </div>
-            <div class="release-date">{{ album.releaseDate | date }}</div>
-          </div>
+          <a mat-list-item *ngFor="let album of section.albums" [routerLink]="['/album', album.albumId]" class="album-card"
+             >
+            <div matLine class="title-chinese">{{album.title.chinese.zht}}</div>
+            <div matLine class="title-english">{{album.title.english}}</div>
+            <div matLine class="release-date">{{ album.releaseDate | date }}</div>
+        </a>
         </div>
       </div>
     </ng-container>
