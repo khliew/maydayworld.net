@@ -1,18 +1,16 @@
 <ng-container *ngIf="discography">
   <mat-nav-list class="album-list">
     <ng-container *ngFor="let section of discography.sections">
-      <div *ngIf="!!section.albums && section.albums.length > 0" class="section">
+      <ng-container *ngIf="!!section.albums && section.albums.length > 0" class="section">
         <h3 mat-subheader class="section-header">
           {{section.label}}
         </h3>
         <a mat-list-item *ngFor="let album of section.albums" [routerLink]="['/album', album.albumId]" routerLinkActive="active-nav-item"
           class="list-item">
-          <div class="album-title">
-            <div class="title-chinese">{{album.title.chinese.zht}}</div>
-            <div class="title-english">{{album.title.english}}</div>
-          </div>
+            <div matLine class="title-chinese">{{album.title.chinese.zht}}</div>
+            <div matLine class="title-english">{{album.title.english}}</div>
         </a>
-      </div>
+      </ng-container>
     </ng-container>
   </mat-nav-list>
 </ng-container>
