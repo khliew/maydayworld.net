@@ -25,7 +25,7 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 
 // include custom Chinese font in mat-typography
 $custom-typography: mat-typography-config(
-  $font-family: 'Roboto, "Noto Sans TC", sans-serif'
+  $font-family: 'Roboto, Arial, "Noto Sans TC", sans-serif'
 );
 @include angular-material-typography($custom-typography);
 
