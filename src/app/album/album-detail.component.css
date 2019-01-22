@@ -32,20 +32,9 @@
   max-width: 496px;
 }
 .track-item {
-  display: flex;
-  flex-direction: row;
-  cursor: pointer;
   border: 1px solid gray;
   border-radius: 4px;
-  padding: 16px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-size: 18px;
   margin-bottom: 16px;
-}
-.track-item:hover {
-  background-color: rgba(0, 0, 0, 0.04);
 }
 .track-item.disabled {
   pointer-events: none;
@@ -53,21 +42,14 @@
   color: lightgray;
   border: initial;
 }
-.track-title {
-  margin-left: 8px;
+.track-number {
+  order: -1;
+  margin: 16px 8px 0 0;
+  align-self: normal;
 }
-.link {
-  color: black;
-  text-decoration: none;
-}
-.link:hover {
-  color: black;
-  text-decoration: underline;
-}
-.link.disabled {
-  color: lightgray;
+.track-chinese {
+  font-size: 18px;
 }
 .track-english {
   font-size: 16px;
-  margin-top: 4px;
 }

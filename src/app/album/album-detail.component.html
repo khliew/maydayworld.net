@@ -13,14 +13,12 @@
       <div class="release-date">{{album.releaseDate | date:'longDate'}}</div>
     </div>
     <mat-nav-list class="track-list">
-      <div mat-list-item *ngFor="let song of album.songs; let i = index;" [routerLink]="['/album', album.albumId, 'song', song.songId]"
+      <a mat-list-item *ngFor="let song of album.songs; let i = index;" [routerLink]="['/album', album.albumId, 'song', song.songId]"
         class="track-item" [class.disabled]="song.disabled">
         <div class="track-number">{{i + 1}}</div>
-        <div class="track-title">
-          <a class="track-chinese link" [class.disabled]="song.disabled" [routerLink]="['/album', album.albumId, 'song', song.songId]">{{song.title.chinese.zht}}</a>
-          <div class="track-english"> {{song.title.english}}</div>
-        </div>
-      </div>
+        <div matLine class="track-chinese">{{song.title.chinese.zht}}</div>
+        <div matLine class="track-english"> {{song.title.english}}</div>
+      </a>
     </mat-nav-list>
   </ng-container>
 </div>
