@@ -1,8 +1,8 @@
-<footer class="app-footer">
-  <span class="footer-spacer"></span>
-  <a routerLink="/privacy">Privacy Policy</a>
+<footer class="app-footer" fxLayout fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+  <span fxHide.lt-sm class="footer-spacer"></span>
   <a routerLink="/about">About Us</a>
-  <div class="label">
+  <a routerLink="/privacy">Privacy Policy</a>
+  <div class="label" ngClass.lt-sm="small" >
     <div>© 2019 maydayworld.com</div>
     <div>v{{appVersion}}</div>
   </div>

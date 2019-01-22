@@ -1,6 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -19,7 +18,6 @@ import { SongsComponent } from './song/songs.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FlexLayoutModule,
     HttpClientModule,
     SharedModule,
     AppRoutingModule

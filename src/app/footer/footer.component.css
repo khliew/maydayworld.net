@@ -1,11 +1,8 @@
 .app-footer {
-  display: flex;
   align-items: center;
   min-height: 48px;
   padding: 16px 32px;
   color: white;
-  line-height: 16px;
-  font-size: 14px;
 }
 .footer-spacer {
   flex: 1 1 auto;
@@ -13,7 +10,6 @@
 a {
   color: white;
   text-decoration: none;
-  margin: 0 16px;
 }
 a:hover {
   color: white;
@@ -22,4 +18,8 @@ a:hover {
 .label {
   margin-left: 16px;
   text-align: right;
+}
+.label.small {
+  margin: 16px 0 0;
+  text-align: center;
 }
