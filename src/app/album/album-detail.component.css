@@ -2,28 +2,31 @@
   background-color: white;
   padding: 32px 32px 64px;
 }
+.album-header {
+  margin-bottom: 32px;
+}
 .album-title {
   font-size: 20px;
-  margin-bottom: 32px;
-  max-width: 496px;
+  margin-bottom: 16px;
 }
 .title-chinese {
-  font-weight: bold;
-  font-size: 20px;
+  font-size: 22px;
 }
 .title-translation {
   color: gray;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 16px;
+  line-height: 18px;
   padding-top: 4px;
 }
+.trans-english {
+  color: darkblue;
+}
 .title-english {
-  font-size: 20px;
+  font-size: 22px;
   padding-top: 8px;
 }
 .release-date {
   font-size: 16px;
-  padding-top: 4px;
 }
 .track-list {
   max-width: 496px;

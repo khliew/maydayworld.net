@@ -1,14 +1,16 @@
 <div class="container">
   <ng-container *ngIf="album">
-    <div class="album-title">
-      <div class="title-chinese">{{album.title.chinese.zht}}</div>
-      <div class="title-translation">
-        {{album.title.chinese.zhp}}
-        <br>
-        {{album.title.chinese.eng}}
+    <div class="album-header">
+      <div class="album-title">
+        <div class="title-chinese">{{album.title.chinese.zht}}</div>
+        <div class="title-translation">
+          {{album.title.chinese.zhp}}
+          <br>
+          <span class="trans-english">{{album.title.chinese.eng}}</span>
+        </div>
+        <div class="title-english">{{album.title.english}}</div>
       </div>
-      <div class="title-english">{{album.title.english}}</div>
-      <div class="release-date">{{album.releaseDate | date}}</div>
+      <div class="release-date">{{album.releaseDate | date:'longDate'}}</div>
     </div>
     <mat-nav-list class="track-list">
       <a mat-list-item *ngFor="let song of album.songs; let i = index;" [routerLink]="['/album', album.albumId, 'song', song.songId]"
