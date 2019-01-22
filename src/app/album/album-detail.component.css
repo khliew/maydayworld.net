@@ -45,6 +45,7 @@
 .track-english {
   color: gray;
   padding-left: 8px;
+  font-size: 14px;
 }
 .track-item.disabled .track-english {
   color: lightgray;
