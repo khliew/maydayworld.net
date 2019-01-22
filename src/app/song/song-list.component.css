@@ -2,13 +2,20 @@
   padding: 0px 16px 8px;
 }
 .title-chinese {
+  font-size: 16px;
+  line-height: 18px;
 }
 .title-translation {
   font-size: 12px;
   line-height: 14px;
   color: gray;
 }
+.trans-english {
+  color: darkblue;
+}
 .title-english {
+  font-size: 16px;
+  line-height: 18px;
   padding-top: 4px;
 }
 .track-list {
