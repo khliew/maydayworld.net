@@ -10,6 +10,9 @@
         </div>
         <div class="title-english">{{song.title.english}}</div>
       </div>
+      <div *ngIf="song.lyricist" class="song-tag lyricist">Lyricist: {{song.lyricist}}</div>
+      <div *ngIf="song.composer" class="song-tag composer">Composer: {{song.composer}}</div>
+      <div *ngIf="song.arranger" class="song-tag arranger">Arrangement by: {{song.arranger}}</div>
     </div>
     <div class="song-content">
       <ng-container *ngFor="let lyric of song.lyrics">

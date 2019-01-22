@@ -6,10 +6,14 @@
   margin-bottom: 64px;
 }
 .song-title {
-  font-size: 20px;
+  margin-bottom: 32px;
+}
+.song-tag {
+  font-size: 16px;
+  margin-bottom: 4px;
 }
 .title-chinese {
-  font-size: 20px;
+  font-size: 22px;
 }
 .title-translation {
   color: gray;
@@ -21,7 +25,7 @@
   color: darkblue;
 }
 .title-english {
-  font-size: 20px;
+  font-size: 22px;
   padding-top: 8px; 
 }
 .song-content {
