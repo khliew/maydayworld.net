@@ -11,11 +11,11 @@ import { SidenavService } from '../service/sidenav.service';
 export class SongDetailComponent implements OnInit {
   song: Song;
 
-  constructor(private route: ActivatedRoute, private sidenavService: SidenavService) { }
+  constructor(private route: ActivatedRoute, private sidenavService: SidenavService) {
+    this.sidenavService.setEnabled(true);
+  }
 
   ngOnInit(): void {
-    this.sidenavService.setEnabled(true);
-    
     this.route.data
       .subscribe((data: { song: Song }) => {
         this.song = data.song;

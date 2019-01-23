@@ -22,6 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private sidenavService: SidenavService, private mediaObserver: MediaObserver) {
     this.analyticsEnabled = typeof (<any>window).ga === 'function';
+    this.sidenavEnabled = false;
   }
 
   ngOnInit() {

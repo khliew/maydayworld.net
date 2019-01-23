@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SidenavService } from '../service/sidenav.service';
 
 @Component({
@@ -6,10 +6,8 @@ import { SidenavService } from '../service/sidenav.service';
   templateUrl: './privacy.component.html',
   styleUrls: ['./privacy.component.css']
 })
-export class PrivacyComponent implements OnInit {
-  constructor(private sidenavService: SidenavService) { }
-
-  ngOnInit(): void {
+export class PrivacyComponent {
+  constructor(private sidenavService: SidenavService) {
     this.sidenavService.setEnabled(false);
   }
 }

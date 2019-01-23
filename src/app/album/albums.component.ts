@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Discography } from '../model';
 import { DataService } from '../data.service';
+import { Discography } from '../model';
 import { SidenavService } from '../service/sidenav.service';
 
 @Component({
@@ -11,11 +11,11 @@ import { SidenavService } from '../service/sidenav.service';
 export class AlbumsComponent implements OnInit {
   discography: Discography;
 
-  constructor(private dataService: DataService, private sidenavService: SidenavService) { }
+  constructor(private dataService: DataService, private sidenavService: SidenavService) {
+    this.sidenavService.setEnabled(false);
+  }
 
   ngOnInit(): void {
-    this.sidenavService.setEnabled(false);
-    
     this.getDiscography();
   }
 
