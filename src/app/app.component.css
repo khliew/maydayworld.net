@@ -5,13 +5,16 @@
 }
 .toolbar-menu {
 }
-.toolbar-home {
+.toolbar-title {
   display: flex;
   align-items: center;
   height: 100%;
   background-color: transparent;
 }
-.home-text {
+.toolbar-title.with-menu {
+  padding-left: 0px;
+}
+.title-text {
   color: white;
   padding-left: 8px;
   font-size: 20px;

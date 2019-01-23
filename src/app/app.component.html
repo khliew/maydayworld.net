@@ -1,11 +1,13 @@
 <mat-toolbar color="primary" class="toolbar">
-  <a mat-flat-button routerLink="/albums" class="toolbar-home" disableRipple>
-    <span class="home-text">Mayday World 五月天世界</span>
+  <button mat-icon-button fxHide [fxShow.lt-sm]="sidenavEnabled" (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <a mat-flat-button routerLink="/albums" class="toolbar-title" [ngClass.lt-sm]="{ 'with-menu': sidenavEnabled}" disableRipple>
+    <span class="title-text">Mayday World 五月天世界</span>
   </a>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container mat-typography">
-  <mat-sidenav #sidenav fxHide.lt-sm class="sidenav" mode="side" role="navigation" fixedInViewport="true"
-    fixedTopGap="64" disableClose="true">
+  <mat-sidenav #sidenav class="sidenav" role="navigation" fixedInViewport="true"autoFocus="false">
     <router-outlet name="sidenav"></router-outlet>
   </mat-sidenav>
   <mat-sidenav-content class="sidenav-content">
