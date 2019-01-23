@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Album, Discography, Song } from '../model';
+import { RequestCache } from '../cache/request-cache.service';
 
 @Injectable()
 export class AdminService {
@@ -19,7 +20,13 @@ export class AdminService {
   }
 
   getDiscography(artistId: string = 'mayday'): Observable<Discography> {
-    return this.http.get<any>(`${this.baseUrl}/disco/${artistId}`)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        [RequestCache.NO_CACHE_HEADER]: 'true'
+      })
+    };
+
+    return this.http.get<any>(`${this.baseUrl}/disco/${artistId}`, httpOptions)
       .pipe(
         map(response => response.data),
         catchError(this.handleError)
@@ -57,7 +64,13 @@ export class AdminService {
   }
 
   getAlbum(albumId: string): Observable<Album> {
-    return this.http.get<any>(`${this.baseUrl}/albums/${albumId}`)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        [RequestCache.NO_CACHE_HEADER]: 'true'
+      })
+    };
+
+    return this.http.get<any>(`${this.baseUrl}/albums/${albumId}`, httpOptions)
       .pipe(
         map(response => response.data),
         catchError(this.handleError)
@@ -95,7 +108,13 @@ export class AdminService {
   }
 
   getSong(songId: string): Observable<Song> {
-    return this.http.get<any>(`${this.baseUrl}/songs/${songId}`)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        [RequestCache.NO_CACHE_HEADER]: 'true'
+      })
+    };
+
+    return this.http.get<any>(`${this.baseUrl}/songs/${songId}`, httpOptions)
       .pipe(
         map(response => response.data),
         catchError(this.handleError)
