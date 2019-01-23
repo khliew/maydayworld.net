@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Album, Discography, Song } from '../model';
-import { RequestCache } from '../cache/request-cache.service';
+import { RequestCache } from '../services/request-cache.service';
 
 @Injectable()
 export class AdminService {
