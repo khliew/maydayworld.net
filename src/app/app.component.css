@@ -17,7 +17,9 @@
   font-size: 20px;
 }
 .sidenav-container {
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 .sidenav {
   width: 240px;
@@ -25,6 +27,7 @@
 .sidenav-content {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 .content-container {
   flex: 1;
