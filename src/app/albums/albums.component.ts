@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
 import { Discography } from '../model';
-import { SidenavService } from '../service/sidenav.service';
+import { DataService } from '../services/data.service';
+import { SidenavService } from '../services/sidenav.service';
 
 @Component({
   selector: 'app-albums',

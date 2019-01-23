@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { AlbumsComponent } from './album/albums.component';
-import { SongsComponent } from './song/songs.component';
+import { AlbumsComponent } from './albums/albums.component';
+import { SongsComponent } from './songs/songs.component';
 import { AuthGuard } from './admin/auth.guard';
 import { LogInComponent } from './log-in/log-in.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 
 const routes: Routes = [
   { path: 'albums', component: AlbumsComponent },
-  { path: 'login', component: LogInComponent },
   { path: 'songs', component: SongsComponent },
-  { path: 'album', loadChildren: './album/album.module#AlbumModule' },
-  { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canLoad: [AuthGuard] },
   { path: 'about', component: AboutUsComponent },
   { path: 'privacy', component: PrivacyComponent },
+  { path: 'login', component: LogInComponent },
+  { path: 'album', loadChildren: './album/album.module#AlbumModule' },
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canLoad: [AuthGuard] },
   { path: '', redirectTo: '/albums', pathMatch: 'full' },
   { path: '**', redirectTo: '/albums', pathMatch: 'full' }
 ];

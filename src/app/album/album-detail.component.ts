@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Album } from '../model';
-import { SidenavService } from '../service/sidenav.service';
+import { SidenavService } from '../services/sidenav.service';
 
 @Component({
   selector: 'app-album-detail',

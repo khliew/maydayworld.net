@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { environment } from '../environments/environment';
-import { Album, Discography, Song } from './model';
+import { environment } from '../../environments/environment';
+import { Album, Discography, Song } from '../model';
 
 @Injectable()
 export class DataService {
