@@ -2,6 +2,7 @@ import { SidenavService } from './sidenav.service';
 
 describe('SidenavService', () => {
   let service: SidenavService;
+
   beforeEach(() => service = new SidenavService());
 
   it('#setEnabled should set enabled value',
