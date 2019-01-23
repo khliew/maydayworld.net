@@ -27,9 +27,9 @@ export class AppComponent implements OnInit {
       });
     }
 
-    this.sidenavService.open
-      .subscribe(open => {
-        if (open) {
+    this.sidenavService.enable$
+      .subscribe(enabled => {
+        if (enabled) {
           this.sidenav.open();
         } else {
           this.sidenav.close();

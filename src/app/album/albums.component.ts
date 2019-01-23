@@ -14,7 +14,7 @@ export class AlbumsComponent implements OnInit {
   constructor(private dataService: DataService, private sidenavService: SidenavService) { }
 
   ngOnInit(): void {
-    this.sidenavService.setOpen(false);
+    this.sidenavService.setEnabled(false);
     
     this.getDiscography();
   }

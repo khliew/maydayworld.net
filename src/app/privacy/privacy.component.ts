@@ -10,6 +10,6 @@ export class PrivacyComponent implements OnInit {
   constructor(private sidenavService: SidenavService) { }
 
   ngOnInit(): void {
-    this.sidenavService.setOpen(false);
+    this.sidenavService.setEnabled(false);
   }
 }

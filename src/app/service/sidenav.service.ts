@@ -3,17 +3,19 @@ import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class SidenavService {
-  private showSidenav: Subject<boolean>;
+  private enableSideNav: Subject<boolean>;
   
-  open: Observable<boolean>;
+  enable$: Observable<boolean>;
+  enabled: boolean;
 
   constructor() {
-    this.showSidenav = new Subject<boolean>();
-    this.open = this.showSidenav as Observable<boolean>;
+    this.enableSideNav = new Subject<boolean>();
+    this.enable$ = this.enableSideNav as Observable<boolean>;
   }
 
-  public setOpen(open: boolean) {
-    this.showSidenav.next(open);
+  public setEnabled(enabled: boolean) {
+    this.enableSideNav.next(enabled);
+    this.enabled = enabled;
   }
 }
 

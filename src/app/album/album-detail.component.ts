@@ -14,7 +14,7 @@ export class AlbumDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private sidenavService: SidenavService) { }
 
   ngOnInit(): void {
-    this.sidenavService.setOpen(true);
+    this.sidenavService.setEnabled(true);
 
     this.route.data
       .subscribe(data => {
