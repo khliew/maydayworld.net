@@ -17,7 +17,7 @@
     <div class="song-content">
       <ng-container *ngFor="let lyric of song.lyrics">
         <ng-container [ngSwitch]="lyric.type">
-          <p *ngSwitchCase="'lyric'">
+          <p *ngSwitchCase="'lyric'" class="line line-lyric">
             <span class="lyrics-chinese">
               {{lyric.zht}}
             </span>
@@ -30,10 +30,10 @@
               {{lyric.eng}}
             </span>
           </p>
-          <p *ngSwitchCase="'break'"  class="line-break">
+          <p *ngSwitchCase="'break'"  class="line line-break">
             <br>
           </p>
-          <p *ngSwitchCase="'text'"  class="line-text">
+          <p *ngSwitchCase="'text'"  class="line line-text">
             {{lyric.text}}
           </p>
         </ng-container>

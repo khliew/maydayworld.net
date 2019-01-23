@@ -25,11 +25,17 @@
 }
 .title-english {
   font-size: 22px;
-  padding-top: 8px; 
+  margin-top: 16px; 
 }
 .song-content {
   font-size: 18px;
   line-height: 20px;
+}
+.line {
+  margin-bottom: 16px;
+}
+.line-text {
+  line-height: 22px;
 }
 .lyrics-pinyin {
   font-size: 16px;
@@ -37,7 +43,4 @@
 }
 .lyrics-english {
   font-size: 16px;
-}
-.line-text {
-  line-height: 22px;
 }
