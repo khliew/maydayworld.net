@@ -30,6 +30,7 @@ $custom-typography: mat-typography-config(
 @include angular-material-typography($custom-typography);
 
 $primary: mat-color($mat-light-blue, 700);
+$primary-dark: mat-color($mat-light-blue, 900);
 
 // active item color
 $activated-item: mat-color($mat-light-blue, A100);
@@ -58,4 +59,8 @@ $activated-item: mat-color($mat-light-blue, A100);
 // styling for app footer
 .app-footer {
   background-color: $primary;
+}
+
+.primary-dark {
+  color: $primary-dark;
 }
