@@ -2,11 +2,11 @@ import { TitleService } from './title.service';
 
 describe('TitleService', () => {
   let service: TitleService;
-  let titleSpy: any;
+  let titleSpy: { setTitle: jasmine.Spy };
 
   beforeEach(() => {
     titleSpy = jasmine.createSpyObj('Title', ['setTitle']);
-    service = new TitleService(titleSpy);
+    service = new TitleService(<any> titleSpy);
   });
 
   it('#setTitle sets the document title', () => {
