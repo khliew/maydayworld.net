@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { EnvironmentService } from '../services/environment.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,5 +7,9 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  appVersion = environment.version;
+  appVersion: string;
+
+  constructor(environmentService: EnvironmentService) {
+    this.appVersion = environmentService.env.version;
+  }
 }
