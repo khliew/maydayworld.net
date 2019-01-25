@@ -18,12 +18,12 @@ export interface RequestCacheEntry {
 export abstract class RequestCache {
   public static readonly NO_CACHE_HEADER = 'X-MDW-No-Cache';
   public static readonly REFRESH_HEADER = 'X-MDW-Refresh';
+  public static readonly MAX_AGE = 60 * 60 * 1000; // maximum cache age (ms)
 
   abstract get(req: HttpRequest<any>): HttpResponse<any> | undefined;
   abstract put(req: HttpRequest<any>, response: HttpResponse<any>): void;
 }
 
-const maxAge = 60 * 60 * 1000; // maximum cache age (ms)
 
 @Injectable()
 export class RequestCacheWithMap implements RequestCache {
@@ -40,17 +40,18 @@ export class RequestCacheWithMap implements RequestCache {
       return undefined;
     }
 
-    const isExpired = cached.lastRead < (Date.now() - maxAge);
+    const isExpired = cached.lastRead < (Date.now() - RequestCache.MAX_AGE);
     return isExpired ? undefined : cached.response;
   }
 
   put(req: HttpRequest<any>, response: HttpResponse<any>): void {
     const url = req.urlWithParams;
 
+    const now = Date.now();
     this.cache.set(url, { url, response, lastRead: Date.now() });
 
     // remove expired cache entries
-    const expired = Date.now() - maxAge;
+    const expired = Date.now() - RequestCache.MAX_AGE;
     this.cache.forEach(entry => {
       if (entry.lastRead < expired) {
         this.cache.delete(entry.url);
