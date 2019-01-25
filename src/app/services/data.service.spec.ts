@@ -6,10 +6,14 @@ import { DataService } from './data.service';
 describe('DataService', () => {
   let service: DataService;
   let httpClientSpy: { get: jasmine.Spy };
+  let environmentService;
 
   beforeEach(() => {
+    environmentService = {
+      env: { apiBaseUrl: 'api-base-url' }
+    };
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    service = new DataService(<any>httpClientSpy);
+    service = new DataService(<any>httpClientSpy, environmentService);
   });
 
   describe('#getDiscography', () => {
@@ -120,7 +124,7 @@ describe('DataService', () => {
       );
     });
   });
-  
+
   describe('#logIn', () => {
     it('should return a boolean', (done: DoneFn) => {
       httpClientSpy.get.and.returnValue(asyncData({ data: true }));

@@ -2,14 +2,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
 import { Album, Discography, Song } from '../model';
+import { EnvironmentService } from './environment.service';
 
 @Injectable()
 export class DataService {
-  baseUrl = environment.apiBaseUrl;
+  baseUrl: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, environmentService: EnvironmentService) {
+    this.baseUrl = environmentService.env.apiBaseUrl;
+  }
 
   getDiscography(artistId: string = 'mayday'): Observable<Discography> {
     return this.http.get<any>(`${this.baseUrl}/disco/${artistId}`)

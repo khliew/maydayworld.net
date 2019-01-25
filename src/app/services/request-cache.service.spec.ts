@@ -3,7 +3,6 @@ import { RequestCache, RequestCacheWithMap } from './request-cache.service';
 
 describe('RequestCacheWithMap', () => {
   let requestCache: RequestCacheWithMap;
-  let date;
   let url1;
   let url2;
   let request1;

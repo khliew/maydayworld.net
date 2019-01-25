@@ -2,18 +2,20 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
 import { Album, Discography, Song } from '../model';
+import { EnvironmentService } from '../services/environment.service';
 import { RequestCache } from '../services/request-cache.service';
 
 @Injectable()
 export class AdminService {
   private static readonly AUTH_HEADER = 'X-MDW-Auth';
 
-  baseUrl = environment.apiBaseUrl;
+  baseUrl: string;
   auth: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, environmentService: EnvironmentService) {
+    this.baseUrl = environmentService.env.apiBaseUrl;
+  }
 
   setAccess(auth: string) {
     this.auth = auth;

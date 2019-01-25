@@ -11,6 +11,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { DataService } from './services/data.service';
+import { EnvironmentService } from './services/environment.service';
 import { RequestCache, RequestCacheWithMap } from './services/request-cache.service';
 import { SidenavService } from './services/sidenav.service';
 import { TitleService } from './services/title.service';
@@ -39,6 +40,7 @@ import { SongsComponent } from './songs/songs.component';
     { provide: RequestCache, useClass: RequestCacheWithMap },
     httpInterceptorProviders,
     DataService,
+    EnvironmentService,
     SidenavService,
     TitleService
   ],
