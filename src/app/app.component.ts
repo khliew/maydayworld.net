@@ -3,7 +3,7 @@ import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { MatSidenav } from '@angular/material';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SidenavService } from './service/sidenav.service';
+import { SidenavService } from './services/sidenav.service';
 
 @Component({
   selector: 'app-root',

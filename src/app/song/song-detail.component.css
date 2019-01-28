@@ -17,11 +17,15 @@
 }
 .title-translation {
   color: gray;
-  font-size: 16px;
-  line-height: 18px;
   padding-top: 4px;
 }
+.trans-pinyin {
+  font-size: 14px;
+  line-height: 16px;
+}
 .trans-english {
+  font-size: 16px;
+  line-height: 18px;
 }
 .title-english {
   font-size: 22px;
@@ -38,7 +42,8 @@
   line-height: 22px;
 }
 .lyrics-pinyin {
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 16px;
   color: gray;
 }
 .lyrics-english {

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
 import { Discography } from '../model';
-import { SidenavService } from '../service/sidenav.service';
+import { DataService } from '../services/data.service';
+import { SidenavService } from '../services/sidenav.service';
+import { TitleService } from '../services/title.service';
 
 @Component({
   selector: 'app-albums',
@@ -11,12 +12,13 @@ import { SidenavService } from '../service/sidenav.service';
 export class AlbumsComponent implements OnInit {
   discography: Discography;
 
-  constructor(private dataService: DataService, private sidenavService: SidenavService) {
+  constructor(private titleService: TitleService, private dataService: DataService, private sidenavService: SidenavService) {
     this.sidenavService.setEnabled(false);
   }
 
   ngOnInit(): void {
     this.getDiscography();
+    this.titleService.resetTitle();
   }
 
   getDiscography(): void {

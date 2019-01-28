@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Song } from '../model';
-import { SidenavService } from '../service/sidenav.service';
+import { SidenavService } from '../services/sidenav.service';
+import { TitleService } from '../services/title.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-song-detail',
@@ -11,7 +13,7 @@ import { SidenavService } from '../service/sidenav.service';
 export class SongDetailComponent implements OnInit {
   song: Song;
 
-  constructor(private route: ActivatedRoute, private sidenavService: SidenavService) {
+  constructor(private titleService: TitleService, private route: ActivatedRoute, private sidenavService: SidenavService) {
     this.sidenavService.setEnabled(true);
   }
 
@@ -19,6 +21,8 @@ export class SongDetailComponent implements OnInit {
     this.route.data
       .subscribe((data: { song: Song }) => {
         this.song = data.song;
+
+        this.titleService.setTitle(this.song.title.chinese.zht);
       });
   }
 }

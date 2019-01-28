@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Album } from '../model';
-import { SidenavService } from '../service/sidenav.service';
+import { SidenavService } from '../services/sidenav.service';
+import { TitleService } from '../services/title.service';
 
 @Component({
   selector: 'app-album-detail',
@@ -11,7 +12,7 @@ import { SidenavService } from '../service/sidenav.service';
 export class AlbumDetailComponent implements OnInit {
   album: Album;
 
-  constructor(private route: ActivatedRoute, private sidenavService: SidenavService) {
+  constructor(private titleService: TitleService, private route: ActivatedRoute, private sidenavService: SidenavService) {
     this.sidenavService.setEnabled(true);
   }
 
@@ -19,6 +20,8 @@ export class AlbumDetailComponent implements OnInit {
     this.route.data
       .subscribe(data => {
         this.album = data.album;
+
+        this.titleService.setTitle(this.album.title.chinese.zht);
       });
   }
 }

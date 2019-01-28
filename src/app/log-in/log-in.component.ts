@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { DataService } from '../data.service';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
+import { TitleService } from '../services/title.service';
 
 @Component({
   selector: 'app-log-in',
@@ -16,12 +17,14 @@ export class LogInComponent {
   timeout: number;
   disabled: boolean;
 
-  constructor(private fb: FormBuilder, private dataService: DataService, private router: Router) { 
+  constructor(private titleService: TitleService, private fb: FormBuilder, private dataService: DataService, private router: Router) { 
     this.failCount = 0;
     this.timeout = 0;
     this.disabled = false;
     localStorage.removeItem('auth');
-  }
+
+    this.titleService.resetTitle();
+    }
 
   logIn() {
     this.disabled = true;
