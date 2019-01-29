@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
@@ -10,6 +11,7 @@ import { SidenavService } from '../services/sidenav.service';
 import { TitleService } from '../services/title.service';
 import { SharedModule } from '../shared/shared.module';
 import { AlbumDetailComponent } from './album-detail.component';
+import { RouterLinkDirectiveStub } from 'src/testing';
 
 describe('AlbumDetailsComponent', () => {
   let fixture: ComponentFixture<AlbumDetailComponent>;
@@ -28,7 +30,10 @@ describe('AlbumDetailsComponent', () => {
         SharedModule,
         RouterTestingModule
       ],
-      declarations: [AlbumDetailComponent],
+      declarations: [
+        AlbumDetailComponent,
+        RouterLinkDirectiveStub
+      ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute },
         { provide: SidenavService, useClass: SidenavServiceStub },
@@ -43,7 +48,7 @@ describe('AlbumDetailsComponent', () => {
     const injector = fixture.debugElement.injector;
     sidenavService = injector.get(SidenavService);
     titleService = injector.get(TitleService);
-    
+
     fixture.detectChanges(); // ngOnInit()
   }));
 
@@ -61,22 +66,22 @@ describe('AlbumDetailsComponent', () => {
     beforeEach(() => {
       albumDetailEl = fixture.nativeElement;
     });
-    
+
     it('should display the Chinese title', () => {
       const el: HTMLElement = albumDetailEl.querySelector('.title-chinese');
       expect(el.textContent).toEqual(testAlbum.title.chinese.zht);
     });
-    
+
     it('should display the pinyin translation', () => {
       const el: HTMLElement = albumDetailEl.querySelector('.trans-pinyin');
       expect(el.textContent).toEqual(testAlbum.title.chinese.zhp);
     });
-    
+
     it('should display the English translation', () => {
       const el: HTMLElement = albumDetailEl.querySelector('.trans-english');
       expect(el.textContent).toEqual(testAlbum.title.chinese.eng);
     });
-    
+
     it('should display the English title', () => {
       const el: HTMLElement = albumDetailEl.querySelector('.title-english');
       expect(el.textContent).toEqual(testAlbum.title.english);
@@ -91,7 +96,6 @@ describe('AlbumDetailsComponent', () => {
       expect(el.textContent).toEqual(expectedDate);
     });
   });
-  
 
   describe('tracks', () => {
     let albumDetailEl: HTMLElement;
@@ -103,25 +107,32 @@ describe('AlbumDetailsComponent', () => {
       albumDetailEl = fixture.nativeElement;
       songEl = albumDetailEl.querySelector('.track-item');
     });
-    
+
     it('should display a track\'s number', () => {
       const el: HTMLElement = songEl.querySelector('.track-number');
       expect(el.textContent).toEqual('1');
     });
-    
+
     it('should display a track\'s Chinese title', () => {
       const el: HTMLElement = songEl.querySelector('.track-chinese');
       expect(el.textContent).toEqual(testSong.title.chinese.zht);
     });
-    
+
     it('should display a track\'s English title', () => {
       const el: HTMLElement = songEl.querySelector('.track-english');
       expect(el.textContent).toEqual(testSong.title.english);
     });
-    
+
     it('should show if a track is disabled', () => {
       const el: HTMLElement = albumDetailEl.querySelector('.track-item.disabled');
       expect(el).not.toBeNull();
+    });
+
+    it('should route to the correct link', () => {
+      const linkDe = fixture.debugElement.query(By.directive(RouterLinkDirectiveStub));
+      const routerLink = linkDe.injector.get(RouterLinkDirectiveStub);
+
+      expect(routerLink.linkParams).toEqual(['/album', testAlbum.albumId, 'song', testSong.songId]);
     });
   });
 });
