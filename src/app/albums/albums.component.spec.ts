@@ -74,28 +74,28 @@ describe('AlbumsComponent', () => {
 
       tick();
       fixture.detectChanges(); // update with getDiscography()
-  
+
       const albumsEl: HTMLElement = fixture.nativeElement;
       albumEl = albumsEl.querySelector('.album-card');
     }));
 
-    it('should display the Chinese title', fakeAsync(() => {
+    it('should display the Chinese title', () => {
       const chineseEl: HTMLElement = albumEl.querySelector('.title-chinese');
       expect(chineseEl.textContent).toEqual(testAlbum.title.chinese.zht);
-    }));
+    });
 
-    it('should display the English title', fakeAsync(() => {
+    it('should display the English title', () => {
       const englishEl: HTMLElement = albumEl.querySelector('.title-english');
       expect(englishEl.textContent).toEqual(testAlbum.title.english);
-    }));
+    });
 
-    it('should display the release date', fakeAsync(() => {
+    it('should display the release date', () => {
       const pipe = new DatePipe('en-US');
       const expectedDate = pipe.transform(testAlbum.releaseDate);
 
       const dateEl: HTMLElement = albumEl.querySelector('.release-date');
-      
+
       expect(dateEl.textContent).toEqual(expectedDate);
-    }));
+    });
   });
 });
