@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EnvironmentService } from '../services/environment.service';
 import { FooterComponent } from './footer.component';
 
-class MockEnvironmentService {
+class EnvironmentServiceStub {
   env = { version: 'test version' };
 }
 
@@ -15,7 +15,7 @@ describe('FooterComponent ', () => {
     TestBed.configureTestingModule({
       providers: [
         FooterComponent,
-        { provide: EnvironmentService, useClass: MockEnvironmentService }
+        { provide: EnvironmentService, useClass: EnvironmentServiceStub }
       ]
     });
 
@@ -36,7 +36,7 @@ describe('FooterComponent (DOM)', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [FooterComponent],
-      providers: [{ provide: EnvironmentService, useClass: MockEnvironmentService }]
+      providers: [{ provide: EnvironmentService, useClass: EnvironmentServiceStub }]
     })
       .compileComponents();
 
@@ -50,8 +50,7 @@ describe('FooterComponent (DOM)', () => {
   });
   
   it('should display the app version', () => {
-    const footerDe: DebugElement = fixture.debugElement;
-    const footerEl: HTMLElement = footerDe.nativeElement;
+    const footerEl: HTMLElement = fixture.nativeElement;
     const el = footerEl.querySelector('.app-version');
     expect(el.textContent).toEqual(`v${environmentService.env.version}`);
   });

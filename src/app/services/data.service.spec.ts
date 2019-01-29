@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Album, Discography, Song } from '../model';
-import { asyncData, asyncError } from '../testing/async-observable-helpers';
+import { asyncData, asyncError } from '../../testing';
 import { DataService } from './data.service';
 
 describe('DataService', () => {
