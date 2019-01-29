@@ -1,4 +1,3 @@
-import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EnvironmentService } from '../services/environment.service';
 import { FooterComponent } from './footer.component';
@@ -43,12 +42,10 @@ describe('FooterComponent (DOM)', () => {
     fixture = TestBed.createComponent(FooterComponent);
     comp = fixture.componentInstance;
     environmentService = fixture.debugElement.injector.get(EnvironmentService);
+
+    fixture.detectChanges();
   }));
 
-  beforeEach(() => {
-    fixture.detectChanges();
-  });
-  
   it('should display the app version', () => {
     const footerEl: HTMLElement = fixture.nativeElement;
     const el = footerEl.querySelector('.app-version');

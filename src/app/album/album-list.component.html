@@ -1,7 +1,7 @@
 <ng-container *ngIf="discography">
   <mat-nav-list class="album-list">
     <ng-container *ngFor="let section of discography.sections">
-      <ng-container *ngIf="!!section.albums && section.albums.length > 0" class="section">
+      <ng-container *ngIf="!!section.albums && section.albums.length > 0">
         <h3 mat-subheader class="section-header">
           {{section.label}}
         </h3>
