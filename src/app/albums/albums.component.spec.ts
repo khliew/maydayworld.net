@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { asyncData } from '../../testing';
+import { asyncData, RouterLinkDirectiveStub } from '../../testing';
 import { Album, Discography } from '../model';
 import { SidenavServiceStub, TitleServiceStub } from '../model/testing';
 import { getTestDiscography } from '../model/testing/test-discography';
@@ -24,7 +25,10 @@ describe('AlbumsComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [AlbumsComponent],
+      declarations: [
+        AlbumsComponent,
+        RouterLinkDirectiveStub
+      ],
       providers: [
         { provide: DataService, useValue: dataService },
         { provide: SidenavService, useClass: SidenavServiceStub },
@@ -96,6 +100,13 @@ describe('AlbumsComponent', () => {
       const dateEl: HTMLElement = albumEl.querySelector('.release-date');
 
       expect(dateEl.textContent).toEqual(expectedDate);
+    });
+
+    it('should route to the correct link', () => {
+      const linkDe = fixture.debugElement.query(By.directive(RouterLinkDirectiveStub));
+      const routerLink = linkDe.injector.get(RouterLinkDirectiveStub);
+
+      expect(routerLink.linkParams).toEqual(['/album', testAlbum.albumId]);
     });
   });
 });
