@@ -52,6 +52,10 @@ describe('AlbumDetailsComponent', () => {
     fixture.detectChanges(); // ngOnInit()
   }));
 
+  it('should get an album', () => {
+    expect(comp.album).toBe(testAlbum);
+  });
+
   it('should show the sidenav', () => {
     expect(sidenavService.setEnabled).toHaveBeenCalledWith(true);
   });

@@ -1,13 +1,11 @@
 <ng-container *ngIf="album">
-  <a mat-icon-button [routerLink]="['../../../']">
+  <a mat-icon-button [routerLink]="['../../../']" class="go-up">
     <mat-icon>arrow_back</mat-icon>
   </a>
   <div class="album-title">
-    <div class="title-chinese">
-      {{album.title.chinese.zht}}
-    </div>
+    <div class="title-chinese">{{album.title.chinese.zht}}</div>
     <div class="title-translation">
-      {{album.title.chinese.zhp}}
+      <span class="trans-pinyin">{{album.title.chinese.zhp}}</span>
       <br>
       <span class="trans-english primary-dark">{{album.title.chinese.eng}}</span>
     </div>
@@ -15,8 +13,7 @@
   </div>
   <mat-nav-list class="track-list">
     <a mat-list-item *ngFor="let song of album.songs; let i = index;" [routerLink]="['/album', album.albumId, 'song', song.songId]"
-      class="track-item" [class.disabled]="song.disabled" routerLinkActive="active-nav-item">
-      {{i + 1}}. {{song.title.chinese.zht}}
-    </a>
+      class="track-item" [class.disabled]="song.disabled" routerLinkActive="active-nav-item">{{i + 1}}.
+      {{song.title.chinese.zht}}</a>
   </mat-nav-list>
 </ng-container>

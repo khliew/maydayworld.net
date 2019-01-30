@@ -61,14 +61,14 @@ describe('AlbumListComponent', () => {
       albumEl = albumsEl.querySelector('.list-item');
     }));
 
-    it('should display the Chinese title', fakeAsync(() => {
+    it('should display the Chinese title', () => {
       const chineseEl: HTMLElement = albumEl.querySelector('.title-chinese');
       expect(chineseEl.textContent).toEqual(testAlbum.title.chinese.zht);
-    }));
+    });
 
-    it('should display the English title', fakeAsync(() => {
+    it('should display the English title', () => {
       const englishEl: HTMLElement = albumEl.querySelector('.title-english');
       expect(englishEl.textContent).toEqual(testAlbum.title.english);
-    }));
+    });
   });
 });
