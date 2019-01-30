@@ -1,6 +1,7 @@
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { asyncData } from 'src/testing';
+import { asyncData, RouterLinkDirectiveStub } from 'src/testing';
 import { Album, Discography } from '../model';
 import { getTestDiscography } from '../model/testing';
 import { DataService } from '../services/data.service';
@@ -22,7 +23,10 @@ describe('AlbumListComponent', () => {
         SharedModule,
         RouterTestingModule
       ],
-      declarations: [AlbumListComponent],
+      declarations: [
+        AlbumListComponent,
+        RouterLinkDirectiveStub
+      ],
       providers: [{ provide: DataService, useValue: dataService }]
     })
       .compileComponents();
@@ -69,6 +73,13 @@ describe('AlbumListComponent', () => {
     it('should display the English title', () => {
       const englishEl: HTMLElement = albumEl.querySelector('.title-english');
       expect(englishEl.textContent).toEqual(testAlbum.title.english);
+    });
+
+    it('should route to the correct link', () => {
+      const linkDe = fixture.debugElement.query(By.css('.list-item'));
+      const routerLink = linkDe.injector.get(RouterLinkDirectiveStub);
+
+      expect(routerLink.linkParams).toEqual(['/album', testAlbum.albumId]);
     });
   });
 });
