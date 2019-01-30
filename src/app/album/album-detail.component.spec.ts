@@ -4,14 +4,13 @@ import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
+import { RouterLinkDirectiveStub } from 'src/testing';
 import { Album, Song } from '../model';
-import { SidenavServiceStub, TitleServiceStub } from '../model/testing';
-import { getTestAlbum } from '../model/testing/test-album';
+import { getTestAlbum, SidenavServiceStub, TitleServiceStub } from '../model/testing';
 import { SidenavService } from '../services/sidenav.service';
 import { TitleService } from '../services/title.service';
 import { SharedModule } from '../shared/shared.module';
 import { AlbumDetailComponent } from './album-detail.component';
-import { RouterLinkDirectiveStub } from 'src/testing';
 
 describe('AlbumDetailsComponent', () => {
   let fixture: ComponentFixture<AlbumDetailComponent>;

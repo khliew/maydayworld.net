@@ -2,10 +2,10 @@ import { Album } from '../album';
 
 export function getTestAlbum(): Album {
   return {
-    albumId: 'albumId1',
+    albumId: 'albumId',
     title: {
-      chinese: { zht: 'zht1', zhp: 'zhp1', eng: 'eng1' },
-      english: 'english1'
+      chinese: { zht: 'zht', zhp: 'zhp', eng: 'eng' },
+      english: 'english'
     },
     releaseDate: '1999-07-07',
     songs: [

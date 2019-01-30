@@ -18,24 +18,16 @@
       <ng-container *ngFor="let lyric of song.lyrics">
         <ng-container [ngSwitch]="lyric.type">
           <p *ngSwitchCase="'lyric'" class="line line-lyric">
-            <span class="lyrics-chinese">
-              {{lyric.zht}}
-            </span>
+            <span class="lyrics-chinese">{{lyric.zht}}</span>
             <br>
-            <span class="lyrics-pinyin">
-              {{lyric.zhp}}
-            </span>
+            <span class="lyrics-pinyin">{{lyric.zhp}}</span>
             <br>
-            <span class="lyrics-english primary-dark">
-              {{lyric.eng}}
-            </span>
+            <span class="lyrics-english primary-dark">{{lyric.eng}}</span>
           </p>
           <p *ngSwitchCase="'break'"  class="line line-break">
             <br>
           </p>
-          <p *ngSwitchCase="'text'"  class="line line-text">
-            {{lyric.text}}
-          </p>
+          <p *ngSwitchCase="'text'"  class="line line-text">{{lyric.text}}</p>
         </ng-container>
       </ng-container>
     </div>

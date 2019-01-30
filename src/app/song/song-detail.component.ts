@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Song } from '../model';
 import { SidenavService } from '../services/sidenav.service';
 import { TitleService } from '../services/title.service';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-song-detail',
@@ -19,7 +18,7 @@ export class SongDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data
-      .subscribe((data: { song: Song }) => {
+      .subscribe(data => {
         this.song = data.song;
 
         this.titleService.setTitle(this.song.title.chinese.zht);
