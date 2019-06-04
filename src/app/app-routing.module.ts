@@ -13,8 +13,8 @@ const routes: Routes = [
   { path: 'about', component: AboutUsComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'login', component: LogInComponent },
-  { path: 'album', loadChildren: './album/album.module#AlbumModule' },
-  { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canLoad: [AuthGuard] },
+  { path: 'album', loadChildren: () => import('./album/album.module').then(m => m.AlbumModule) },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canLoad: [AuthGuard] },
   { path: '', redirectTo: '/albums', pathMatch: 'full' },
   { path: '**', redirectTo: '/albums', pathMatch: 'full' }
 ];

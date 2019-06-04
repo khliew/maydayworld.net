@@ -3,7 +3,7 @@
 This is a website built using Angular and Angular Material.
 
 ## Getting Started
-This project requires Node (`v11.6.0`+) and npm (`6.5.0`+).
+This project requires Node (`v12.3.1`+) and npm (`6.9.0`+).
 
 ### Installing
 Install dependencies with `npm install` from root directory.
