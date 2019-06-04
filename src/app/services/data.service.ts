@@ -18,15 +18,6 @@ export class DataService {
   getDiscography(artistId: string = 'mayday'): Observable<Discography> {
     return this.http.get<any>(`${this.baseUrl}/disco/${artistId}.json`)
       .pipe(
-        catchError(() => this.getDiscography2(artistId))
-      );
-  }
-
-  /** @deprecated */
-  getDiscography2(artistId: string = 'mayday'): Observable<Discography> {
-    return this.http.get<any>(`${this.fallbackUrl}/disco/${artistId}`)
-      .pipe(
-        map(response => response.data),
         catchError(this.handleError<Discography>('getDiscography'))
       );
   }
@@ -34,15 +25,6 @@ export class DataService {
   getAlbum(albumId: string, artistId: string = 'mayday'): Observable<Album> {
     return this.http.get<any>(`${this.baseUrl}/${artistId}/albums/${albumId}.json`)
       .pipe(
-        catchError(() => this.getAlbum2(albumId))
-      );
-  }
-
-  /** @deprecated */
-  getAlbum2(albumId: string): Observable<Album> {
-    return this.http.get<any>(`${this.fallbackUrl}/albums/${albumId}`)
-      .pipe(
-        map(response => response.data),
         catchError(this.handleError<Album>('getAlbum'))
       );
   }
@@ -50,16 +32,7 @@ export class DataService {
   getSong(songId: string, artistId: string = 'mayday'): Observable<Song> {
     return this.http.get<any>(`${this.baseUrl}/${artistId}/songs/${songId}.json`)
       .pipe(
-        catchError(() => this.getSong2(songId))
-      );
-  }
-
-  /** @deprecated */
-  getSong2(songId: string): Observable<Song> {
-    return this.http.get<any>(`${this.fallbackUrl}/songs/${songId}`)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError<Song>('getSongLyrics'))
+        catchError(this.handleError<Song>('getSong'))
       );
   }
 
