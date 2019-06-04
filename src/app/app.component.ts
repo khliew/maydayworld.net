@@ -11,7 +11,7 @@ import { SidenavService } from './services/sidenav.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  @ViewChild(MatSidenav) sidenav: MatSidenav;
+  @ViewChild(MatSidenav, {static: false}) sidenav: MatSidenav;
 
   analyticsEnabled: boolean;
 
