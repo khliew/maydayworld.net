@@ -24,7 +24,7 @@ export class AlbumsComponent implements OnInit {
   getDiscography(): void {
     this.dataService.getDiscography()
       .subscribe(
-        discography => this.discography = discography,
+        discography => this.discography = discography
       );
   }
 }

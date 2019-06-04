@@ -19,8 +19,7 @@ export class AlbumListComponent implements OnInit {
   getDiscography(): void {
     this.dataService.getDiscography()
       .subscribe(
-        discography => this.discography = discography,
-        error => console.log(error)
+        discography => this.discography = discography
       );
   }
 }

@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { TitleService } from '../services/title.service';
+import { SidenavService } from '../services/sidenav.service';
 
 @Component({
   selector: 'app-log-in',
@@ -17,30 +18,37 @@ export class LogInComponent {
   timeout: number;
   disabled: boolean;
 
-  constructor(private titleService: TitleService, private fb: FormBuilder, private dataService: DataService, private router: Router) { 
+  constructor(
+    private titleService: TitleService,
+    private fb: FormBuilder,
+    private dataService: DataService,
+    private sidenavService: SidenavService,
+    private router: Router
+  ) {
     this.failCount = 0;
     this.timeout = 0;
     this.disabled = false;
     localStorage.removeItem('auth');
 
+    this.sidenavService.setEnabled(false);
     this.titleService.resetTitle();
-    }
+  }
 
   logIn() {
     this.disabled = true;
     this.dataService.logIn(this.accessForm.value)
-    .subscribe(res => {
-      if (res) {
-        this.disabled = false;
-        localStorage.setItem('auth', 'true');
-        this.router.navigate(['admin']);
-      } else {
-        this.failCount++;
-        this.timeout = this.failCount * LogInComponent.TIMEOUT_INCREMENT;
-        setTimeout(() => {
+      .subscribe(res => {
+        if (res) {
           this.disabled = false;
-        }, this.timeout);
-      }
-    });
+          localStorage.setItem('auth', 'true');
+          this.router.navigate(['admin']);
+        } else {
+          this.failCount++;
+          this.timeout = this.failCount * LogInComponent.TIMEOUT_INCREMENT;
+          setTimeout(() => {
+            this.disabled = false;
+          }, this.timeout);
+        }
+      });
   }
 }
