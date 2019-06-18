@@ -11,6 +11,7 @@ import { TitleService } from '../services/title.service';
 })
 export class AlbumDetailComponent implements OnInit {
   album: Album;
+  trackKeys: number[];
 
   constructor(private titleService: TitleService, private route: ActivatedRoute, private sidenavService: SidenavService) {
     this.sidenavService.setEnabled(true);
@@ -20,6 +21,9 @@ export class AlbumDetailComponent implements OnInit {
     this.route.data
       .subscribe(data => {
         this.album = data.album;
+
+        this.trackKeys = Object.keys(this.album.songs) as unknown as number[];
+        this.trackKeys.sort((a, b) => a - b); // sort numerically in ascending order
 
         this.titleService.setTitle(this.album.title.chinese.zht);
       });

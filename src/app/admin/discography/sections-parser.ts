@@ -22,8 +22,8 @@ export class SectionsParser {
   }
 
   createSection(tokens: string[]) {
-    const section = { label: '', albumIds: [] };
-    section.label = tokens.shift().trim();
+    const section = { type: '', albumIds: [] };
+    section.type = tokens.shift().trim();
 
     while (tokens.length > 0) {
       const token = tokens.shift().trim();

@@ -57,12 +57,12 @@ export class DiscographyCreatorComponent implements OnInit {
   }
 
   fillForm(discography: Discography) {
-    this.discoForm.get('artistId').setValue(discography.artistId);
+    this.discoForm.get('artistId').setValue(discography.id);
 
     const sections = discography.sections
       .map(section => {
-        const albumIds = section.albums.map(album => album.albumId).join('\n');
-        return `S\n${section.label}\n${albumIds}\n`;
+        const albumIds = section.albums.map(album => album.id).join('\n');
+        return `S\n${section.type}\n${albumIds}\n`;
       })
       .join('\n');
     this.discoForm.get('sections').setValue(sections);
@@ -76,7 +76,7 @@ export class DiscographyCreatorComponent implements OnInit {
 
   generateJson() {
     this.output = new Discography();
-    this.output.artistId = this.discoForm.get('artistId').value;
+    this.output.id = this.discoForm.get('artistId').value;
 
     this.output.sections = this.parseSections(this.discoForm.get('sections').value);
 

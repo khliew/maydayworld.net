@@ -1,9 +1,10 @@
-import { Song, Title } from '.';
+import { AlbumType, SongMetadata, Title } from '.';
 
 export class Album {
-  albumId: string;
+  id: string;
+  type: AlbumType;
   title: Title;
-  releaseDate?: string;
-  songIds?: string[];
-  songs: Song[];
+  releaseDate: string;
+  disabled?: boolean;
+  songs: { [track: number]: SongMetadata };
 }

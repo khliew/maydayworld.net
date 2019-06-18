@@ -106,7 +106,7 @@ describe('AlbumsComponent', () => {
       const linkDe = fixture.debugElement.query(By.directive(RouterLinkDirectiveStub));
       const routerLink = linkDe.injector.get(RouterLinkDirectiveStub);
 
-      expect(routerLink.linkParams).toEqual(['/album', testAlbum.albumId]);
+      expect(routerLink.linkParams).toEqual(['/album', testAlbum.id]);
     });
   });
 });

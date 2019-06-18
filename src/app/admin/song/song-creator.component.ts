@@ -62,7 +62,7 @@ export class SongCreatorComponent implements OnInit {
   }
 
   fillForm(song: Song) {
-    this.songForm.get('songId').setValue(song.songId);
+    this.songForm.get('songId').setValue(song.id);
 
     const title = song.title;
     this.songForm.get('chineseTitle').setValue(`${title.chinese.zht}\n${title.chinese.zhp}\n${title.chinese.eng}`);
@@ -98,7 +98,7 @@ export class SongCreatorComponent implements OnInit {
 
   generateJson() {
     this.output = new Song();
-    this.output.songId = this.songForm.get('songId').value;
+    this.output.id = this.songForm.get('songId').value;
     this.output.lyricist = this.songForm.get('lyricist').value;
     this.output.composer = this.songForm.get('composer').value;
     this.output.arranger = this.songForm.get('arranger').value;

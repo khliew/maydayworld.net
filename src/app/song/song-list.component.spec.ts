@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { RouterLinkDirectiveStub } from 'src/testing';
-import { Album, Song } from '../model';
+import { Album, SongMetadata } from '../model';
 import { getTestAlbum } from '../model/testing/test-album';
 import { SharedModule } from '../shared/shared.module';
 import { SongListComponent } from './song-list.component';
@@ -48,7 +48,7 @@ describe('SongListComponent', () => {
 
     expect(routerLink.linkParams).toEqual(['../../../']);
   });
-  
+
   describe('header', () => {
     let songListEl: HTMLElement;
 
@@ -80,7 +80,7 @@ describe('SongListComponent', () => {
   describe('tracks', () => {
     let songListEl: HTMLElement;
     let songEl: HTMLElement;
-    let testSong: Song;
+    let testSong: SongMetadata;
 
     beforeEach(() => {
       testSong = testAlbum.songs[0];
@@ -106,7 +106,7 @@ describe('SongListComponent', () => {
       const linkDe = fixture.debugElement.query(By.css('.track-item'));
       const routerLink = linkDe.injector.get(RouterLinkDirectiveStub);
 
-      expect(routerLink.linkParams).toEqual(['/album', testAlbum.albumId, 'song', testSong.songId]);
+      expect(routerLink.linkParams).toEqual(['/album', testAlbum.id, 'song', testSong.id]);
     });
   });
 });

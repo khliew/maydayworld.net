@@ -3,9 +3,9 @@
     <ng-container *ngFor="let section of discography.sections">
       <ng-container *ngIf="!!section.albums && section.albums.length > 0">
         <h3 mat-subheader class="section-header">
-          {{section.label}}
+          {{section.type}}
         </h3>
-        <a mat-list-item *ngFor="let album of section.albums" [routerLink]="['/album', album.albumId]" routerLinkActive="active-nav-item"
+        <a mat-list-item *ngFor="let album of section.albums" [routerLink]="['/album', album.id]" routerLinkActive="active-nav-item"
           class="list-item">
             <div matLine class="title-chinese">{{album.title.chinese.zht}}</div>
             <div matLine class="title-english">{{album.title.english}}</div>

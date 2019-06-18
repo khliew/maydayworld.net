@@ -1,7 +1,6 @@
-import { Album } from '.';
+import { AlbumType, AlbumMetadata } from '.';
 
 export class Section {
-  label: string;
-  albumIds?: string[];
-  albums: Album[];
+  type: AlbumType;
+  albums: AlbumMetadata[];
 }

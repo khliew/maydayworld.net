@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 @Injectable()
 export class SidenavService {
   private enableSideNav: Subject<boolean>;
-  
+
   enable$: Observable<boolean>;
   enabled: boolean;
 

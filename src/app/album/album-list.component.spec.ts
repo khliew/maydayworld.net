@@ -79,7 +79,7 @@ describe('AlbumListComponent', () => {
       const linkDe = fixture.debugElement.query(By.css('.list-item'));
       const routerLink = linkDe.injector.get(RouterLinkDirectiveStub);
 
-      expect(routerLink.linkParams).toEqual(['/album', testAlbum.albumId]);
+      expect(routerLink.linkParams).toEqual(['/album', testAlbum.id]);
     });
   });
 });

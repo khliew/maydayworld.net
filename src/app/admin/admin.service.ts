@@ -58,7 +58,7 @@ export class AdminService {
       })
     };
 
-    return this.http.put<any>(`${this.baseUrl}/disco/${discography.artistId}`, discography, httpOptions)
+    return this.http.put<any>(`${this.baseUrl}/disco/${discography.id}`, discography, httpOptions)
       .pipe(
         map(response => response.data),
         catchError(this.handleError)
@@ -102,7 +102,7 @@ export class AdminService {
       })
     };
 
-    return this.http.put<any>(`${this.baseUrl}/albums/${album.albumId}`, album, httpOptions)
+    return this.http.put<any>(`${this.baseUrl}/albums/${album.id}`, album, httpOptions)
       .pipe(
         map(response => response.data),
         catchError(this.handleError)
@@ -146,7 +146,7 @@ export class AdminService {
       })
     };
 
-    return this.http.put<any>(`${this.baseUrl}/songs/${song.songId}`, song, httpOptions)
+    return this.http.put<any>(`${this.baseUrl}/songs/${song.id}`, song, httpOptions)
       .pipe(
         map(response => response.data),
         catchError(this.handleError)

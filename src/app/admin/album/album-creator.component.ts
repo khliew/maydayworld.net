@@ -60,13 +60,13 @@ export class AlbumCreatorComponent implements OnInit {
   }
 
   fillForm(album: Album) {
-    this.albumForm.get('albumId').setValue(album.albumId);
+    this.albumForm.get('albumId').setValue(album.id);
     this.albumForm.get('releaseDate').setValue(album.releaseDate);
 
     const title = album.title;
     this.albumForm.get('chineseTitle').setValue(`${title.chinese.zht}\n${title.chinese.zhp}\n${title.chinese.eng}`);
     this.albumForm.get('englishTitle').setValue(title.english);
-    this.albumForm.get('songs').setValue(album.songs.map(song => song.songId).join('\n'));
+    // this.albumForm.get('songs').setValue(album.songs.map(song => song.id).join('\n'));
   }
 
   clear() {
@@ -77,7 +77,7 @@ export class AlbumCreatorComponent implements OnInit {
 
   generateJson() {
     this.output = new Album();
-    this.output.albumId = this.albumForm.get('albumId').value;
+    this.output.id = this.albumForm.get('albumId').value;
     this.output.releaseDate = this.parseDate(this.albumForm.get('releaseDate').value);
 
     this.output.title = this.parseTitle(
@@ -85,7 +85,7 @@ export class AlbumCreatorComponent implements OnInit {
       this.albumForm.get('englishTitle').value
     );
 
-    this.output.songIds = this.parseSongs(this.albumForm.get('songs').value);
+    // this.output.songIds = this.parseSongs(this.albumForm.get('songs').value);
 
     this.hideOutput = false;
     this.response = '';

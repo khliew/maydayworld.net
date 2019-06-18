@@ -7,19 +7,21 @@ describe('DataService', () => {
   let service: DataService;
   let httpClientSpy: { get: jasmine.Spy };
   let environmentService;
+  let firestoreService;
 
   beforeEach(() => {
     environmentService = {
       env: { apiBaseUrl: 'api-base-url' }
     };
+    firestoreService = {};
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    service = new DataService(httpClientSpy as any, environmentService);
+    service = new DataService(firestoreService, httpClientSpy as any, environmentService);
   });
 
   describe('#getDiscography', () => {
     it('should return expected discography', (done: DoneFn) => {
       const expectedDisco: Discography = {
-        artistId: 'id', sections: [{ label: 'label', albums: [] }]
+        id: 'id', sections: [{ type: 'studio', albums: [] }]
       };
 
       httpClientSpy.get.and.returnValue(asyncData({ data: expectedDisco }));
@@ -54,8 +56,10 @@ describe('DataService', () => {
   describe('#getAlbum', () => {
     it('should return expected album', (done: DoneFn) => {
       const expectedAlbum: Album = {
-        albumId: 'id',
+        id: 'id',
+        type: 'studio',
         title: { chinese: { zht: 'title', zhp: 'pinyin', eng: 'eng' }, english: 'english' },
+        releaseDate: '2013-08-24',
         songs: []
       };
 
@@ -91,7 +95,10 @@ describe('DataService', () => {
   describe('#getSong', () => {
     it('should return expected song', (done: DoneFn) => {
       const expectedSong: Song = {
-        songId: 'id',
+        id: 'id',
+        lyricist: '',
+        composer: '',
+        arranger: '',
         title: { chinese: { zht: 'title', zhp: 'pinyin', eng: 'eng' }, english: 'english' },
         lyrics: []
       };

@@ -16,11 +16,11 @@ import { RequestCache, RequestCacheWithMap } from './services/request-cache.serv
 import { SidenavService } from './services/sidenav.service';
 import { TitleService } from './services/title.service';
 import { SharedModule } from './shared/shared.module';
-import { SongsComponent } from './songs/songs.component';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { FirestoreService } from './services/firestore.service';
 
 @NgModule({
   imports: [
@@ -39,8 +39,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AlbumsComponent,
     LogInComponent,
     PageNotFoundComponent,
-    PrivacyComponent,
-    SongsComponent
+    PrivacyComponent
   ],
   providers: [
     Title,
@@ -48,6 +47,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     httpInterceptorProviders,
     DataService,
     EnvironmentService,
+    FirestoreService,
     SidenavService,
     TitleService
   ],
