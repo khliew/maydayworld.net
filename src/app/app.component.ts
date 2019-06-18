@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
   mediaSub: Subscription;
 
   constructor(private router: Router, private sidenavService: SidenavService, private mediaObserver: MediaObserver) {
-    this.analyticsEnabled = typeof (<any>window).ga === 'function';
+    this.analyticsEnabled = typeof (window as any).ga === 'function';
     this.sidenavEnabled = false;
   }
 
@@ -31,8 +31,8 @@ export class AppComponent implements OnInit, OnDestroy {
         console.log('router: event', event);
 
         if (this.analyticsEnabled) {
-          (<any>window).ga('set', 'page', event.urlAfterRedirects);
-          (<any>window).ga('send', 'pageview');
+          (window as any).ga('set', 'page', event.urlAfterRedirects);
+          (window as any).ga('send', 'pageview');
         }
 
         if (this.sidenav.mode === 'over') {

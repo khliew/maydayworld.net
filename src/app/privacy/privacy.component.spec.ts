@@ -10,12 +10,12 @@ describe('PrivacyComponent', () => {
   });
 
   it('should hide the sidenav', () => {
-    const comp = new PrivacyComponent(<any> titleService, <any> sidenavService);
+    const comp = new PrivacyComponent(titleService as any, sidenavService as any);
     expect(sidenavService.setEnabled).toHaveBeenCalledWith(false);
   });
 
   it('should reset the document title', () => {
-    const comp = new PrivacyComponent(<any> titleService, <any> sidenavService);
+    const comp = new PrivacyComponent(titleService as any, sidenavService as any);
     expect(titleService.resetTitle).toHaveBeenCalled();
   });
 });

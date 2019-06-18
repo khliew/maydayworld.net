@@ -60,7 +60,7 @@ describe('AlbumListComponent', () => {
 
       tick();
       fixture.detectChanges(); // update with getDiscography()
-  
+
       const albumsEl: HTMLElement = fixture.nativeElement;
       albumEl = albumsEl.querySelector('.list-item');
     }));

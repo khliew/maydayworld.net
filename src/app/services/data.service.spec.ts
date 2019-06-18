@@ -13,7 +13,7 @@ describe('DataService', () => {
       env: { apiBaseUrl: 'api-base-url' }
     };
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    service = new DataService(<any>httpClientSpy, environmentService);
+    service = new DataService(httpClientSpy as any, environmentService);
   });
 
   describe('#getDiscography', () => {

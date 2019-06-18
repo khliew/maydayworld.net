@@ -24,7 +24,7 @@ describe('RequestCacheWithMap', () => {
 
     jasmine.clock().mockDate(new Date());
 
-    spyOn(Date, 'now').and.callFake(function () { return new Date().getTime(); });
+    spyOn(Date, 'now').and.callFake(() => new Date().getTime());
     requestCache.put(request1, response1);
   });
 
