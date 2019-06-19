@@ -1,16 +1,23 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, from, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Album, Discography, Song } from '../model';
 import { EnvironmentService } from '../services/environment.service';
 import { RequestCache } from '../services/request-cache.service';
+import { FirestoreService } from '../services/firestore.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable()
 export class AdminService {
   baseUrl: string;
 
-  constructor(private http: HttpClient, environmentService: EnvironmentService) {
+  constructor(
+    private fss: FirestoreService,
+    private afs: AngularFirestore,
+    private http: HttpClient,
+    environmentService: EnvironmentService
+  ) {
     this.baseUrl = environmentService.env.apiBaseUrl;
   }
 
@@ -99,45 +106,11 @@ export class AdminService {
   }
 
   getSong(songId: string): Observable<Song> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        [RequestCache.NO_CACHE_HEADER]: 'true'
-      })
-    };
-
-    return this.http.get<any>(`${this.baseUrl}/songs/${songId}`, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
+    return this.fss.getSong(songId);
   }
 
-  createSong(song: Song): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-
-    return this.http.post<any>(`${this.baseUrl}/songs`, song, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
-  }
-
-  replaceSong(song: Song): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-
-    return this.http.put<any>(`${this.baseUrl}/songs/${song.id}`, song, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
+  setSong(songId: string, song: Song): Observable<void> {
+    return from(this.afs.doc<Song>(`songs/${songId}`).set(JSON.parse(JSON.stringify(song))));
   }
 
   private handleError(error: HttpErrorResponse) {

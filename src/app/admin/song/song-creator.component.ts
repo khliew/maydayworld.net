@@ -20,6 +20,7 @@ export class SongCreatorComponent implements OnInit {
     lyrics: ['']
   });
   outputForm = this.fb.control('');
+  readonly = this.fb.control(true);
 
   lyricsParser: LyricsParser;
   hideOutput: boolean;
@@ -51,11 +52,14 @@ export class SongCreatorComponent implements OnInit {
 
       this.adminService.getSong(songId)
         .subscribe(song => {
+          console.log('song', song);
           this.searchDisabled = false;
-          this.fillForm(song);
-        }, err => {
-          this.searchDisabled = false;
-          this.searchError = err;
+
+          if (song) {
+            this.fillForm(song);
+          } else {
+            this.searchError = `Song not found: ${songId}`;
+          }
         });
     }
   }
@@ -71,22 +75,24 @@ export class SongCreatorComponent implements OnInit {
     this.songForm.get('composer').setValue(song.composer);
     this.songForm.get('arranger').setValue(song.arranger);
 
-    const lyrics = song.lyrics
-      .map(line => {
-        switch (line.type) {
-          case 'lyric': {
-            return `L\n${line.zht}\n${line.zhp}\n${line.eng}\n`;
+    if (song.lyrics) {
+      const lyrics = song.lyrics
+        .map(line => {
+          switch (line.type) {
+            case 'lyric': {
+              return `L\n${line.zht}\n${line.zhp}\n${line.eng}\n`;
+            }
+            case 'break': {
+              return 'B\n\n';
+            }
+            case 'text': {
+              return `T\n${line.text}\n`;
+            }
           }
-          case 'break': {
-            return 'B\n\n';
-          }
-          case 'text': {
-            return `T\n${line.text}\n`;
-          }
-        }
-      })
-      .join('\n');
-    this.songForm.get('lyrics').setValue(lyrics);
+        })
+        .join('\n');
+      this.songForm.get('lyrics').setValue(lyrics);
+    }
   }
 
   clear() {
@@ -133,25 +139,14 @@ export class SongCreatorComponent implements OnInit {
     return this.lyricsParser.parse(lyrics);
   }
 
-  createSong() {
-    this.response = '';
-    this.buttonsDisabled = true;
-    this.adminService.createSong(this.output)
-      .subscribe(res => {
-        this.response = 'Song created!';
-        this.buttonsDisabled = false;
-      }, err => {
-        this.response = err;
-        this.buttonsDisabled = false;
-      });
-  }
+  save() {
+    this.output = JSON.parse(this.outputForm.value);
 
-  replaceSong() {
     this.response = '';
     this.buttonsDisabled = true;
-    this.adminService.replaceSong(this.output)
-      .subscribe(res => {
-        this.response = 'Song replaced!';
+    this.adminService.setSong(this.output.id, this.output)
+      .subscribe(() => {
+        this.response = 'Song saved!';
         this.buttonsDisabled = false;
       }, err => {
         this.response = err;

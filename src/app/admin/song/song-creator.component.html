@@ -9,7 +9,8 @@
       <span class="search-error">{{this.searchError}}</span>
     </div>
     <span>Chinese title, pinyin and translation:</span>
-    <textarea matInput formControlName="chineseTitle" class="title-field" placeholder="Enter each on a new line"></textarea>
+    <textarea matInput formControlName="chineseTitle" class="title-field"
+      placeholder="Enter each on a new line"></textarea>
     <div>English title: <input matInput formControlName="englishTitle" class="meta-field"></div>
     <div>Lyricist: <input matInput formControlName="lyricist" class="meta-field"></div>
     <div>Composer: <input matInput formControlName="composer" class="meta-field"></div>
@@ -23,12 +24,10 @@
     </button>
   </form>
   <div [class.hide]="hideOutput">
-    <textarea matInput [formControl]="outputForm" class="output" readonly></textarea>
-    <button mat-flat-button color="accent" class="create-song" (click)="createSong()" [disabled]="buttonsDisabled">
-      Create song
-    </button>
-    <button mat-flat-button color="accent" class="replace-song" (click)="replaceSong()" [disabled]="buttonsDisabled">
-      Replace song
+    <mat-checkbox [formControl]="readonly" class="readonly">Read-only</mat-checkbox>
+    <textarea matInput [formControl]="outputForm" class="output" [readonly]="readonly.value"></textarea>
+    <button mat-flat-button color="accent" class="save" (click)="save()" [disabled]="buttonsDisabled">
+      Save
     </button>
     <div class="response">{{this.response}}</div>
   </div>

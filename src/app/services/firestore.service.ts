@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Discography, Album, Song } from '../model';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Album, Discography, Song } from '../model';
 
 @Injectable()
 export class FirestoreService {
