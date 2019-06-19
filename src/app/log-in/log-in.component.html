@@ -1,9 +1,14 @@
 <div class="container">
   <h2>Log In</h2>
-  <div>Access Code:
-    <input matInput [formControl]="accessForm" class="access">
-  </div>
-  <button mat-flat-button color="primary" class="log-in" (click)="logIn()" [disabled]="disabled">
-    Log in
-  </button>
+  <form [formGroup]="credentials">
+    <mat-form-field class="access">
+      <input matInput type="email" formControlName="email" placeholder="Email">
+    </mat-form-field>
+    <mat-form-field class="access">
+      <input matInput type="password" formControlName="password" placeholder="Password">
+    </mat-form-field>
+    <button mat-flat-button color="primary" class="log-in" (click)="logIn()" [disabled]="credentials.disabled">
+      Log in
+    </button>
+  </form>
 </div>

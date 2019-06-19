@@ -20,7 +20,6 @@ export class SongCreatorComponent implements OnInit {
     lyrics: ['']
   });
   outputForm = this.fb.control('');
-  accessForm = this.fb.control('');
 
   lyricsParser: LyricsParser;
   hideOutput: boolean;
@@ -135,8 +134,6 @@ export class SongCreatorComponent implements OnInit {
   }
 
   createSong() {
-    this.adminService.setAccess(this.accessForm.value);
-
     this.response = '';
     this.buttonsDisabled = true;
     this.adminService.createSong(this.output)
@@ -150,8 +147,6 @@ export class SongCreatorComponent implements OnInit {
   }
 
   replaceSong() {
-    this.adminService.setAccess(this.accessForm.value);
-
     this.response = '';
     this.buttonsDisabled = true;
     this.adminService.replaceSong(this.output)

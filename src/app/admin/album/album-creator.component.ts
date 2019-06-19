@@ -18,7 +18,6 @@ export class AlbumCreatorComponent implements OnInit {
     songs: ['']
   });
   outputForm = this.fb.control('');
-  accessForm = this.fb.control('');
 
   hideOutput: boolean;
   output: Album;
@@ -116,8 +115,6 @@ export class AlbumCreatorComponent implements OnInit {
   }
 
   createAlbum() {
-    this.adminService.setAccess(this.accessForm.value);
-
     this.response = '';
     this.buttonsDisabled = true;
     this.adminService.createAlbum(this.output)
@@ -131,8 +128,6 @@ export class AlbumCreatorComponent implements OnInit {
   }
 
   replaceAlbum() {
-    this.adminService.setAccess(this.accessForm.value);
-
     this.response = '';
     this.buttonsDisabled = true;
     this.adminService.replaceAlbum(this.output)

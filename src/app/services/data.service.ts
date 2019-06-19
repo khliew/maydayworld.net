@@ -37,19 +37,6 @@ export class DataService {
       );
   }
 
-  /** @deprecated */
-  logIn(access: string): Observable<boolean> {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'X-MDW-Auth': access })
-    };
-
-    return this.http.get<any>(`${this.fallbackUrl}/login`, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError<boolean>('logIn', false))
-      );
-  }
-
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       return of(result as T); // let the app keep running by returning an empty result.

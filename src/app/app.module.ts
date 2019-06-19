@@ -21,6 +21,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FirestoreService } from './services/firestore.service';
+import { LogOutComponent } from './log-out/log-out.component';
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
 @NgModule({
   imports: [
@@ -31,13 +33,14 @@ import { FirestoreService } from './services/firestore.service';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule// .enablePersistence()
   ],
   declarations: [
     AboutUsComponent,
     AppComponent,
     AlbumsComponent,
     LogInComponent,
+    LogOutComponent,
     PageNotFoundComponent,
     PrivacyComponent
   ],
@@ -49,7 +52,8 @@ import { FirestoreService } from './services/firestore.service';
     EnvironmentService,
     FirestoreService,
     SidenavService,
-    TitleService
+    TitleService,
+    AngularFireAuthGuard
   ],
   bootstrap: [AppComponent]
 })

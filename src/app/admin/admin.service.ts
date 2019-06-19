@@ -8,17 +8,10 @@ import { RequestCache } from '../services/request-cache.service';
 
 @Injectable()
 export class AdminService {
-  private static readonly AUTH_HEADER = 'X-MDW-Auth';
-
   baseUrl: string;
-  auth: string;
 
   constructor(private http: HttpClient, environmentService: EnvironmentService) {
     this.baseUrl = environmentService.env.apiBaseUrl;
-  }
-
-  setAccess(auth: string) {
-    this.auth = auth;
   }
 
   getDiscography(artistId: string = 'mayday'): Observable<Discography> {
@@ -38,8 +31,7 @@ export class AdminService {
   createDiscography(discography: Discography): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        [AdminService.AUTH_HEADER]: this.auth
+        'Content-Type': 'application/json'
       })
     };
 
@@ -53,8 +45,7 @@ export class AdminService {
   replaceDiscography(discography: Discography): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        [AdminService.AUTH_HEADER]: this.auth
+        'Content-Type': 'application/json'
       })
     };
 
@@ -82,8 +73,7 @@ export class AdminService {
   createAlbum(album: Album): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        [AdminService.AUTH_HEADER]: this.auth
+        'Content-Type': 'application/json'
       })
     };
 
@@ -97,8 +87,7 @@ export class AdminService {
   replaceAlbum(album: Album): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        [AdminService.AUTH_HEADER]: this.auth
+        'Content-Type': 'application/json'
       })
     };
 
@@ -126,8 +115,7 @@ export class AdminService {
   createSong(song: Song): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        [AdminService.AUTH_HEADER]: this.auth
+        'Content-Type': 'application/json'
       })
     };
 
@@ -141,8 +129,7 @@ export class AdminService {
   replaceSong(song: Song): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        [AdminService.AUTH_HEADER]: this.auth
+        'Content-Type': 'application/json'
       })
     };
 

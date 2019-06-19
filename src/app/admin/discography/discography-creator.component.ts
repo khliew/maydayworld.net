@@ -15,7 +15,6 @@ export class DiscographyCreatorComponent implements OnInit {
     sections: ['']
   });
   outputForm = this.fb.control('');
-  accessForm = this.fb.control('');
 
   sectionsParser: SectionsParser;
   hideOutput: boolean;
@@ -91,8 +90,6 @@ export class DiscographyCreatorComponent implements OnInit {
   }
 
   createDiscography() {
-    this.adminService.setAccess(this.accessForm.value);
-
     this.response = '';
     this.buttonsDisabled = true;
     this.adminService.createDiscography(this.output)
@@ -106,8 +103,6 @@ export class DiscographyCreatorComponent implements OnInit {
   }
 
   replaceDiscography() {
-    this.adminService.setAccess(this.accessForm.value);
-
     this.response = '';
     this.buttonsDisabled = true;
     this.adminService.replaceDiscography(this.output)
