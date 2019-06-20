@@ -68,6 +68,7 @@ export class AlbumCreatorComponent implements OnInit {
           this.searchDisabled = false;
 
           if (album) {
+            this.clear();
             this.fillForm(album);
           } else {
             this.searchError = `Album not found: ${albumId}`;
@@ -109,6 +110,12 @@ export class AlbumCreatorComponent implements OnInit {
 
     this.tracksForm.clear();
     this.addTrackForm(0);
+
+    this.addedTracks.length = 0;
+    this.removedTracks.clear();
+    this.originalTracks = {};
+
+    this.outputForm.setValue('');
   }
 
   generateJson() {
@@ -186,6 +193,14 @@ export class AlbumCreatorComponent implements OnInit {
     }
   }
 
+  updateOriginalTracksAfterSave() {
+    this.originalTracks = {};
+    for (let i = 0; i < this.addedTracks.length; i++) {
+      this.originalTracks[i] = this.addedTracks[i];
+    }
+    this.removedTracks.clear();
+  }
+
   parseTitle(chinese: string, english: string): Title {
     const title = new Title();
     title.english = english;
@@ -227,12 +242,15 @@ export class AlbumCreatorComponent implements OnInit {
     }
     const original = new Set(Object.values(this.originalTracks));
     const removed = [... this.removedTracks].filter(x => original.has(x)); // removedTracks intersect originalTracks
+
     results.push(this.adminService.setAlbumSongs(this.output.id, added, removed));
 
     combineLatest(results)
       .subscribe(() => {
         this.response = 'Album saved!';
         this.buttonsDisabled = false;
+
+        this.updateOriginalTracksAfterSave();
       }, err => {
         this.response = err;
         this.buttonsDisabled = false;

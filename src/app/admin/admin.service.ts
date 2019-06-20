@@ -39,23 +39,29 @@ export class AdminService {
   }
 
   setAlbumSongs(albumId: string, added: { trackNum: number, songId: string }[], deleted: string[]): Observable<void> {
+    const batch = this.afs.firestore.batch();
+
     const promises = [];
     deleted.forEach(songId => {
       promises.push(
-        this.afs.doc(`songAlbums/${songId}`).update({ [albumId]: firebase.firestore.FieldValue.delete() })
+        batch.update(
+          this.afs.doc(`songAlbums/${songId}`).ref,
+          { [albumId]: firebase.firestore.FieldValue.delete() }
+        )
       );
     });
 
     added.forEach(item => {
       promises.push(
-        this.afs.doc(`songAlbums/${item.songId}`).set(
+        batch.set(
+          this.afs.doc(`songAlbums/${item.songId}`).ref,
           { [albumId]: item.trackNum },
           { merge: true }
         )
       );
     });
 
-    return combineLatest(promises).pipe(map(() => { })); // return an Observable that emits when all promises complete
+    return from(batch.commit());
   }
 
   getSong(songId: string): Observable<Song> {
@@ -75,10 +81,5 @@ export class AdminService {
 
   setSong(songId: string, song: Song): Observable<void> {
     return from(this.afs.doc<Song>(`songs/${songId}`).set(JSON.parse(JSON.stringify(song))));
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    console.error(error); // log to console instead
-    return throwError(error.error.error.message); // return message
   }
 }
