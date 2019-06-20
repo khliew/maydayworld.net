@@ -15,11 +15,11 @@ export class DiscographyCreatorComponent implements OnInit {
     sections: ['']
   });
   outputForm = this.fb.control('');
+  readonly = this.fb.control(true);
 
   sectionsParser: SectionsParser;
   hideOutput: boolean;
   output: Discography;
-  response: string;
   buttonsDisabled: boolean;
 
   searchDisabled: boolean;
@@ -28,7 +28,6 @@ export class DiscographyCreatorComponent implements OnInit {
   constructor(private fb: FormBuilder, private adminService: AdminService) {
     this.sectionsParser = new SectionsParser();
     this.hideOutput = true;
-    this.response = '';
     this.buttonsDisabled = false;
 
     this.searchDisabled = false;
@@ -45,73 +44,21 @@ export class DiscographyCreatorComponent implements OnInit {
       this.searchDisabled = true;
 
       this.adminService.getDiscography(artistId)
-        .subscribe(discography => {
+        .subscribe(disco => {
           this.searchDisabled = false;
-          this.fillForm(discography);
-        }, err => {
-          this.searchDisabled = false;
-          this.searchError = err;
+
+          if (disco) {
+            this.fillForm(disco);
+          } else {
+            this.searchError = `Discography not found: ${artistId}`;
+          }
         });
     }
   }
 
   fillForm(discography: Discography) {
-    this.discoForm.get('artistId').setValue(discography.id);
-
-    const sections = discography.sections
-      .map(section => {
-        const albumIds = section.albums.map(album => album.id).join('\n');
-        return `S\n${section.type}\n${albumIds}\n`;
-      })
-      .join('\n');
-    this.discoForm.get('sections').setValue(sections);
-  }
-
-  clear() {
-    this.discoForm.reset();
-    this.response = '';
-    this.searchError = '';
-  }
-
-  generateJson() {
-    this.output = new Discography();
-    this.output.id = this.discoForm.get('artistId').value;
-
-    this.output.sections = this.parseSections(this.discoForm.get('sections').value);
-
+    this.outputForm.setValue(JSON.stringify(discography, null, 2));
     this.hideOutput = false;
-    this.response = '';
     this.searchError = '';
-    this.outputForm.setValue(JSON.stringify(this.output, null, 2));
-  }
-
-  parseSections(sections: string): any {
-    return this.sectionsParser.parse(sections);
-  }
-
-  createDiscography() {
-    this.response = '';
-    this.buttonsDisabled = true;
-    this.adminService.createDiscography(this.output)
-      .subscribe(res => {
-        this.response = 'Discography created!';
-        this.buttonsDisabled = false;
-      }, err => {
-        this.response = err;
-        this.buttonsDisabled = false;
-      });
-  }
-
-  replaceDiscography() {
-    this.response = '';
-    this.buttonsDisabled = true;
-    this.adminService.replaceDiscography(this.output)
-      .subscribe(res => {
-        this.response = 'Discography replaced!';
-        this.buttonsDisabled = false;
-      }, err => {
-        this.response = err;
-        this.buttonsDisabled = false;
-      });
   }
 }

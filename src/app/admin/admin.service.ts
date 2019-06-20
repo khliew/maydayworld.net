@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError, from, of, zip } from 'rxjs';
+import { Observable, throwError, from, combineLatest } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Album, Discography, Song } from '../model';
 import { EnvironmentService } from '../services/environment.service';
@@ -23,45 +23,7 @@ export class AdminService {
   }
 
   getDiscography(artistId: string = 'mayday'): Observable<Discography> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        [RequestCache.NO_CACHE_HEADER]: 'true'
-      })
-    };
-
-    return this.http.get<any>(`${this.baseUrl}/disco/${artistId}`, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
-  }
-
-  createDiscography(discography: Discography): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-
-    return this.http.post<any>(`${this.baseUrl}/disco`, discography, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
-  }
-
-  replaceDiscography(discography: Discography): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-
-    return this.http.put<any>(`${this.baseUrl}/disco/${discography.id}`, discography, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
+    return this.fss.getDiscography(artistId);
   }
 
   getAlbum(albumId: string): Observable<Album> {
@@ -93,7 +55,7 @@ export class AdminService {
       );
     });
 
-    return zip(promises, () => { }); // return an Observable that emits when all promises complete
+    return combineLatest(promises).pipe(map(() => { })); // return an Observable that emits when all promises complete
   }
 
   getSong(songId: string): Observable<Song> {

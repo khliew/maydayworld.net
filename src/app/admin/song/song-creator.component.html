@@ -1,21 +1,43 @@
 <div class="content">
   <h2>Song Creator</h2>
   <form [formGroup]="songForm">
-    <div>songId:
-      <input matInput formControlName="songId" class="meta-field" autofocus>
+    <div>
+      <mat-form-field class="meta-field">
+        <input matInput placeholder="Song ID" formControlName="songId" autofocus>
+      </mat-form-field>
       <button mat-icon-button (click)="searchSong()" [disabled]="searchDisabled">
         <mat-icon>search</mat-icon>
       </button>
       <span class="search-error">{{this.searchError}}</span>
     </div>
-    <span>Chinese title, pinyin and translation:</span>
-    <textarea matInput formControlName="chineseTitle" class="title-field"
-      placeholder="Enter each on a new line"></textarea>
-    <div>English title: <input matInput formControlName="englishTitle" class="meta-field"></div>
-    <div>Lyricist: <input matInput formControlName="lyricist" class="meta-field"></div>
-    <div>Composer: <input matInput formControlName="composer" class="meta-field"></div>
-    <div>Arranger: <input matInput formControlName="arranger" class="meta-field"></div>
-    <textarea matInput formControlName="lyrics" class="input-field" placeholder="Enter lyrics"></textarea>
+    <mat-form-field class="title-field" appearance="outline">
+      <mat-label>Chinese title, pinyin and translation</mat-label>
+      <textarea matInput rows="3" formControlName="chineseTitle" placeholder="Enter each on a new line"></textarea>
+    </mat-form-field>
+    <div>
+      <mat-form-field class="title-field">
+        <input matInput placeholder="English title" formControlName="englishTitle">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="meta-field">
+        <input matInput placeholder="Lyricist" formControlName="lyricist">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="meta-field">
+        <input matInput placeholder="Composer" formControlName="composer">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="meta-field">
+        <input matInput placeholder="Arranger" formControlName="arranger">
+      </mat-form-field>
+    </div>
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label>Enter lyrics</mat-label>
+      <textarea matInput rows="10" formControlName="lyrics"></textarea>
+    </mat-form-field>
     <button mat-flat-button color="primary" class="generate-json" (click)="generateJson()">
       Generate JSON
     </button>
@@ -25,13 +47,15 @@
   </form>
   <div [class.hide]="hideOutput">
     <mat-checkbox [formControl]="readonly" class="readonly">Read-only</mat-checkbox>
-    <textarea matInput [formControl]="outputForm" class="output" [readonly]="readonly.value"></textarea>
+    <mat-form-field class="output" appearance="outline">
+      <textarea matInput rows="10" [formControl]="outputForm" [readonly]="readonly.value"></textarea>
+    </mat-form-field>
     <button mat-flat-button color="accent" class="save" (click)="save()" [disabled]="buttonsDisabled">
       Save
     </button>
     <div class="response">{{this.response}}</div>
   </div>
-  <div class="helper">
+  <mat-card class="helper">
     <p>
       <strong>L</strong> - translated song lyric<br>
       <strong>B</strong> - paragraph break<br>
@@ -54,5 +78,5 @@
       T<br>
       Note: "好好" can mean "very good"
     </p>
-  </div>
+  </mat-card>
 </div>

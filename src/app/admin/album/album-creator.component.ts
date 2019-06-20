@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
-import { zip } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { Album, Song, Title } from '../../model';
 import { AdminService } from '../admin.service';
 
@@ -229,7 +229,7 @@ export class AlbumCreatorComponent implements OnInit {
     const removed = [... this.removedTracks].filter(x => original.has(x)); // removedTracks intersect originalTracks
     results.push(this.adminService.setAlbumSongs(this.output.id, added, removed));
 
-    zip(results, () => { })
+    combineLatest(results)
       .subscribe(() => {
         this.response = 'Album saved!';
         this.buttonsDisabled = false;

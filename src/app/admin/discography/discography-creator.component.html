@@ -1,52 +1,20 @@
 <div class="content">
   <h2>Discography Creator</h2>
   <form [formGroup]="discoForm">
-    <div>artistId: <input matInput formControlName="artistId" class="meta-field">
+    <div>
+      <mat-form-field class="meta-field">
+        <input matInput placeholder="Artist ID" formControlName="artistId" autofocus>
+      </mat-form-field>
       <button mat-icon-button (click)="searchDiscography()" [disabled]="searchDisabled">
         <mat-icon>search</mat-icon>
       </button>
       <span class="search-error">{{this.searchError}}</span>
     </div>
-    <span>Sections:</span>
-    <textarea matInput formControlName="sections" class="input-field" placeholder="Enter section labels and albumIds"></textarea>
-    <button mat-flat-button color="primary" class="generate-json" (click)="generateJson()">
-      Generate JSON
-    </button>
-    <button mat-flat-button color="primary" class="clear-input" (click)="clear()">
-      Clear
-    </button>
   </form>
   <div [class.hide]="hideOutput">
-    <textarea matInput [formControl]="outputForm" class="output" readonly></textarea>
-    <button mat-flat-button color="accent" class="create-discography" (click)="createDiscography()" [disabled]="buttonsDisabled">
-      Create discography
-    </button>
-    <button mat-flat-button color="accent" class="replace-discography" (click)="replaceDiscography()" [disabled]="buttonsDisabled">
-      Replace discography
-    </button>
-    <div class="response">{{this.response}}</div>
-  </div>
-  <div class="helper">
-    <p>
-      <strong>S</strong> - section<br>
-    </p>
-    <p>There must be at least one blank line between sections.</p>
-    <b>Example:</b>
-    <p class="example">
-      S<br>
-      Studio Albums<br>
-      zzhot<br>
-      derssr<br>
-      waesbtl<br>
-      <br>
-      S<br>
-      Compilations<br>
-      bbzxzpj<br>
-      <br>
-      <br>
-      S<br>
-      EP<br>
-      jjzyl<br>
-    </p>
+    <mat-checkbox [formControl]="readonly" class="readonly">Read-only</mat-checkbox>
+    <mat-form-field class="output" appearance="outline">
+      <textarea matInput rows="20" [formControl]="outputForm" [readonly]="readonly.value"></textarea>
+    </mat-form-field>
   </div>
 </div>
