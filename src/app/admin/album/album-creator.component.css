@@ -3,13 +3,19 @@
   padding: 32px;
 }
 .title-field {
+  min-width: 96px;
+  max-width: 480px;
   width: 100%;
-  height: 64px;
-  margin-bottom: 16px;
 }
 .meta-field {
-  width: 30%;
-  margin-bottom: 16px;
+  min-width: 96px;
+  max-width: 288px;
+  width: 100%;
+}
+.track-select {
+  min-width: 96px;
+  max-width: 384px;
+  width: 100%;
 }
 .input-field {
   margin-bottom: 16px;
@@ -18,19 +24,20 @@
 }
 .generate-json {
   margin-bottom: 16px;
+  margin-top: 16px;
   margin-right: 16px;
 }
 .output {
   width: 100%;
-  height: 196px;
   margin-bottom: 16px;
+  margin-top: 4px;
 }
 .hide {
   display: none;
 }
-.create-album {
-  margin-right: 16px;
-}
 .response {
   margin-top: 16px;
+}
+.track-num {
+  margin-right: 8px;
 }

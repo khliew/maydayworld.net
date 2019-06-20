@@ -1,37 +1,65 @@
 <div class="content">
   <h2>Album Creator</h2>
   <form [formGroup]="albumForm">
-    <div>albumId: <input matInput formControlName="albumId" class="meta-field">
+    <div>
+      <mat-form-field class="meta-field">
+        <input matInput placeholder="Album ID" formControlName="albumId" autofocus>
+      </mat-form-field>
       <button mat-icon-button (click)="searchAlbum()" [disabled]="searchDisabled">
         <mat-icon>search</mat-icon>
       </button>
       <span class="search-error">{{this.searchError}}</span>
     </div>
-    <span>Chinese title, pinyin and translation:</span>
-    <textarea matInput formControlName="chineseTitle" class="title-field" placeholder="Enter each on a new line"></textarea>
-    <div>English title: <input matInput formControlName="englishTitle" class="meta-field"></div>
-    <div>Release date:
-      <input matInput [matDatepicker]="picker" formControlName="releaseDate" placeholder="Click calendar" disabled>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker disabled="false"></mat-datepicker>
+    <div>
+      <mat-form-field class="title-field" appearance="outline">
+        <mat-label>Chinese title, pinyin and translation</mat-label>
+        <textarea matInput rows="3" formControlName="chineseTitle" placeholder="Enter each on a new line"></textarea>
+      </mat-form-field>
     </div>
-    <span>Song list:</span>
-    <textarea matInput formControlName="songs" class="input-field" placeholder="Enter each songId on a new line"></textarea>
+    <div>
+      <mat-form-field class="title-field">
+        <input matInput placeholder="English title" formControlName="englishTitle" class="meta-field">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="meta-field">
+        <input matInput placeholder="Release date" [matDatepicker]="picker" formControlName="releaseDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>Tracks:</div>
+    <div formArrayName="tracks" *ngFor="let item of tracksForm.controls; let i = index">
+      <mat-form-field floatLabel="never" class="track-select">
+        <span matPrefix class="track-num">{{i + 1}}</span>
+        <mat-select placeholder="Select a track" [formControlName]="i" class="song">
+          <mat-option *ngFor="let song of songs" [value]="song.id">
+            {{song.title.chinese.zht}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-icon-button (click)="addTrackForm(i + 1)" [disabled]="searchDisabled">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="removeTrackForm(i)" [disabled]="searchDisabled">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
     <button mat-flat-button color="primary" class="generate-json" (click)="generateJson()">
       Generate JSON
     </button>
     <button mat-flat-button color="primary" class="clear-input" (click)="clear()">
       Clear
     </button>
+    <div [class.hide]="hideOutput">
+      <mat-checkbox [formControl]="readonly" class="readonly">Read-only</mat-checkbox>
+      <mat-form-field class="output" appearance="outline">
+        <textarea matInput rows="10" [formControl]="outputForm" [readonly]="readonly.value"></textarea>
+      </mat-form-field>
+      <button mat-flat-button color="accent" class="save" (click)="save()" [disabled]="buttonsDisabled">
+        Save
+      </button>
+      <div class="response">{{this.response}}</div>
+    </div>
   </form>
-  <div [class.hide]="hideOutput">
-    <textarea matInput [formControl]="outputForm" class="output" readonly></textarea>
-    <button mat-flat-button color="accent" class="create-album" (click)="createAlbum()" [disabled]="buttonsDisabled">
-      Create album
-    </button>
-    <button mat-flat-button color="accent" class="replace-album" (click)="replaceAlbum()" [disabled]="buttonsDisabled">
-      Replace album
-    </button>
-    <div class="response">{{this.response}}</div>
-  </div>
 </div>

@@ -2,7 +2,7 @@
   <h2>Song Creator</h2>
   <form [formGroup]="songForm">
     <div>songId:
-      <input matInput formControlName="songId" class="meta-field">
+      <input matInput formControlName="songId" class="meta-field" autofocus>
       <button mat-icon-button (click)="searchSong()" [disabled]="searchDisabled">
         <mat-icon>search</mat-icon>
       </button>
