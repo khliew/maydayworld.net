@@ -49,7 +49,6 @@ export class AlbumCreatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.albumForm.get('releaseDate').disable();
     this.adminService.getSongs()
       .subscribe(songs => {
         this.songs = songs;
@@ -115,19 +114,25 @@ export class AlbumCreatorComponent implements OnInit {
     this.removedTracks.clear();
     this.originalTracks = {};
 
+    this.hideOutput = true;
+    this.readonly.setValue(true);
     this.outputForm.setValue('');
   }
 
-  generateJson() {
-    this.output = new Album();
-    this.output.id = this.albumForm.get('albumId').value;
-    this.output.releaseDate = this.parseDate(this.albumForm.get('releaseDate').value);
+  createFormAlbum() {
+    const album = new Album();
+    album.id = this.albumForm.get('albumId').value;
+    album.releaseDate = this.parseDate(this.albumForm.get('releaseDate').value);
 
-    this.output.title = this.parseTitle(
+    album.title = this.parseTitle(
       this.albumForm.get('chineseTitle').value,
       this.albumForm.get('englishTitle').value
     );
+    return album;
+  }
 
+  generateJson() {
+    this.output = this.createFormAlbum();
 
     this.hideOutput = false;
     this.response = '';
@@ -226,7 +231,11 @@ export class AlbumCreatorComponent implements OnInit {
   }
 
   save() {
-    this.output = JSON.parse(this.outputForm.value);
+    if (this.readonly.value) {
+      this.output = this.createFormAlbum();
+    } else {
+      this.output = JSON.parse(this.outputForm.value);
+    }
 
     this.response = '';
     this.buttonsDisabled = true;

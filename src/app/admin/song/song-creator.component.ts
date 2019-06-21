@@ -56,6 +56,7 @@ export class SongCreatorComponent implements OnInit {
           this.searchDisabled = false;
 
           if (song) {
+            this.clear();
             this.fillForm(song);
           } else {
             this.searchError = `Song not found: ${songId}`;
@@ -99,21 +100,30 @@ export class SongCreatorComponent implements OnInit {
     this.songForm.reset();
     this.response = '';
     this.searchError = '';
+
+    this.hideOutput = true;
+    this.readonly.setValue(true);
+    this.outputForm.setValue('');
   }
 
-  generateJson() {
-    this.output = new Song();
-    this.output.id = this.songForm.get('songId').value;
-    this.output.lyricist = this.songForm.get('lyricist').value;
-    this.output.composer = this.songForm.get('composer').value;
-    this.output.arranger = this.songForm.get('arranger').value;
+  createFormSong() {
+    const song = new Song();
+    song.id = this.songForm.get('songId').value;
+    song.lyricist = this.songForm.get('lyricist').value;
+    song.composer = this.songForm.get('composer').value;
+    song.arranger = this.songForm.get('arranger').value;
 
-    this.output.title = this.parseTitle(
+    song.title = this.parseTitle(
       this.songForm.get('chineseTitle').value,
       this.songForm.get('englishTitle').value
     );
 
-    this.output.lyrics = this.parseLyrics(this.songForm.get('lyrics').value);
+    song.lyrics = this.parseLyrics(this.songForm.get('lyrics').value);
+    return song;
+  }
+
+  generateJson() {
+    this.output = this.createFormSong();
 
     this.hideOutput = false;
     this.response = '';
@@ -140,7 +150,11 @@ export class SongCreatorComponent implements OnInit {
   }
 
   save() {
-    this.output = JSON.parse(this.outputForm.value);
+    if (this.readonly.value) {
+      this.output = this.createFormSong();
+    } else {
+      this.output = JSON.parse(this.outputForm.value);
+    }
 
     this.response = '';
     this.buttonsDisabled = true;

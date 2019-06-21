@@ -45,21 +45,21 @@
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <button mat-flat-button color="primary" class="generate-json" (click)="generateJson()">
+    <button mat-flat-button color="accent" class="action-button" (click)="save()" [disabled]="buttonsDisabled">
+      Save
+    </button>
+    <button mat-flat-button color="primary" class="action-button" (click)="generateJson()">
       Generate JSON
     </button>
-    <button mat-flat-button color="primary" class="clear-input" (click)="clear()">
+    <button mat-flat-button color="primary" class="action-button" (click)="clear()">
       Clear
     </button>
+    <div class="response">{{this.response}}</div>
     <div [class.hide]="hideOutput">
       <mat-checkbox [formControl]="readonly" class="readonly">Read-only</mat-checkbox>
       <mat-form-field class="output" appearance="outline">
         <textarea matInput rows="10" [formControl]="outputForm" [readonly]="readonly.value"></textarea>
       </mat-form-field>
-      <button mat-flat-button color="accent" class="save" (click)="save()" [disabled]="buttonsDisabled">
-        Save
-      </button>
-      <div class="response">{{this.response}}</div>
     </div>
   </form>
 </div>
