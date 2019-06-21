@@ -34,9 +34,13 @@ $primary-dark: mat-color($mat-light-blue, 900);
 
 // active item color
 $activated-item: mat-color($mat-light-blue, A100);
-
 .active-nav-item {
   background-color: $activated-item !important;
+}
+
+// set app background color
+.mat-drawer-container {
+  background-color: white;
 }
 
 // styling for sidenav

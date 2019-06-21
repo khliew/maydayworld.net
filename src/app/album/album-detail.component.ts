@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Album } from '../model';
 import { SidenavService } from '../services/sidenav.service';
 import { TitleService } from '../services/title.service';
@@ -11,17 +11,30 @@ import { TitleService } from '../services/title.service';
 })
 export class AlbumDetailComponent implements OnInit {
   album: Album;
+  trackKeys: number[];
 
-  constructor(private titleService: TitleService, private route: ActivatedRoute, private sidenavService: SidenavService) {
+  constructor(
+    private titleService: TitleService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private sidenavService: SidenavService
+  ) {
     this.sidenavService.setEnabled(true);
   }
 
   ngOnInit(): void {
     this.route.data
       .subscribe(data => {
-        this.album = data.album;
+        if (data.album) {
+          this.album = data.album;
 
-        this.titleService.setTitle(this.album.title.chinese.zht);
+          this.trackKeys = Object.keys(this.album.songs) as unknown as number[];
+          this.trackKeys.sort((a, b) => a - b); // sort numerically in ascending order
+
+          this.titleService.setTitle(this.album.title.chinese.zht);
+        } else {
+          this.router.navigate(['/albums']);
+        }
       });
   }
 }

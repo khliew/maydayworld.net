@@ -20,7 +20,6 @@ export class AlbumResolverService implements Resolve<Album> {
         if (album) {
           return of(album);
         } else {
-          this.router.navigate(['/']);
           return EMPTY;
         }
       })

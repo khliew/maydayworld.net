@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataService } from '../services/data.service';
 import { TitleService } from '../services/title.service';
 import { SidenavService } from '../services/sidenav.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-log-in',
@@ -13,42 +13,41 @@ import { SidenavService } from '../services/sidenav.service';
 export class LogInComponent {
   private static readonly TIMEOUT_INCREMENT = 1000; // ms
 
-  accessForm = this.fb.control('');
+  credentials = this.fb.group({
+    email: [''],
+    password: [''],
+  });
+
   failCount: number;
   timeout: number;
-  disabled: boolean;
 
   constructor(
     private titleService: TitleService,
     private fb: FormBuilder,
-    private dataService: DataService,
     private sidenavService: SidenavService,
-    private router: Router
+    private router: Router,
+    private afAuth: AngularFireAuth
   ) {
     this.failCount = 0;
     this.timeout = 0;
-    this.disabled = false;
-    localStorage.removeItem('auth');
 
     this.sidenavService.setEnabled(false);
     this.titleService.resetTitle();
   }
 
   logIn() {
-    this.disabled = true;
-    this.dataService.logIn(this.accessForm.value)
-      .subscribe(res => {
-        if (res) {
-          this.disabled = false;
-          localStorage.setItem('auth', 'true');
-          this.router.navigate(['admin']);
-        } else {
-          this.failCount++;
-          this.timeout = this.failCount * LogInComponent.TIMEOUT_INCREMENT;
-          setTimeout(() => {
-            this.disabled = false;
-          }, this.timeout);
-        }
+    this.credentials.disable();
+    this.afAuth.auth.signInWithEmailAndPassword(this.credentials.get('email').value, this.credentials.get('password').value)
+      .then(data => {
+        this.router.navigate(['admin']);
+      })
+      .catch(error => {
+        this.failCount++;
+        this.timeout = this.failCount * LogInComponent.TIMEOUT_INCREMENT;
+
+        setTimeout(() => {
+          this.credentials.enable();
+        }, this.timeout);
       });
   }
 }

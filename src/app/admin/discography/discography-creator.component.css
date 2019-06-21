@@ -3,13 +3,14 @@
   max-width: 720px;
 }
 .title-field {
+  min-width: 96px;
+  max-width: 480px;
   width: 100%;
-  height: 64px;
-  margin-bottom: 16px;
 }
 .meta-field {
-  width: 30%;
-  margin-bottom: 16px;
+  min-width: 96px;
+  max-width: 288px;
+  width: 100%;
 }
 .input-field {
   margin-bottom: 16px;
@@ -18,21 +19,19 @@
 }
 .generate-json {
   margin-bottom: 16px;
+  margin-top: 16px;
   margin-right: 16px;
 }
 .output {
   width: 100%;
-  height: 196px;
   margin-bottom: 16px;
+  margin-top: 4px;
 }
 .hide {
   display: none;
 }
 .create-discography {
   margin-right: 16px;
-}
-.access {
-  margin-left: 16px;
 }
 .response {
   margin-top: 16px;
@@ -48,6 +47,7 @@
   line-height: 14px;
 }
 .example {
-  border: 1px solid gray;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
   padding: 4px;
 }

@@ -3,15 +3,27 @@
     <ng-container *ngFor="let section of discography.sections">
       <div *ngIf="!!section.albums && section.albums.length > 0" class="section">
         <h2 class="section-header">
-          {{section.label}}
+          <ng-container [ngSwitch]="section.type">
+            <ng-container *ngSwitchCase="'studio'">
+              Studio Albums
+            </ng-container>
+            <ng-container *ngSwitchCase="'compilation'">
+              Compilations
+            </ng-container>
+            <ng-container *ngSwitchCase="'ep'">
+              EP
+            </ng-container>
+            <ng-container *ngSwitchCase="'other'">
+              Other
+            </ng-container>
+          </ng-container>
         </h2>
         <div gdColumns="1fr 1fr" gdColumns.lt-sm="1fr" gdGap="16px">
-          <a mat-list-item *ngFor="let album of section.albums" [routerLink]="['/album', album.albumId]" class="album-card"
-             >
+          <a mat-list-item *ngFor="let album of section.albums" [routerLink]="['/album', album.id]" class="album-card">
             <div matLine class="title-chinese">{{album.title.chinese.zht}}</div>
             <div matLine class="title-english">{{album.title.english}}</div>
             <div matLine class="release-date">{{ album.releaseDate | date }}</div>
-        </a>
+          </a>
         </div>
       </div>
     </ng-container>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRippleModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -16,6 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [
     MatButtonModule,
     MatCardModule,
+    MatCheckboxModule,
     MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
@@ -30,6 +32,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   exports: [
     MatButtonModule,
     MatCardModule,
+    MatCheckboxModule,
     MatFormFieldModule,
     MatGridListModule,
     MatIconModule,

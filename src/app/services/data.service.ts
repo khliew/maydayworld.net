@@ -1,51 +1,39 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Album, Discography, Song } from '../model';
 import { EnvironmentService } from './environment.service';
+import { FirestoreService } from './firestore.service';
 
 @Injectable()
 export class DataService {
   baseUrl: string;
   fallbackUrl: string;
 
-  constructor(private http: HttpClient, environmentService: EnvironmentService) {
+  constructor(private fss: FirestoreService, private http: HttpClient, environmentService: EnvironmentService) {
     this.baseUrl = environmentService.env.apiBaseUrl;
     this.fallbackUrl = environmentService.env.apiFallbackUrl;
   }
 
   getDiscography(artistId: string = 'mayday'): Observable<Discography> {
-    return this.http.get<any>(`${this.baseUrl}/disco/${artistId}.json`)
+    return this.fss.getDiscography(artistId)
       .pipe(
         catchError(this.handleError<Discography>('getDiscography'))
       );
   }
 
   getAlbum(albumId: string, artistId: string = 'mayday'): Observable<Album> {
-    return this.http.get<any>(`${this.baseUrl}/${artistId}/albums/${albumId}.json`)
+    return this.fss.getAlbum(albumId)
       .pipe(
         catchError(this.handleError<Album>('getAlbum'))
       );
   }
 
   getSong(songId: string, artistId: string = 'mayday'): Observable<Song> {
-    return this.http.get<any>(`${this.baseUrl}/${artistId}/songs/${songId}.json`)
+    return this.fss.getSong(songId)
       .pipe(
         catchError(this.handleError<Song>('getSong'))
-      );
-  }
-
-  /** @deprecated */
-  logIn(access: string): Observable<boolean> {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'X-MDW-Auth': access })
-    };
-
-    return this.http.get<any>(`${this.fallbackUrl}/login`, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError<boolean>('logIn', false))
       );
   }
 

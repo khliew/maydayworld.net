@@ -2,6 +2,7 @@
   padding: 32px;
   width: 480px;
 }
-.log-in {
-  margin-top: 16px;
+.access {
+  margin-bottom: 16px;
+  width: 100%;
 }

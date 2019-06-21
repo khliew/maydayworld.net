@@ -16,7 +16,13 @@ import { RequestCache, RequestCacheWithMap } from './services/request-cache.serv
 import { SidenavService } from './services/sidenav.service';
 import { TitleService } from './services/title.service';
 import { SharedModule } from './shared/shared.module';
-import { SongsComponent } from './songs/songs.component';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { FirestoreService } from './services/firestore.service';
+import { LogOutComponent } from './log-out/log-out.component';
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
 @NgModule({
   imports: [
@@ -24,16 +30,19 @@ import { SongsComponent } from './songs/songs.component';
     BrowserAnimationsModule,
     HttpClientModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule// .enablePersistence()
   ],
   declarations: [
     AboutUsComponent,
     AppComponent,
     AlbumsComponent,
     LogInComponent,
+    LogOutComponent,
     PageNotFoundComponent,
-    PrivacyComponent,
-    SongsComponent
+    PrivacyComponent
   ],
   providers: [
     Title,
@@ -41,8 +50,10 @@ import { SongsComponent } from './songs/songs.component';
     httpInterceptorProviders,
     DataService,
     EnvironmentService,
+    FirestoreService,
     SidenavService,
-    TitleService
+    TitleService,
+    AngularFireAuthGuard
   ],
   bootstrap: [AppComponent]
 })
