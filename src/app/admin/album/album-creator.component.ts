@@ -18,6 +18,7 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
     chineseTitle: [''],
     englishTitle: [''],
     releaseDate: [{ value: '', disabled: true }],
+    albumType: ['studio'],
     tracks: this.tracksForm
   });
   outputForm = this.fb.control('');
@@ -102,6 +103,7 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
     this.albumForm.get('englishTitle').setValue(title.english);
 
     this.albumForm.get('releaseDate').setValue(album.releaseDate);
+    this.albumForm.get('albumType').setValue(album.type);
 
     const trackKeys = Object.keys(album.songs);
     trackKeys.forEach(key => {
@@ -122,7 +124,7 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
   }
 
   clear() {
-    this.albumForm.reset();
+    this.albumForm.reset({ albumType: 'studio' });
     this.response = '';
     this.searchError = '';
 
@@ -152,6 +154,7 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
     );
 
     album.releaseDate = this.parseDate(this.albumForm.get('releaseDate').value);
+    album.type = this.albumForm.get('albumType').value;
 
     return album;
   }

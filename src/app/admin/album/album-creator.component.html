@@ -11,8 +11,7 @@
       <span class="search-error">{{this.searchError}}</span>
     </div>
     <div class="disable-album">
-      <mat-checkbox formControlName="disabled"
-        matTooltip="Check to prevent users from clicking on this album">
+      <mat-checkbox formControlName="disabled" matTooltip="Check to prevent users from clicking on this album">
         Disabled
       </mat-checkbox>
     </div>
@@ -32,6 +31,22 @@
         <mat-datepicker #picker disabled="false"></mat-datepicker>
       </mat-form-field>
     </div>
+    <mat-form-field class="album-type">
+      <mat-select placeholder="Album type" formControlName="albumType">
+        <mat-option value="studio">
+          Studio Album
+        </mat-option>
+        <mat-option value="compilation">
+          Compilation
+        </mat-option>
+        <mat-option value="ep">
+          EP
+        </mat-option>
+        <mat-option value="other">
+          Other
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <div>Tracks:</div>
     <div formArrayName="tracks" *ngFor="let item of tracksForm.controls; let i = index">
       <mat-form-field floatLabel="never" class="track-select">
