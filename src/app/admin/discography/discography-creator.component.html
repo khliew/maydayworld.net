@@ -3,7 +3,7 @@
   <form [formGroup]="discoForm">
     <div>
       <mat-form-field class="meta-field">
-        <input matInput placeholder="Artist ID" formControlName="artistId" autofocus>
+        <input #artistId matInput placeholder="Artist ID" formControlName="artistId" autofocus>
       </mat-form-field>
       <button mat-icon-button (click)="searchDiscography()" [disabled]="searchDisabled">
         <mat-icon>search</mat-icon>

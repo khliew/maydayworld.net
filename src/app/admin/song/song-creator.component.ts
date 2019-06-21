@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Line, Song, Title } from '../../model';
-import { LyricsParser } from './lyrics-parser';
 import { AdminService } from '../admin.service';
+import { LyricsParser } from './lyrics-parser';
 
 @Component({
   selector: 'app-song-creator',
   templateUrl: './song-creator.component.html',
   styleUrls: ['./song-creator.component.css']
 })
-export class SongCreatorComponent implements OnInit {
+export class SongCreatorComponent implements AfterViewInit {
   songForm = this.fb.group({
     songId: [''],
+    disabled: [false],
     chineseTitle: [''],
     englishTitle: [''],
     lyricist: [''],
@@ -21,6 +22,8 @@ export class SongCreatorComponent implements OnInit {
   });
   outputForm = this.fb.control('');
   readonly = this.fb.control(true);
+
+  @ViewChild('songId', { static: false }) songId: ElementRef;
 
   lyricsParser: LyricsParser;
   hideOutput: boolean;
@@ -41,7 +44,9 @@ export class SongCreatorComponent implements OnInit {
     this.searchError = '';
   }
 
-  ngOnInit() { }
+  ngAfterViewInit() {
+    setTimeout(() => this.songId.nativeElement.focus(), 10);
+  }
 
   searchSong() {
     const songId = this.songForm.get('songId').value;
@@ -67,6 +72,8 @@ export class SongCreatorComponent implements OnInit {
 
   fillForm(song: Song) {
     this.songForm.get('songId').setValue(song.id);
+
+    this.songForm.get('disabled').setValue(typeof song.disabled !== 'undefined' ? song.disabled : false);
 
     const title = song.title;
     this.songForm.get('chineseTitle').setValue(`${title.chinese.zht}\n${title.chinese.zhp}\n${title.chinese.eng}`);
@@ -104,11 +111,16 @@ export class SongCreatorComponent implements OnInit {
     this.hideOutput = true;
     this.readonly.setValue(true);
     this.outputForm.setValue('');
+
+    this.songId.nativeElement.focus();
   }
 
   createFormSong() {
     const song = new Song();
     song.id = this.songForm.get('songId').value;
+
+    song.disabled = this.songForm.get('disabled').value;
+
     song.lyricist = this.songForm.get('lyricist').value;
     song.composer = this.songForm.get('composer').value;
     song.arranger = this.songForm.get('arranger').value;
@@ -135,12 +147,14 @@ export class SongCreatorComponent implements OnInit {
     const title = new Title();
     title.english = english;
 
-    const parts = chinese.split('\n');
-    title.chinese = {
-      zht: parts[0] && parts[0].trim(),
-      zhp: parts[1] && parts[1].trim(),
-      eng: parts[2] && parts[2].trim()
-    };
+    if (!!chinese) {
+      const parts = chinese.split('\n');
+      title.chinese = {
+        zht: parts[0] && parts[0].trim(),
+        zhp: parts[1] && parts[1].trim(),
+        eng: parts[2] && parts[2].trim()
+      };
+    }
 
     return title;
   }

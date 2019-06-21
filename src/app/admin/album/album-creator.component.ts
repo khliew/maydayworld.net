@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import { combineLatest } from 'rxjs';
@@ -10,10 +10,11 @@ import { AdminService } from '../admin.service';
   templateUrl: './album-creator.component.html',
   styleUrls: ['./album-creator.component.css']
 })
-export class AlbumCreatorComponent implements OnInit {
+export class AlbumCreatorComponent implements OnInit, AfterViewInit {
   tracksForm = this.fb.array([this.createTrackForm()]);
   albumForm = this.fb.group({
     albumId: [''],
+    disabled: [false],
     chineseTitle: [''],
     englishTitle: [''],
     releaseDate: [{ value: '', disabled: true }],
@@ -21,6 +22,8 @@ export class AlbumCreatorComponent implements OnInit {
   });
   outputForm = this.fb.control('');
   readonly = this.fb.control(true);
+
+  @ViewChild('albumId', { static: false }) albumId: ElementRef;
 
   songs: Song[];
   hideOutput: boolean;
@@ -55,6 +58,10 @@ export class AlbumCreatorComponent implements OnInit {
       });
   }
 
+  ngAfterViewInit() {
+    setTimeout(() => this.albumId.nativeElement.focus(), 10);
+  }
+
   searchAlbum() {
     const albumId = this.albumForm.get('albumId').value;
 
@@ -78,11 +85,14 @@ export class AlbumCreatorComponent implements OnInit {
 
   fillForm(album: Album) {
     this.albumForm.get('albumId').setValue(album.id);
-    this.albumForm.get('releaseDate').setValue(album.releaseDate);
+
+    this.albumForm.get('disabled').setValue(typeof album.disabled !== 'undefined' ? album.disabled : false);
 
     const title = album.title;
     this.albumForm.get('chineseTitle').setValue(`${title.chinese.zht}\n${title.chinese.zhp}\n${title.chinese.eng}`);
     this.albumForm.get('englishTitle').setValue(title.english);
+
+    this.albumForm.get('releaseDate').setValue(album.releaseDate);
 
     const trackKeys = Object.keys(album.songs);
     trackKeys.forEach(key => {
@@ -117,17 +127,23 @@ export class AlbumCreatorComponent implements OnInit {
     this.hideOutput = true;
     this.readonly.setValue(true);
     this.outputForm.setValue('');
+
+    this.albumId.nativeElement.focus();
   }
 
   createFormAlbum() {
     const album = new Album();
     album.id = this.albumForm.get('albumId').value;
-    album.releaseDate = this.parseDate(this.albumForm.get('releaseDate').value);
+
+    album.disabled = this.albumForm.get('disabled').value;
 
     album.title = this.parseTitle(
       this.albumForm.get('chineseTitle').value,
       this.albumForm.get('englishTitle').value
     );
+
+    album.releaseDate = this.parseDate(this.albumForm.get('releaseDate').value);
+
     return album;
   }
 

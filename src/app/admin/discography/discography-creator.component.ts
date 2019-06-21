@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Discography } from '../../model';
 import { AdminService } from '../admin.service';
@@ -9,13 +9,14 @@ import { SectionsParser } from './sections-parser';
   templateUrl: './discography-creator.component.html',
   styleUrls: ['./discography-creator.component.css']
 })
-export class DiscographyCreatorComponent implements OnInit {
+export class DiscographyCreatorComponent implements AfterViewInit {
   discoForm = this.fb.group({
-    artistId: [''],
-    sections: ['']
+    artistId: ['']
   });
   outputForm = this.fb.control('');
   readonly = this.fb.control(true);
+
+  @ViewChild('artistId', { static: false }) artistIdEl: ElementRef;
 
   sectionsParser: SectionsParser;
   hideOutput: boolean;
@@ -34,9 +35,12 @@ export class DiscographyCreatorComponent implements OnInit {
     this.searchError = '';
   }
 
-  ngOnInit() { }
+  ngAfterViewInit() {
+    setTimeout(() => this.artistIdEl.nativeElement.focus(), 10);
+  }
 
   searchDiscography() {
+    this.hideOutput = true;
     const artistId = this.discoForm.get('artistId').value;
 
     if (!!artistId) {

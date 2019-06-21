@@ -17,10 +17,8 @@
   max-width: 384px;
   width: 100%;
 }
-.input-field {
+.disable-album {
   margin-bottom: 16px;
-  width: 100%;
-  height: 196px;
 }
 .action-button {
   margin-bottom: 16px;

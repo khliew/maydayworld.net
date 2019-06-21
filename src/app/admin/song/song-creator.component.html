@@ -3,12 +3,15 @@
   <form [formGroup]="songForm">
     <div>
       <mat-form-field class="meta-field">
-        <input matInput placeholder="Song ID" formControlName="songId" autofocus>
+        <input #songId matInput placeholder="Song ID" formControlName="songId" autofocus>
       </mat-form-field>
       <button mat-icon-button (click)="searchSong()" [disabled]="searchDisabled">
         <mat-icon>search</mat-icon>
       </button>
       <span class="search-error">{{this.searchError}}</span>
+    </div>
+    <div class="disable-song">
+      <mat-checkbox formControlName="disabled">Disabled</mat-checkbox>
     </div>
     <mat-form-field class="title-field" appearance="outline">
       <mat-label>Chinese title, pinyin and translation</mat-label>
@@ -35,7 +38,7 @@
       </mat-form-field>
     </div>
     <mat-form-field class="input-field" appearance="outline">
-      <mat-label>Enter lyrics</mat-label>
+      <mat-label>Lyrics</mat-label>
       <textarea matInput rows="10" formControlName="lyrics"></textarea>
     </mat-form-field>
     <button mat-flat-button color="accent" class="action-button" (click)="save()" [disabled]="buttonsDisabled">
