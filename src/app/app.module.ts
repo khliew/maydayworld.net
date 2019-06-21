@@ -33,7 +33,7 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule// .enablePersistence()
+    AngularFirestoreModule.enablePersistence()
   ],
   declarations: [
     AboutUsComponent,
