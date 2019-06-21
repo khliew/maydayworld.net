@@ -23,6 +23,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FirestoreService } from './services/firestore.service';
 import { LogOutComponent } from './log-out/log-out.component';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { FirestoreCache } from './services/firestore-cache.service';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
     httpInterceptorProviders,
     DataService,
     EnvironmentService,
+    FirestoreCache,
     FirestoreService,
     SidenavService,
     TitleService,
