@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 import { Album, Discography, Song } from '../model';
 import { FirestoreCache } from './firestore-cache.service';
 import { FirestoreService } from './firestore.service';
@@ -15,6 +15,15 @@ export class DataService {
 
     return !!cached ? of(cached) : this.fsService.getDiscography(artistId)
       .pipe(
+        map(disco => {
+          disco.sections.forEach(
+            section => {
+              // sort by most recent first
+              section.albums.sort((a, b) => Date.parse(b.releaseDate) - Date.parse(a.releaseDate));
+            }
+          );
+          return disco;
+        }),
         tap(disco => this.fsCache.putDiscography(disco)),
         catchError(this.handleError<Discography>('getDiscography'))
       );
