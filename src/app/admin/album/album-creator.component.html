@@ -11,7 +11,10 @@
       <span class="search-error">{{this.searchError}}</span>
     </div>
     <div class="disable-album">
-      <mat-checkbox formControlName="disabled">Disabled</mat-checkbox>
+      <mat-checkbox formControlName="disabled"
+        matTooltip="Check to prevent users from clicking on this album">
+        Disabled
+      </mat-checkbox>
     </div>
     <mat-form-field class="title-field" appearance="outline">
       <mat-label>Chinese title, pinyin and translation</mat-label>
@@ -35,7 +38,7 @@
         <span matPrefix class="track-num">{{i + 1}}</span>
         <mat-select placeholder="Select a track" [formControlName]="i" class="song">
           <mat-option *ngFor="let song of songs" [value]="song.id">
-            {{song.title.chinese.zht}} - {{song.id}}
+            {{song.id}} - {{song.title.chinese.zht}}
           </mat-option>
         </mat-select>
       </mat-form-field>

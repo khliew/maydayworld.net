@@ -57,9 +57,10 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
     this.adminService.getSongs()
       .subscribe(songs => {
         this.songs = songs.sort((a, b) => {
-          const titleA = !!a.title.chinese.zht ? a.title.chinese.zht : a.title.english;
-          const titleB = !!b.title.chinese.zht ? b.title.chinese.zht : b.title.english;
-          return titleA.localeCompare(titleB, 'zh');
+          // const titleA = !!a.title.chinese.zht ? a.title.chinese.zht : a.title.english;
+          // const titleB = !!b.title.chinese.zht ? b.title.chinese.zht : b.title.english;
+          // return titleA.localeCompare(titleB, 'zh');
+          return a.id.localeCompare(b.id);
         });
 
         this.tracksForm.enable();
