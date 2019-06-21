@@ -1,160 +1,73 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+import * as firebase from 'firebase/app';
+import { from, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Album, Discography, Song } from '../model';
-import { EnvironmentService } from '../services/environment.service';
-import { RequestCache } from '../services/request-cache.service';
+import { FirestoreService } from '../services/firestore.service';
 
 @Injectable()
 export class AdminService {
-  private static readonly AUTH_HEADER = 'X-MDW-Auth';
-
-  baseUrl: string;
-  auth: string;
-
-  constructor(private http: HttpClient, environmentService: EnvironmentService) {
-    this.baseUrl = environmentService.env.apiBaseUrl;
-  }
-
-  setAccess(auth: string) {
-    this.auth = auth;
-  }
+  constructor(private fss: FirestoreService, private afs: AngularFirestore) { }
 
   getDiscography(artistId: string = 'mayday'): Observable<Discography> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        [RequestCache.NO_CACHE_HEADER]: 'true'
-      })
-    };
-
-    return this.http.get<any>(`${this.baseUrl}/disco/${artistId}`, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
-  }
-
-  createDiscography(discography: Discography): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        [AdminService.AUTH_HEADER]: this.auth
-      })
-    };
-
-    return this.http.post<any>(`${this.baseUrl}/disco`, discography, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
-  }
-
-  replaceDiscography(discography: Discography): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        [AdminService.AUTH_HEADER]: this.auth
-      })
-    };
-
-    return this.http.put<any>(`${this.baseUrl}/disco/${discography.artistId}`, discography, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
+    return this.fss.getDiscography(artistId);
   }
 
   getAlbum(albumId: string): Observable<Album> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        [RequestCache.NO_CACHE_HEADER]: 'true'
-      })
-    };
-
-    return this.http.get<any>(`${this.baseUrl}/albums/${albumId}`, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
+    return this.fss.getAlbum(albumId);
   }
 
-  createAlbum(album: Album): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        [AdminService.AUTH_HEADER]: this.auth
-      })
-    };
-
-    return this.http.post<any>(`${this.baseUrl}/albums`, album, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
+  setAlbum(albumId: string, album: Album): Observable<void> {
+    return from(this.afs.doc<Album>(`albums/${albumId}`)
+      .set(
+        JSON.parse(JSON.stringify(album)),
+        { merge: true }
+      ));
   }
 
-  replaceAlbum(album: Album): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        [AdminService.AUTH_HEADER]: this.auth
-      })
-    };
+  setAlbumSongs(albumId: string, added: { trackNum: number, songId: string }[], deleted: string[]): Observable<void> {
+    const batch = this.afs.firestore.batch();
 
-    return this.http.put<any>(`${this.baseUrl}/albums/${album.albumId}`, album, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
+    const promises = [];
+    deleted.forEach(songId => {
+      promises.push(
+        batch.update(
+          this.afs.doc(`songAlbums/${songId}`).ref,
+          { [albumId]: firebase.firestore.FieldValue.delete() }
+        )
       );
+    });
+
+    added.forEach(item => {
+      promises.push(
+        batch.set(
+          this.afs.doc(`songAlbums/${item.songId}`).ref,
+          { [albumId]: item.trackNum },
+          { merge: true }
+        )
+      );
+    });
+
+    return from(batch.commit());
   }
 
   getSong(songId: string): Observable<Song> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        [RequestCache.NO_CACHE_HEADER]: 'true'
-      })
-    };
+    return this.fss.getSong(songId);
+  }
 
-    return this.http.get<any>(`${this.baseUrl}/songs/${songId}`, httpOptions)
+  getSongs(): Observable<Song[]> {
+    return this.afs.collection<Song>('songs').get()
       .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
+        map(snapshot => {
+          const songs = [];
+          snapshot.docs.forEach(doc => songs.push(doc.data()));
+          return songs;
+        })
       );
   }
 
-  createSong(song: Song): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        [AdminService.AUTH_HEADER]: this.auth
-      })
-    };
-
-    return this.http.post<any>(`${this.baseUrl}/songs`, song, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
-  }
-
-  replaceSong(song: Song): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        [AdminService.AUTH_HEADER]: this.auth
-      })
-    };
-
-    return this.http.put<any>(`${this.baseUrl}/songs/${song.songId}`, song, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError)
-      );
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    console.error(error); // log to console instead
-    return throwError(error.error.error.message); // return message
+  setSong(songId: string, song: Song): Observable<void> {
+    return from(this.afs.doc<Song>(`songs/${songId}`).set(JSON.parse(JSON.stringify(song))));
   }
 }

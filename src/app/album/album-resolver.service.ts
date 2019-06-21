@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { EMPTY, Observable, of } from 'rxjs';
 import { mergeMap, take } from 'rxjs/operators';
-import { DataService } from '../services/data.service';
 import { Album } from '../model';
+import { DataService } from '../services/data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AlbumResolverService implements Resolve<Album> {
-  constructor(private dataService: DataService, private router: Router) { }
+  constructor(private dataService: DataService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Album> | Observable<never> {
     const albumId = route.paramMap.get('albumId');
@@ -20,7 +20,6 @@ export class AlbumResolverService implements Resolve<Album> {
         if (album) {
           return of(album);
         } else {
-          this.router.navigate(['/']);
           return EMPTY;
         }
       })

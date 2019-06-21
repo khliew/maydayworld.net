@@ -2,7 +2,7 @@ import { Album } from '../album';
 
 export function getTestAlbum(): Album {
   return {
-    albumId: 'albumId',
+    id: 'albumId',
     title: {
       chinese: { zht: 'zht', zhp: 'zhp', eng: 'eng' },
       english: 'english'

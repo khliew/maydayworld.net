@@ -1,4 +1,4 @@
-/* 
+/*
 Source: angular.io testing guide
 */
 

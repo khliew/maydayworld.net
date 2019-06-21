@@ -1,51 +1,51 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 import { Album, Discography, Song } from '../model';
-import { EnvironmentService } from './environment.service';
+import { FirestoreCache } from './firestore-cache.service';
+import { FirestoreService } from './firestore.service';
 
 @Injectable()
 export class DataService {
-  baseUrl: string;
-  fallbackUrl: string;
 
-  constructor(private http: HttpClient, environmentService: EnvironmentService) {
-    this.baseUrl = environmentService.env.apiBaseUrl;
-    this.fallbackUrl = environmentService.env.apiFallbackUrl;
-  }
+  constructor(private fsService: FirestoreService, private fsCache: FirestoreCache) { }
 
   getDiscography(artistId: string = 'mayday'): Observable<Discography> {
-    return this.http.get<any>(`${this.baseUrl}/disco/${artistId}.json`)
+    const cached = this.fsCache.getDiscography(artistId);
+
+    return !!cached ? of(cached) : this.fsService.getDiscography(artistId)
       .pipe(
+        map(disco => {
+          disco.sections.forEach(
+            section => {
+              // sort by most recent first
+              section.albums.sort((a, b) => Date.parse(b.releaseDate) - Date.parse(a.releaseDate));
+            }
+          );
+          return disco;
+        }),
+        tap(disco => this.fsCache.putDiscography(disco)),
         catchError(this.handleError<Discography>('getDiscography'))
       );
   }
 
   getAlbum(albumId: string, artistId: string = 'mayday'): Observable<Album> {
-    return this.http.get<any>(`${this.baseUrl}/${artistId}/albums/${albumId}.json`)
+    const cached = this.fsCache.getAlbum(albumId);
+
+    return !!cached ? of(cached) : this.fsService.getAlbum(albumId)
       .pipe(
+        tap(album => this.fsCache.putAlbum(album)),
         catchError(this.handleError<Album>('getAlbum'))
       );
   }
 
   getSong(songId: string, artistId: string = 'mayday'): Observable<Song> {
-    return this.http.get<any>(`${this.baseUrl}/${artistId}/songs/${songId}.json`)
+    const cached = this.fsCache.getSong(songId);
+
+    return !!cached ? of(cached) : this.fsService.getSong(songId)
       .pipe(
+        tap(song => this.fsCache.putSong(song)),
         catchError(this.handleError<Song>('getSong'))
-      );
-  }
-
-  /** @deprecated */
-  logIn(access: string): Observable<boolean> {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'X-MDW-Auth': access })
-    };
-
-    return this.http.get<any>(`${this.fallbackUrl}/login`, httpOptions)
-      .pipe(
-        map(response => response.data),
-        catchError(this.handleError<boolean>('logIn', false))
       );
   }
 

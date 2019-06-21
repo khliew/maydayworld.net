@@ -10,12 +10,12 @@ describe('AboutUsComponent', () => {
   });
 
   it('should hide the sidenav', () => {
-    const comp = new AboutUsComponent(<any> titleService, <any> sidenavService);
+    const comp = new AboutUsComponent(titleService as any, sidenavService as any);
     expect(sidenavService.setEnabled).toHaveBeenCalledWith(false);
   });
 
   it('should reset the document title', () => {
-    const comp = new AboutUsComponent(<any> titleService, <any> sidenavService);
+    const comp = new AboutUsComponent(titleService as any, sidenavService as any);
     expect(titleService.resetTitle).toHaveBeenCalled();
   });
 });

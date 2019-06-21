@@ -1,6 +1,6 @@
 import { Section } from '.';
 
 export class Discography {
-  artistId: string;
+  id: string;
   sections: Section[];
 }

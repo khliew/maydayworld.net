@@ -135,7 +135,7 @@ describe('AlbumDetailsComponent', () => {
       const linkDe = fixture.debugElement.query(By.directive(RouterLinkDirectiveStub));
       const routerLink = linkDe.injector.get(RouterLinkDirectiveStub);
 
-      expect(routerLink.linkParams).toEqual(['/album', testAlbum.albumId, 'song', testSong.songId]);
+      expect(routerLink.linkParams).toEqual(['/album', testAlbum.id, 'song', testSong.id]);
     });
   });
 });

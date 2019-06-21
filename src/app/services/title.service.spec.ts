@@ -6,7 +6,7 @@ describe('TitleService', () => {
 
   beforeEach(() => {
     titleSpy = jasmine.createSpyObj('Title', ['setTitle']);
-    service = new TitleService(<any> titleSpy);
+    service = new TitleService(titleSpy as any);
   });
 
   it('#setTitle sets the document title', () => {
