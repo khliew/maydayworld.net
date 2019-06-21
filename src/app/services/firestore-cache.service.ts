@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Album, Discography, Song } from '../model';
 
 @Injectable()
 export class FirestoreCache {
@@ -10,6 +11,29 @@ export class FirestoreCache {
     this.cache = new Map<string, Cached>();
   }
 
+  getAlbum(albumId: string) {
+    return this.get<Album>(`album:${albumId}`);
+  }
+
+  putAlbum(album: Album) {
+    this.put(`album:${album.id}`, album);
+  }
+
+  getDiscography(artistId: string) {
+    return this.get<Discography>(`disco:${artistId}`);
+  }
+
+  putDiscography(disco: Discography) {
+    this.put(`disco:${disco.id}`, disco);
+  }
+
+  getSong(songId: string) {
+    return this.get<Song>(`song:${songId}`);
+  }
+
+  putSong(song: Song) {
+    this.put(`song:${song.id}`, song);
+  }
 
   get<T>(itemId: string) {
     const cached = this.cache.get(itemId);

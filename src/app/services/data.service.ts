@@ -1,38 +1,41 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Album, Discography, Song } from '../model';
-import { EnvironmentService } from './environment.service';
+import { FirestoreCache } from './firestore-cache.service';
 import { FirestoreService } from './firestore.service';
 
 @Injectable()
 export class DataService {
-  baseUrl: string;
-  fallbackUrl: string;
 
-  constructor(private fss: FirestoreService, private http: HttpClient, environmentService: EnvironmentService) {
-    this.baseUrl = environmentService.env.apiBaseUrl;
-    this.fallbackUrl = environmentService.env.apiFallbackUrl;
-  }
+  constructor(private fsService: FirestoreService, private fsCache: FirestoreCache) { }
 
   getDiscography(artistId: string = 'mayday'): Observable<Discography> {
-    return this.fss.getDiscography(artistId)
+    const cached = this.fsCache.getDiscography(artistId);
+
+    return !!cached ? of(cached) : this.fsService.getDiscography(artistId)
       .pipe(
+        tap(disco => this.fsCache.putDiscography(disco)),
         catchError(this.handleError<Discography>('getDiscography'))
       );
   }
 
   getAlbum(albumId: string, artistId: string = 'mayday'): Observable<Album> {
-    return this.fss.getAlbum(albumId)
+    const cached = this.fsCache.getAlbum(albumId);
+
+    return !!cached ? of(cached) : this.fsService.getAlbum(albumId)
       .pipe(
+        tap(album => this.fsCache.putAlbum(album)),
         catchError(this.handleError<Album>('getAlbum'))
       );
   }
 
   getSong(songId: string, artistId: string = 'mayday'): Observable<Song> {
-    return this.fss.getSong(songId)
+    const cached = this.fsCache.getSong(songId);
+
+    return !!cached ? of(cached) : this.fsService.getSong(songId)
       .pipe(
+        tap(song => this.fsCache.putSong(song)),
         catchError(this.handleError<Song>('getSong'))
       );
   }
