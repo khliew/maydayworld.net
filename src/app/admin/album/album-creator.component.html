@@ -35,7 +35,7 @@
         <span matPrefix class="track-num">{{i + 1}}</span>
         <mat-select placeholder="Select a track" [formControlName]="i" class="song">
           <mat-option *ngFor="let song of songs" [value]="song.id">
-            {{song.title.chinese.zht}}
+            {{song.title.chinese.zht}} - {{song.id}}
           </mat-option>
         </mat-select>
       </mat-form-field>

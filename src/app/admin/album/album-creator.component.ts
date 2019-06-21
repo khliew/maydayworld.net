@@ -52,9 +52,17 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.tracksForm.disable();
+
     this.adminService.getSongs()
       .subscribe(songs => {
-        this.songs = songs;
+        this.songs = songs.sort((a, b) => {
+          const titleA = !!a.title.chinese.zht ? a.title.chinese.zht : a.title.english;
+          const titleB = !!b.title.chinese.zht ? b.title.chinese.zht : b.title.english;
+          return titleA.localeCompare(titleB, 'zh');
+        });
+
+        this.tracksForm.enable();
       });
   }
 
