@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Song } from '../model';
 import { SidenavService } from '../services/sidenav.service';
 import { TitleService } from '../services/title.service';
@@ -12,16 +12,24 @@ import { TitleService } from '../services/title.service';
 export class SongDetailComponent implements OnInit {
   song: Song;
 
-  constructor(private titleService: TitleService, private route: ActivatedRoute, private sidenavService: SidenavService) {
+  constructor(
+    private titleService: TitleService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private sidenavService: SidenavService
+  ) {
     this.sidenavService.setEnabled(true);
   }
 
   ngOnInit(): void {
     this.route.data
       .subscribe(data => {
-        this.song = data.song;
-
-        this.titleService.setTitle(this.song.title.chinese.zht);
+        if (data.song) {
+          this.song = data.song;
+          this.titleService.setTitle(this.song.title.chinese.zht);
+        } else {
+          this.router.navigate(['../../../'], { relativeTo: this.route });
+        }
       });
   }
 }

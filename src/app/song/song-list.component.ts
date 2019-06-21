@@ -9,6 +9,7 @@ import { Album } from '../model';
 })
 export class SongListComponent implements OnInit {
   album: Album;
+  trackKeys: number[];
 
   constructor(private route: ActivatedRoute) { }
 
@@ -16,6 +17,9 @@ export class SongListComponent implements OnInit {
     this.route.data
       .subscribe((data: { album: Album }) => {
         this.album = data.album;
+
+        this.trackKeys = Object.keys(this.album.songs) as unknown as number[];
+        this.trackKeys.sort((a, b) => a - b); // sort numerically in ascending order
       });
   }
 }
