@@ -1,26 +1,14 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError, from, combineLatest } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { Album, Discography, Song } from '../model';
-import { EnvironmentService } from '../services/environment.service';
-import { RequestCache } from '../services/request-cache.service';
-import { FirestoreService } from '../services/firestore.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
+import { from, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Album, Discography, Song } from '../model';
+import { FirestoreService } from '../services/firestore.service';
 
 @Injectable()
 export class AdminService {
-  baseUrl: string;
-
-  constructor(
-    private fss: FirestoreService,
-    private afs: AngularFirestore,
-    private http: HttpClient,
-    environmentService: EnvironmentService
-  ) {
-    this.baseUrl = environmentService.env.apiBaseUrl;
-  }
+  constructor(private fss: FirestoreService, private afs: AngularFirestore) { }
 
   getDiscography(artistId: string = 'mayday'): Observable<Discography> {
     return this.fss.getDiscography(artistId);

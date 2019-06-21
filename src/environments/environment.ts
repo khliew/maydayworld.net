@@ -4,8 +4,6 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'assets/db',
-  apiFallbackUrl: 'http://localhost:3001',
   version: require('../../package.json').version,
   firebase: {
     apiKey: 'AIzaSyDa4Mw2-8a42A6LQ4bd6YbZLY9cXmofjcI',

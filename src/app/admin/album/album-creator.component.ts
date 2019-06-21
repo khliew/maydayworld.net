@@ -278,7 +278,7 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
       }
     }
     const original = new Set(Object.values(this.originalTracks));
-    const removed = [... this.removedTracks].filter(x => original.has(x)); // removedTracks intersect originalTracks
+    const removed = Array.from(new Set(this.removedTracks)).filter(x => original.has(x)); // removedTracks intersect originalTracks
 
     results.push(this.adminService.setAlbumSongs(this.output.id, added, removed));
 
