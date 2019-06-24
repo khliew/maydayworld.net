@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url><loc>https://www.maydayworld.com/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/albums</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/about</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/privacy</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/hot</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/hot/song/what-if-we-had-never-met</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/hot/song/song-about-you</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/hot/song/tough</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/hot/song/party-animal</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/hot/song/best-day-of-my-life</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/hot/song/beginning-of-the-end</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/hot/song/dokodemo-door</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/hot/song/final-chapter</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/sr</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/potda</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/btl</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://www.maydayworld.com/album/agccd</loc><changefreq>daily</changefreq></url>
+</urlset>

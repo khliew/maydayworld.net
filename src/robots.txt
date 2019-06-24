@@ -2,3 +2,5 @@ User-agent: *
 Disallow: /admin/
 Disallow: /login/
 Disallow: /logout/
+
+Sitemap: https://www.maydayworld.com/sitemap.xml
