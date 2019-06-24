@@ -17,7 +17,7 @@ export class AlbumResolverService implements Resolve<Album> {
     return this.dataService.getAlbum(albumId).pipe(
       take(1),
       mergeMap(album => {
-        if (album) {
+        if (!!album && !album.disabled) {
           return of(album);
         } else {
           return EMPTY;
