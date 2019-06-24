@@ -17,7 +17,7 @@ export class SongResolverService implements Resolve<Song> {
     return this.dataService.getSong(songId).pipe(
       take(1),
       mergeMap(song => {
-        if (song) {
+        if (!!song && !song.disabled) {
           return of(song);
         } else {
           return EMPTY;
