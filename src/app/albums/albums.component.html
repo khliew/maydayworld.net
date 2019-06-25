@@ -19,7 +19,8 @@
           </ng-container>
         </h2>
         <div gdColumns="1fr 1fr" gdColumns.lt-sm="1fr" gdGap="16px">
-          <a mat-list-item *ngFor="let album of section.albums" [routerLink]="['/album', album.id]" class="album-card">
+          <a mat-list-item *ngFor="let album of section.albums" [routerLink]="['/album', album.id]" class="album-card"
+            [class.disabled]="album.disabled">
             <div matLine class="title-chinese">{{album.title.chinese.zht}}</div>
             <div matLine class="title-english">{{album.title.english}}</div>
             <div matLine class="release-date">{{ album.releaseDate | date }}</div>
