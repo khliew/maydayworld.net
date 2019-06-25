@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import { combineLatest } from 'rxjs';
@@ -10,7 +10,7 @@ import { AdminService } from '../admin.service';
   templateUrl: './album-creator.component.html',
   styleUrls: ['./album-creator.component.css']
 })
-export class AlbumCreatorComponent implements OnInit, AfterViewInit {
+export class AlbumCreatorComponent implements OnInit {
   search = this.fb.control('');
   tracksForm = this.fb.array([this.createTrackForm()]);
   albumForm = this.fb.group({
@@ -41,7 +41,6 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
   constructor(private fb: FormBuilder, private adminService: AdminService) {
     this.hideOutput = true;
     this.response = '';
-
     this.searchError = '';
     this.addedTracks = [];
     this.removedTracks = new Set<string>();
@@ -52,7 +51,6 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
     this.search.enable({ emitEvent: false });
     this.adminService.getAlbums()
       .subscribe(albums => {
@@ -74,9 +72,6 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
       });
   }
 
-  ngAfterViewInit() {
-  }
-
   searchAlbum(albumId: string) {
     if (!!albumId) {
       this.searchError = '';
@@ -87,7 +82,6 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
           this.setFormsEnabled(true);
 
           if (album) {
-            this.clear();
             this.fillForm(album);
           } else {
             this.searchError = `Album not found: ${albumId}`;
@@ -108,6 +102,7 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
     this.albumForm.get('releaseDate').setValue(album.releaseDate);
     this.albumForm.get('albumType').setValue(album.type);
 
+    this.tracksForm.clear();
     const trackKeys = Object.keys(album.songs);
     trackKeys.forEach(key => {
       const trackNum = Number(key);
