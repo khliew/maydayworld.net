@@ -18,6 +18,17 @@ export class AdminService {
     return this.fss.getAlbum(albumId);
   }
 
+  getAlbums(): Observable<Album[]> {
+    return this.afs.collection<Album>('albums').get()
+      .pipe(
+        map(snapshot => {
+          const albums = [];
+          snapshot.docs.forEach(doc => albums.push(doc.data()));
+          return albums;
+        })
+      );
+  }
+
   setAlbum(albumId: string, album: Album): Observable<void> {
     return from(this.afs.doc<Album>(`albums/${albumId}`)
       .set(
