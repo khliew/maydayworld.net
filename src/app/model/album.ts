@@ -1,4 +1,4 @@
-import { AlbumType, SongMetadata, Title } from '.';
+import { AlbumType, Title, Track } from '.';
 
 export class Album {
   id: string;
@@ -6,5 +6,5 @@ export class Album {
   title: Title;
   releaseDate: string;
   disabled?: boolean;
-  songs: { [track: number]: SongMetadata };
+  songs: { [track: number]: Track };
 }

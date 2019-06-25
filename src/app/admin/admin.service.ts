@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Album, Discography, Song } from '../model';
+import { Album, Discography, Song, SongMetadata } from '../model';
 import { FirestoreService } from '../services/firestore.service';
 
 @Injectable()
@@ -56,8 +56,8 @@ export class AdminService {
     return this.fss.getSong(songId);
   }
 
-  getSongs(): Observable<Song[]> {
-    return this.afs.collection<Song>('songs').get()
+  getSongs(): Observable<SongMetadata[]> {
+    return this.afs.collection<SongMetadata>('songMetadatas').get()
       .pipe(
         map(snapshot => {
           const songs = [];

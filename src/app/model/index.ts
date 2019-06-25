@@ -6,4 +6,5 @@ export * from './line';
 export * from './section';
 export * from './song';
 export * from './song-metadata';
+export * from './track';
 export * from './title';

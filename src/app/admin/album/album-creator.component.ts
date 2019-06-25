@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import { combineLatest } from 'rxjs';
-import { Album, Song, Title } from '../../model';
+import { Album, Song, Title, SongMetadata } from '../../model';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
 
   @ViewChild('albumId', { static: false }) albumId: ElementRef;
 
-  songs: Song[];
+  songs: SongMetadata[];
   hideOutput: boolean;
   output: Album;
   response: string;

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { RouterLinkDirectiveStub } from 'src/testing';
-import { Album, SongMetadata } from '../model';
+import { Album, Track } from '../model';
 import { getTestAlbum } from '../model/testing/test-album';
 import { SharedModule } from '../shared/shared.module';
 import { SongListComponent } from './song-list.component';
@@ -80,7 +80,7 @@ describe('SongListComponent', () => {
   describe('tracks', () => {
     let songListEl: HTMLElement;
     let songEl: HTMLElement;
-    let testSong: SongMetadata;
+    let testSong: Track;
 
     beforeEach(() => {
       testSong = testAlbum.songs[0];
