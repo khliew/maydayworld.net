@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Line, Song, Title } from '../../model';
+import { Line, Song, SongMetadata, Title } from '../../model';
 import { AdminService } from '../admin.service';
 import { LyricsParser } from './lyrics-parser';
 
@@ -9,7 +9,8 @@ import { LyricsParser } from './lyrics-parser';
   templateUrl: './song-creator.component.html',
   styleUrls: ['./song-creator.component.css']
 })
-export class SongCreatorComponent implements AfterViewInit {
+export class SongCreatorComponent implements OnInit {
+  search = this.fb.control('');
   songForm = this.fb.group({
     songId: [''],
     disabled: [false],
@@ -23,45 +24,58 @@ export class SongCreatorComponent implements AfterViewInit {
   outputForm = this.fb.control('');
   readonly = this.fb.control(true);
 
-  @ViewChild('songId', { static: false }) songId: ElementRef;
-
+  songMds: SongMetadata[];
   lyricsParser: LyricsParser;
   hideOutput: boolean;
   output: Song;
   response: string;
-  buttonsDisabled: boolean;
 
-  searchDisabled: boolean;
   searchError: string;
 
   constructor(private fb: FormBuilder, private adminService: AdminService) {
     this.lyricsParser = new LyricsParser();
     this.hideOutput = true;
     this.response = '';
-    this.buttonsDisabled = false;
-
-    this.searchDisabled = false;
     this.searchError = '';
+
+    this.search.valueChanges
+      .subscribe(value => {
+        this.searchSong(value);
+      });
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => this.songId.nativeElement.focus(), 10);
+  ngOnInit() {
+    this.search.enable({ emitEvent: false });
+    this.adminService.getSongs()
+      .subscribe(songs => {
+        this.songMds = songs.sort((a, b) => {
+          return a.id.localeCompare(b.id); // sort by id
+        });
+
+        this.search.enable({ emitEvent: false });
+      });
   }
 
-  searchSong() {
-    const songId = this.songForm.get('songId').value;
+  setFormsEnabled(enabled: boolean) {
+    if (enabled) {
+      this.search.enable({ emitEvent: false });
+      this.songForm.enable();
+    } else {
+      this.search.disable({ emitEvent: false });
+      this.songForm.disable();
+    }
+  }
 
+  searchSong(songId: string) {
     if (!!songId) {
       this.searchError = '';
-      this.searchDisabled = true;
+      this.setFormsEnabled(false);
 
       this.adminService.getSong(songId)
         .subscribe(song => {
-          console.log('song', song);
-          this.searchDisabled = false;
+          this.setFormsEnabled(true);
 
           if (song) {
-            this.clear();
             this.fillForm(song);
           } else {
             this.searchError = `Song not found: ${songId}`;
@@ -104,6 +118,7 @@ export class SongCreatorComponent implements AfterViewInit {
   }
 
   clear() {
+    this.search.reset('', { emitEvent: false });
     this.songForm.reset();
     this.response = '';
     this.searchError = '';
@@ -111,8 +126,6 @@ export class SongCreatorComponent implements AfterViewInit {
     this.hideOutput = true;
     this.readonly.setValue(true);
     this.outputForm.setValue('');
-
-    this.songId.nativeElement.focus();
   }
 
   createFormSong() {
@@ -171,14 +184,14 @@ export class SongCreatorComponent implements AfterViewInit {
     }
 
     this.response = '';
-    this.buttonsDisabled = true;
+    this.setFormsEnabled(false);
     this.adminService.setSong(this.output.id, this.output)
       .subscribe(() => {
         this.response = 'Song saved!';
-        this.buttonsDisabled = false;
+        this.setFormsEnabled(true);
       }, err => {
         this.response = err;
-        this.buttonsDisabled = false;
+        this.setFormsEnabled(true);
       });
   }
 }

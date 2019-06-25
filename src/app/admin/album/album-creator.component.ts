@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import { combineLatest } from 'rxjs';
-import { Album, Song, Title } from '../../model';
+import { Album, SongMetadata, Title } from '../../model';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -10,7 +10,8 @@ import { AdminService } from '../admin.service';
   templateUrl: './album-creator.component.html',
   styleUrls: ['./album-creator.component.css']
 })
-export class AlbumCreatorComponent implements OnInit, AfterViewInit {
+export class AlbumCreatorComponent implements OnInit {
+  search = this.fb.control('');
   tracksForm = this.fb.array([this.createTrackForm()]);
   albumForm = this.fb.group({
     albumId: [''],
@@ -24,15 +25,12 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
   outputForm = this.fb.control('');
   readonly = this.fb.control(true);
 
-  @ViewChild('albumId', { static: false }) albumId: ElementRef;
-
-  songs: Song[];
+  albums: Album[];
+  songs: SongMetadata[];
   hideOutput: boolean;
   output: Album;
   response: string;
-  buttonsDisabled: boolean;
 
-  searchDisabled: boolean;
   searchError: string;
 
   originalTracks: { [trackNum: number]: string };
@@ -43,48 +41,47 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
   constructor(private fb: FormBuilder, private adminService: AdminService) {
     this.hideOutput = true;
     this.response = '';
-    this.buttonsDisabled = false;
-
-    this.searchDisabled = false;
     this.searchError = '';
     this.addedTracks = [];
     this.removedTracks = new Set<string>();
     this.originalTracks = {};
+
+    this.search.valueChanges
+      .subscribe(value => this.fillForm(this.albums[value]));
   }
 
   ngOnInit() {
-    this.tracksForm.disable();
+    this.search.enable({ emitEvent: false });
+    this.adminService.getAlbums()
+      .subscribe(albums => {
+        this.albums = albums.sort((a, b) => {
+          return a.id.localeCompare(b.id); // sort by id
+        });
 
+        this.search.enable({ emitEvent: false });
+      });
+
+    this.tracksForm.disable();
     this.adminService.getSongs()
       .subscribe(songs => {
         this.songs = songs.sort((a, b) => {
-          // const titleA = !!a.title.chinese.zht ? a.title.chinese.zht : a.title.english;
-          // const titleB = !!b.title.chinese.zht ? b.title.chinese.zht : b.title.english;
-          // return titleA.localeCompare(titleB, 'zh');
-          return a.id.localeCompare(b.id);
+          return a.id.localeCompare(b.id); // sort by id
         });
 
         this.tracksForm.enable();
       });
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => this.albumId.nativeElement.focus(), 10);
-  }
-
-  searchAlbum() {
-    const albumId = this.albumForm.get('albumId').value;
-
+  searchAlbum(albumId: string) {
     if (!!albumId) {
       this.searchError = '';
-      this.searchDisabled = true;
+      this.setFormsEnabled(false);
 
       this.adminService.getAlbum(albumId)
         .subscribe(album => {
-          this.searchDisabled = false;
+          this.setFormsEnabled(true);
 
           if (album) {
-            this.clear();
             this.fillForm(album);
           } else {
             this.searchError = `Album not found: ${albumId}`;
@@ -105,6 +102,7 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
     this.albumForm.get('releaseDate').setValue(album.releaseDate);
     this.albumForm.get('albumType').setValue(album.type);
 
+    this.tracksForm.clear();
     const trackKeys = Object.keys(album.songs);
     trackKeys.forEach(key => {
       const trackNum = Number(key);
@@ -124,6 +122,7 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
   }
 
   clear() {
+    this.search.reset('', { emitEvent: false });
     this.albumForm.reset({ albumType: 'studio' });
     this.response = '';
     this.searchError = '';
@@ -138,8 +137,16 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
     this.hideOutput = true;
     this.readonly.setValue(true);
     this.outputForm.setValue('');
+  }
 
-    this.albumId.nativeElement.focus();
+  setFormsEnabled(enabled: boolean) {
+    if (enabled) {
+      this.search.enable({ emitEvent: false });
+      this.albumForm.enable();
+    } else {
+      this.search.disable({ emitEvent: false });
+      this.albumForm.disable();
+    }
   }
 
   createFormAlbum() {
@@ -169,7 +176,7 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
   }
 
   createTrackForm() {
-    const control = this.fb.control(['']);
+    const control = this.fb.control('');
     control.valueChanges
       .subscribe(
         value => {
@@ -266,7 +273,7 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
     }
 
     this.response = '';
-    this.buttonsDisabled = true;
+    this.setFormsEnabled(false);
     const results = [];
 
     results.push(this.adminService.setAlbum(this.output.id, this.output));
@@ -285,12 +292,12 @@ export class AlbumCreatorComponent implements OnInit, AfterViewInit {
     combineLatest(results)
       .subscribe(() => {
         this.response = 'Album saved!';
-        this.buttonsDisabled = false;
+        this.setFormsEnabled(true);
 
         this.updateOriginalTracksAfterSave();
       }, err => {
         this.response = err;
-        this.buttonsDisabled = false;
+        this.setFormsEnabled(true);
       });
   }
 }

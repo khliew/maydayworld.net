@@ -2,6 +2,12 @@
   max-width: 720px;
   padding: 32px;
 }
+.search-field {
+  min-width: 96px;
+  max-width: 480px;
+  margin-bottom: 16px;
+  width: 100%;
+}
 .title-field {
   min-width: 96px;
   max-width: 480px;

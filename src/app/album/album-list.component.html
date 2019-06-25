@@ -19,7 +19,7 @@
           </ng-container>
         </h3>
         <a mat-list-item *ngFor="let album of section.albums" [routerLink]="['/album', album.id]"
-          routerLinkActive="active-nav-item" class="list-item">
+          routerLinkActive="active-nav-item" class="list-item" [class.disabled]="album.disabled">
           <div matLine class="title-chinese">{{album.title.chinese.zht}}</div>
           <div matLine class="title-english">{{album.title.english}}</div>
         </a>

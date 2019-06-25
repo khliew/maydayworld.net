@@ -1,15 +1,19 @@
 <div class="content">
   <h2>Album Creator</h2>
+  <div>
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-select placeholder="Select an album" [formControl]="search">
+        <mat-option *ngFor="let album of albums; let i = index" [value]="i">
+          {{album.id}} - {{album.title.chinese.zht}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span class="search-error">{{this.searchError}}</span>
+  </div>
   <form [formGroup]="albumForm">
-    <div>
-      <mat-form-field class="meta-field">
-        <input #albumId matInput placeholder="Album ID" formControlName="albumId" autofocus>
-      </mat-form-field>
-      <button mat-icon-button (click)="searchAlbum()" [disabled]="searchDisabled">
-        <mat-icon>search</mat-icon>
-      </button>
-      <span class="search-error">{{this.searchError}}</span>
-    </div>
+    <mat-form-field class="meta-field">
+      <input matInput formControlName="albumId" placeholder="Album ID">
+    </mat-form-field>
     <div class="disable-album">
       <mat-checkbox formControlName="disabled" matTooltip="Check to prevent users from clicking on this album">
         Disabled
@@ -57,28 +61,29 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-icon-button (click)="addTrackForm(i + 1)" [disabled]="searchDisabled">
+      <button mat-icon-button (click)="addTrackForm(i + 1)" [disabled]="albumForm.disabled">
         <mat-icon>add</mat-icon>
       </button>
-      <button mat-icon-button color="warn" (click)="removeTrackForm(i)" [disabled]="searchDisabled">
+      <button mat-icon-button color="warn" (click)="removeTrackForm(i)" [disabled]="albumForm.disabled">
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <button mat-flat-button color="accent" class="action-button" (click)="save()" [disabled]="buttonsDisabled">
+    <button mat-flat-button color="accent" class="action-button" (click)="save()" [disabled]="albumForm.disabled">
       Save
     </button>
-    <button mat-flat-button color="primary" class="action-button" (click)="generateJson()">
+    <button mat-flat-button color="primary" class="action-button" (click)="generateJson()"
+      [disabled]="albumForm.disabled">
       Generate JSON
     </button>
-    <button mat-flat-button color="primary" class="action-button" (click)="clear()">
+    <button mat-flat-button color="primary" class="action-button" (click)="clear()" [disabled]="albumForm.disabled">
       Clear
     </button>
-    <div class="response">{{this.response}}</div>
-    <div [class.hide]="hideOutput">
-      <mat-checkbox [formControl]="readonly" class="readonly">Read-only</mat-checkbox>
-      <mat-form-field class="output" appearance="outline">
-        <textarea matInput rows="10" [formControl]="outputForm" [readonly]="readonly.value"></textarea>
-      </mat-form-field>
-    </div>
   </form>
+  <div class="response">{{this.response}}</div>
+  <div [class.hide]="hideOutput">
+    <mat-checkbox [formControl]="readonly" class="readonly">Read-only</mat-checkbox>
+    <mat-form-field class="output" appearance="outline">
+      <textarea matInput rows="10" [formControl]="outputForm" [readonly]="readonly.value"></textarea>
+    </mat-form-field>
+  </div>
 </div>
