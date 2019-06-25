@@ -51,7 +51,7 @@ export class AlbumCreatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.search.enable({ emitEvent: false });
+    this.search.disable({ emitEvent: false });
     this.adminService.getAlbums()
       .subscribe(albums => {
         this.albums = albums.sort((a, b) => {
