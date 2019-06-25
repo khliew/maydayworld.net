@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
-import { from, Observable } from 'rxjs';
+import { from, Observable, of, EMPTY } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Album, Discography, Song, SongMetadata } from '../model';
 import { FirestoreService } from '../services/firestore.service';
@@ -38,6 +38,10 @@ export class AdminService {
   }
 
   setAlbumSongs(albumId: string, added: { trackNum: number, songId: string }[], deleted: string[]): Observable<void> {
+    if (added.length === 0 && deleted.length === 0) {
+      return of(void 0);
+    }
+
     const batch = this.afs.firestore.batch();
 
     const promises = [];
@@ -59,7 +63,6 @@ export class AdminService {
         )
       );
     });
-
     return from(batch.commit());
   }
 

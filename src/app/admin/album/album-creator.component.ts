@@ -176,7 +176,7 @@ export class AlbumCreatorComponent implements OnInit {
   }
 
   createTrackForm() {
-    const control = this.fb.control(['']);
+    const control = this.fb.control('');
     control.valueChanges
       .subscribe(
         value => {
