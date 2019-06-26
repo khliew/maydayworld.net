@@ -14,6 +14,9 @@
 .toolbar-title.with-menu {
   padding-left: 0px;
 }
+.title-icon {
+  padding-left: 8px;
+}
 .title-text {
   color: white;
   padding-left: 8px;
