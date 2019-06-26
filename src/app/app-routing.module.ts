@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { AlbumsComponent } from './albums/albums.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { LogOutComponent } from './log-out/log-out.component';
 import { AuthGuard } from './admin/auth.guard';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: 'albums', component: AlbumsComponent },
+  { path: '', component: HomeComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'privacy', component: PrivacyComponent },
   {
@@ -25,8 +25,7 @@ const routes: Routes = [
     canLoad: [AuthGuard],
     ...canActivate(redirectUnauthorizedTo(['login']))
   },
-  { path: '', redirectTo: '/albums', pathMatch: 'full' },
-  { path: '**', redirectTo: '/albums', pathMatch: 'full' }
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

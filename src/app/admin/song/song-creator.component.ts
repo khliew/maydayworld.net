@@ -45,7 +45,7 @@ export class SongCreatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.search.enable({ emitEvent: false });
+    this.search.disable({ emitEvent: false });
     this.adminService.getSongs()
       .subscribe(songs => {
         this.songMds = songs.sort((a, b) => {

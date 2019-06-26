@@ -3,7 +3,6 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url><loc>https://www.maydayworld.com/</loc><changefreq>daily</changefreq></url>
-  <url><loc>https://www.maydayworld.com/albums</loc><changefreq>daily</changefreq></url>
   <url><loc>https://www.maydayworld.com/about</loc><changefreq>daily</changefreq></url>
   <url><loc>https://www.maydayworld.com/privacy</loc><changefreq>daily</changefreq></url>
   <url><loc>https://www.maydayworld.com/album/hot</loc><changefreq>daily</changefreq></url>

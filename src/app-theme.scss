@@ -60,6 +60,11 @@ $activated-item: mat-color($mat-light-blue, A100);
   background-color: lightgray,
 }
 
+// styling for home header
+.header-title {
+  color: $primary;
+}
+
 // styling for app footer
 .app-footer {
   background-color: $primary;

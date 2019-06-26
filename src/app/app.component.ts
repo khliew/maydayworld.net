@@ -29,8 +29,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        console.log('router: event', event);
-
         if (this.analyticsEnabled) {
           (window as any).ga('set', 'page', event.urlAfterRedirects);
           (window as any).ga('send', 'pageview');
