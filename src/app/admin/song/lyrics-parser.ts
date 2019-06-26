@@ -1,7 +1,7 @@
 import { Line } from '../../model';
 
 export class LyricsParser {
-  public parse(lyrics: string): Line[] {
+  parse(lyrics: string): Line[] {
     const lines = new Array();
     const tokens = lyrics.split('\n');
 
@@ -31,27 +31,32 @@ export class LyricsParser {
     return lines;
   }
 
-  createLyric(tokens: string[]): Line {
+  private createLyric(tokens: string[]): Line {
     const line = new Line();
     line.type = 'lyric';
 
-    line.zht = tokens.shift().trimRight();
-    line.zhp = tokens.shift().trimRight();
-    line.eng = tokens.shift().trimRight();
+    line.zht = this.getNextToken(tokens).trimRight();
+    line.zhp = this.getNextToken(tokens).trimRight();
+    line.eng = this.getNextToken(tokens).trimRight();
 
     return line;
   }
 
-  createBreak(): Line {
+  private getNextToken(tokens: string[], defaultValue = ''): string {
+    const token = tokens.shift();
+    return typeof token !== 'undefined' ? token : defaultValue;
+  }
+
+  private createBreak(): Line {
     const line = new Line();
     line.type = 'break';
     return line;
   }
 
-  createText(tokens: string[]): Line {
+  private createText(tokens: string[]): Line {
     const line = new Line();
     line.type = 'text';
-    line.text = tokens.shift().trimRight();
+    line.text = this.getNextToken(tokens).trimRight();
     return line;
   }
 }
