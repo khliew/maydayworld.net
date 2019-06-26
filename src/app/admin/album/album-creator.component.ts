@@ -74,6 +74,7 @@ export class AlbumCreatorComponent implements OnInit {
 
   searchAlbum(albumId: string) {
     if (!!albumId) {
+      this.response = '';
       this.searchError = '';
       this.setFormsEnabled(false);
 

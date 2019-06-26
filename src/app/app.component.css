@@ -16,6 +16,8 @@
 }
 .title-icon {
   padding-left: 8px;
+  width: 24px;
+  height: 24px;
 }
 .title-text {
   color: white;
