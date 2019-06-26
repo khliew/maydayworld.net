@@ -2,7 +2,7 @@
   <button mat-icon-button fxHide [fxShow.lt-sm]="sidenavEnabled" (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <a mat-flat-button routerLink="/albums" class="toolbar-title" [ngClass.lt-sm]="{ 'with-menu': sidenavEnabled}" disableRipple>
+  <a mat-flat-button routerLink="/" class="toolbar-title" [ngClass.lt-sm]="{ 'with-menu': sidenavEnabled}" disableRipple>
     <span class="title-text">Mayday World 五月天世界</span>
   </a>
 </mat-toolbar>
