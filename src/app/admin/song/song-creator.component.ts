@@ -68,6 +68,7 @@ export class SongCreatorComponent implements OnInit {
 
   searchSong(songId: string) {
     if (!!songId) {
+      this.response = '';
       this.searchError = '';
       this.setFormsEnabled(false);
 
