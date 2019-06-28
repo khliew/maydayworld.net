@@ -1,0 +1,18 @@
+<mat-toolbar color="primary" class="toolbar">
+  <a mat-flat-button routerLink="/" class="toolbar-title" fxHide.lt-sm disableRipple>
+    <img src="../../assets/icon-toolbar.png" class="logo-icon">
+    <span fxHide.lt-sm class="title-text">Mayday World 五月天世界</span>
+  </a>
+  <div fxHide fxShow.lt-sm class="breadcrumb">
+    <a mat-icon-button routerLink="/">
+      <img src="../../assets/icon-toolbar.png" class="logo-icon">
+    </a>
+    <span *ngIf="paths.length == 0" class="breadcrumb-title">Mayday World 五月天世界</span>
+    <ng-container *ngFor="let path of paths; let i = index">
+      <mat-icon class="breadcrumb-div">chevron_right</mat-icon>
+      <a mat-button [routerLink]="path.link" class="breadcrumb-link">
+        {{path.label}}
+      </a>
+    </ng-container>
+  </div>
+</mat-toolbar>

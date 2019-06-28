@@ -17,13 +17,10 @@ export class AppComponent implements OnInit, OnDestroy {
   analyticsEnabled: boolean;
 
   sidenavSub: Subscription;
-  sidenavEnabled: boolean;
-
   mediaSub: Subscription;
 
   constructor(private router: Router, private sidenavService: SidenavService, private mediaObserver: MediaObserver) {
     this.analyticsEnabled = typeof (window as any).ga === 'function';
-    this.sidenavEnabled = false;
   }
 
   ngOnInit() {
@@ -33,28 +30,16 @@ export class AppComponent implements OnInit, OnDestroy {
           (window as any).ga('set', 'page', event.urlAfterRedirects);
           (window as any).ga('send', 'pageview');
         }
-
-        if (this.sidenav.mode === 'over') {
-          this.sidenav.close();
-        }
       }
     });
 
     this.sidenavSub = this.sidenavService.enable$
       .subscribe(enabled => {
-        this.sidenavEnabled = enabled;
-
         if (this.sidenav.mode === 'side') {
           if (enabled) {
             this.sidenav.open();
           } else {
             this.sidenav.close();
-          }
-        } else {
-          if (enabled) {
-            // TODO: show menu button
-          } else {
-            // TODO: hide menu button
           }
         }
       });
@@ -73,6 +58,7 @@ export class AppComponent implements OnInit, OnDestroy {
           this.sidenav.fixedTopGap = 64;
           this.sidenav.mode = 'side';
           this.sidenav.disableClose = true;
+
           if (this.sidenavService.enabled) {
             this.sidenav.open();
           }

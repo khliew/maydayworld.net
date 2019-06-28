@@ -23,6 +23,7 @@ import { LogOutComponent } from './log-out/log-out.component';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { FirestoreCache } from './services/firestore-cache.service';
 import { HomeComponent } from './home/home.component';
+import { AppBarComponent } from './app-bar/app-bar.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { HomeComponent } from './home/home.component';
   ],
   declarations: [
     AboutUsComponent,
+    AppBarComponent,
     AppComponent,
     AlbumsComponent,
     HomeComponent,

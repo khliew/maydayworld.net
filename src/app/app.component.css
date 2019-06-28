@@ -1,29 +1,3 @@
-.toolbar {
-  position: fixed;
-  top: 0;
-  z-index: 999;
-}
-.toolbar-menu {
-}
-.toolbar-title {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  background-color: transparent;
-}
-.toolbar-title.with-menu {
-  padding-left: 0px;
-}
-.title-icon {
-  padding-left: 8px;
-  width: 24px;
-  height: 24px;
-}
-.title-text {
-  color: white;
-  padding-left: 8px;
-  font-size: 20px;
-}
 .sidenav-container {
   display: flex;
   flex-direction: column;

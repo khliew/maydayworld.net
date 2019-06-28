@@ -1,0 +1,41 @@
+.toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+.toolbar-title {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  background-color: transparent;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.logo-icon {
+  width: 24px;
+  height: 24px;
+}
+.title-text {
+  color: white;
+  padding-left: 8px;
+  font-size: 20px;
+}
+.breadcrumb {
+  display: flex;
+  align-items: center;
+}
+.breadcrumb-title {
+  color: white;
+  padding-left: 0px;
+}
+.breadcrumb-link {
+  min-width: 0px;
+  max-width: 160px;
+  padding-top: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+.breadcrumb-div {
+}
