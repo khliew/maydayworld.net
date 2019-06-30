@@ -2,6 +2,9 @@
   background-color: white;
   padding: 32px 32px 64px;
 }
+.song-breadcrumb {
+  margin-bottom: 32px;
+}
 .song-header {
   margin-bottom: 64px;
 }

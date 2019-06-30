@@ -1,0 +1,19 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  height: 36px;
+}
+.breadcrumb-title {
+  padding-left: 0px;
+}
+.breadcrumb-link {
+  min-width: 0px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+.breadcrumb-div {
+}
+.logo-icon {
+  width: 24px;
+  height: 24px;
+}

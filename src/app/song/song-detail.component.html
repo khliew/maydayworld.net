@@ -1,5 +1,8 @@
 <div class="container">
   <ng-container *ngIf="song">
+    <div class="song-breadcrumb">
+      <app-breadcrumb></app-breadcrumb>
+    </div>
     <div class="song-header">
       <div class="song-title">
         <div class="title-chinese">{{song.title.chinese.zht}}</div>
@@ -24,10 +27,10 @@
             <br>
             <span class="lyrics-english primary-dark">{{lyric.eng}}</span>
           </p>
-          <p *ngSwitchCase="'break'"  class="line line-break">
+          <p *ngSwitchCase="'break'" class="line line-break">
             <br>
           </p>
-          <p *ngSwitchCase="'text'"  class="line line-text">{{lyric.text}}</p>
+          <p *ngSwitchCase="'text'" class="line line-text">{{lyric.text}}</p>
         </ng-container>
       </ng-container>
     </div>

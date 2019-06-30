@@ -1,0 +1,11 @@
+<div class="breadcrumb">
+  <a routerLink="/" class="breadcrumb-link">
+    Mayday
+  </a>
+  <ng-container *ngFor="let path of paths; let i = index">
+    <mat-icon class="breadcrumb-div">chevron_right</mat-icon>
+    <a [routerLink]="!!path.link ? path.link : null" class="breadcrumb-link">
+      {{path.label}}
+    </a>
+  </ng-container>
+</div>
