@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Album, Song } from '../model';
+import { Album, Song } from '../../model';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -38,13 +38,13 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
 
       // album
       this.paths.push({
-        label: data.album.title.english,
+        label: data.album.title.chinese.zht,
         link: tokens[1]
       });
 
       // song
       this.paths.push({
-        label: data.song.title.english,
+        label: data.song.title.chinese.zht,
         link: null
       });
     }
