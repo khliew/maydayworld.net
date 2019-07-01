@@ -1,4 +1,4 @@
-import { TitleService } from './title.service';
+import { TitleService, TITLE_DEFAULT } from './title.service';
 
 describe('TitleService', () => {
   let service: TitleService;
@@ -13,12 +13,12 @@ describe('TitleService', () => {
     const testValue = 'test value';
     service.setTitle(testValue);
 
-    expect(titleSpy.setTitle).toHaveBeenCalledWith(`${testValue} - Mayday World  五月天世界`);
+    expect(titleSpy.setTitle).toHaveBeenCalledWith(`${testValue} - ${TITLE_DEFAULT}`);
   });
 
   it('#resetTitle resets the document title', () => {
     service.resetTitle();
 
-    expect(titleSpy.setTitle).toHaveBeenCalledWith('Mayday World  五月天世界');
+    expect(titleSpy.setTitle).toHaveBeenCalledWith(TITLE_DEFAULT);
   });
 });

@@ -6,10 +6,12 @@ export class TitleService {
   constructor(private title: Title) { }
 
   public setTitle(newTitle: string): void {
-    this.title.setTitle(`${newTitle} - Mayday World  五月天世界`);
+    this.title.setTitle(`${newTitle} - ${TITLE_DEFAULT}`);
   }
 
   public resetTitle(): void {
-    this.title.setTitle('Mayday World  五月天世界');
+    this.title.setTitle(TITLE_DEFAULT);
   }
 }
+
+export const TITLE_DEFAULT = 'Mayday World - Chinese lyrics, pinyin, and English translations - 五月天歌詞漢語拼音英文翻譯';

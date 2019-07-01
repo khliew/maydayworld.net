@@ -3,7 +3,7 @@ html, body {
   height: 100%; 
 }
 body {
-  background-color: white !important;
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  font-display: swap;
 }
