@@ -1,6 +1,6 @@
 {
   "name": "mayday-world",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Mayday World",
   "license": "Apache-2.0",
   "scripts": {
@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-fb": "ng build --prod && firebase deploy"
+    "build-fb": "ng build --prod && firebase deploy",
+    "deploy": "deploy-aws.sh"
   },
   "private": true,
   "dependencies": {

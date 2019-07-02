@@ -2,7 +2,7 @@
 
 This is a website built using Angular and Angular Material.
 
-## Getting Started
+### Getting Started
 This project requires Node (`v12.3.1`+) and npm (`6.9.0`+).
 
 ### Installing
@@ -16,6 +16,13 @@ Build project with `ng build`. Output will be located in `/dist`. To build for p
 
 ### Testing
 Run unit tests with `ng test`. After starting a local server, run end-to-end tests with `ng e2e`.
+
+### Deploying
+#### AWS
+To deploy the build to AWS, run `npm run deploy -- <version>`.
+
+#### Firebase
+To deploy the build to Firebase, run `npm run build-fb`.
 
 ## License
 Code is licensed under [Apache 2.0](/LICENSE).
