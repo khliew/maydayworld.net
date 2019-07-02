@@ -15,11 +15,13 @@ export class SongListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data
-      .subscribe((data: { album: Album }) => {
-        this.album = data.album;
+      .subscribe(data => {
+        if (!!data.album) {
+          this.album = data.album;
 
-        this.trackKeys = Object.keys(this.album.songs) as unknown as number[];
-        this.trackKeys.sort((a, b) => a - b); // sort numerically in ascending order
+          this.trackKeys = Object.keys(this.album.songs) as unknown as number[];
+          this.trackKeys.sort((a, b) => a - b); // sort numerically in ascending order
+        }
       });
   }
 }

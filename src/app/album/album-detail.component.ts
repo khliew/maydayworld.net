@@ -33,7 +33,7 @@ export class AlbumDetailComponent implements OnInit {
 
           this.titleService.setTitle(this.album.title.chinese.zht);
         } else {
-          this.router.navigate(['/albums']);
+          this.router.navigate(['/']);
         }
       });
   }

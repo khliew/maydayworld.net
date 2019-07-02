@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { EMPTY, Observable, of } from 'rxjs';
-import { mergeMap, take } from 'rxjs/operators';
 import { Song } from '../model';
 import { DataService } from '../services/data.service';
 
@@ -11,18 +9,12 @@ import { DataService } from '../services/data.service';
 export class SongResolverService implements Resolve<Song> {
   constructor(private dataService: DataService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Song> | Observable<never> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const songId = route.paramMap.get('songId');
-
-    return this.dataService.getSong(songId).pipe(
-      take(1),
-      mergeMap(song => {
-        if (!!song && !song.disabled) {
-          return of(song);
-        } else {
-          return EMPTY;
-        }
-      })
-    );
+    return new Promise<Song>((resolve, reject) => {
+      this.dataService.getSong(songId).subscribe(song => {
+        resolve(!!song && !song.disabled ? song : null);
+      });
+    });
   }
 }
