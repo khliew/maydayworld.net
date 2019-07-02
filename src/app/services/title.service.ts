@@ -14,4 +14,4 @@ export class TitleService {
   }
 }
 
-export const TITLE_DEFAULT = 'Mayday World - Chinese lyrics, pinyin, and English translations - 五月天歌詞漢語拼音英文翻譯';
+export const TITLE_DEFAULT = 'Mayday World: Chinese lyrics, pinyin, and English translations 五月天歌詞漢語拼音英文翻譯';
