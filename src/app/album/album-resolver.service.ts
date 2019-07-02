@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { EMPTY, Observable, of } from 'rxjs';
-import { mergeMap, take } from 'rxjs/operators';
 import { Album } from '../model';
 import { DataService } from '../services/data.service';
 
@@ -11,18 +9,12 @@ import { DataService } from '../services/data.service';
 export class AlbumResolverService implements Resolve<Album> {
   constructor(private dataService: DataService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Album> | Observable<never> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const albumId = route.paramMap.get('albumId');
-
-    return this.dataService.getAlbum(albumId).pipe(
-      take(1),
-      mergeMap(album => {
-        if (!!album && !album.disabled) {
-          return of(album);
-        } else {
-          return EMPTY;
-        }
-      })
-    );
+    return new Promise<Album>((resolve, reject) => {
+      this.dataService.getAlbum(albumId).subscribe(album => {
+        resolve(!!album && !album.disabled ? album : null);
+      });
+    });
   }
 }
