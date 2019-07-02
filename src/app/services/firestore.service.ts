@@ -10,11 +10,13 @@ export class FirestoreService {
   constructor(private afs: AngularFirestore) { }
 
   getDiscography(artistId: string = 'mayday'): Observable<Discography> {
-    return this.afs.doc<Discography>(`discos/${artistId}`).get()
+    // subscribe to snapshotChanges() instead of get() to get cached value first
+    return this.afs.doc<Discography>(`discos/${artistId}`).snapshotChanges()
       .pipe(
+        map(action => action.payload),
         map(snapshot => {
           if (snapshot.exists) {
-            return snapshot.data() as Discography;
+            return snapshot.data();
           } else {
             throwError(`discography not found: ${artistId}`);
           }
@@ -23,11 +25,12 @@ export class FirestoreService {
   }
 
   getAlbum(albumId: string): Observable<Album> {
-    return this.afs.doc<Album>(`albums/${albumId}`).get()
+    return this.afs.doc<Album>(`albums/${albumId}`).snapshotChanges()
       .pipe(
+        map(action => action.payload),
         map(snapshot => {
           if (snapshot.exists) {
-            return snapshot.data() as Album;
+            return snapshot.data();
           } else {
             throwError(`album not found: ${albumId}`);
           }
@@ -36,11 +39,12 @@ export class FirestoreService {
   }
 
   getSong(songId: string): Observable<Song> {
-    return this.afs.doc<Song>(`songs/${songId}`).get()
+    return this.afs.doc<Song>(`songs/${songId}`).snapshotChanges()
       .pipe(
+        map(action => action.payload),
         map(snapshot => {
           if (snapshot.exists) {
-            return snapshot.data() as Song;
+            return snapshot.data();
           } else {
             throwError(`song not found: ${songId}`);
           }
