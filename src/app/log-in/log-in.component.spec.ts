@@ -9,6 +9,8 @@ import { SidenavService } from '../services/sidenav.service';
 import { TitleService } from '../services/title.service';
 import { SharedModule } from '../shared/shared.module';
 import { LogInComponent } from './log-in.component';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LogInComponent', () => {
   let comp: LogInComponent;
@@ -18,16 +20,23 @@ describe('LogInComponent', () => {
   let formBuilder: FormBuilder;
   let dataServiceSpy;
   let routerSpy;
+  let afAuth;
+  let authSpy;
 
   beforeEach(async(() => {
     dataServiceSpy = jasmine.createSpyObj('DataService', ['logIn']);
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+    authSpy = jasmine.createSpyObj('FirebaseAuth', ['signInWithEmailAndPassword']);
+    afAuth = {
+      auth: authSpy
+    };
     formBuilder = new FormBuilder();
 
     TestBed.configureTestingModule({
       imports: [
         SharedModule,
-        RouterTestingModule
+        RouterTestingModule,
+        BrowserAnimationsModule
       ],
       declarations: [
         LogInComponent,
@@ -38,7 +47,8 @@ describe('LogInComponent', () => {
         { provide: FormBuilder, useValue: formBuilder },
         { provide: Router, useValue: routerSpy },
         { provide: SidenavService, useClass: SidenavServiceStub },
-        { provide: TitleService, useClass: TitleServiceStub }
+        { provide: TitleService, useClass: TitleServiceStub },
+        { provide: AngularFireAuth, useValue: afAuth }
       ]
     })
       .compileComponents();
@@ -66,22 +76,28 @@ describe('LogInComponent', () => {
   }));
 
   describe('logging in successful', () => {
-    let testCode;
+    let email;
+    let password;
 
     beforeEach(fakeAsync(() => {
-      dataServiceSpy.logIn.and.returnValue(asyncData(true));
-      testCode = 'test code';
-      const input = fixture.nativeElement.querySelector('.access');
+      afAuth.auth.signInWithEmailAndPassword.and.returnValue(Promise.resolve(true));
 
-      input.value = testCode;
-      input.dispatchEvent(newEvent('input')); // notify Angular
+      email = 'email';
+      const emailEl = fixture.nativeElement.querySelector('.email');
+      emailEl.value = email;
+      emailEl.dispatchEvent(newEvent('input')); // notify Angular
 
-      const button = fixture.nativeElement.querySelector('.log-in');
-      click(button);
+      password = 'password';
+      const passwordEl = fixture.nativeElement.querySelector('.password');
+      passwordEl.value = password;
+      passwordEl.dispatchEvent(newEvent('input')); // notify Angular
+
+      const logIn = fixture.nativeElement.querySelector('.log-in');
+      click(logIn);
     }));
 
-    it('should call DataService to log in', () => {
-      expect(dataServiceSpy.logIn).toHaveBeenCalledWith(testCode);
+    it('should sign in with user provided email and password', () => {
+      expect(afAuth.auth.signInWithEmailAndPassword).toHaveBeenCalledWith(email, password);
     });
 
     it('should navigate to admin', () => {
@@ -90,21 +106,13 @@ describe('LogInComponent', () => {
   });
 
   describe('logging in failed', () => {
-    let testCode;
-
     beforeEach(fakeAsync(() => {
-      dataServiceSpy.logIn.and.returnValue(asyncData(false));
-      testCode = 'test code';
-      const input = fixture.nativeElement.querySelector('.access');
+      afAuth.auth.signInWithEmailAndPassword.and.returnValue(Promise.reject(false));
 
-      input.value = testCode;
-      input.dispatchEvent(newEvent('input')); // notify Angular
+      const logIn = fixture.nativeElement.querySelector('.log-in');
+      click(logIn);
 
-      const button = fixture.nativeElement.querySelector('.log-in');
-      click(button);
-
-      tick(1000);
-      fixture.detectChanges(); // update with logIn() response
+      tick(1000); // needs to be 1000
     }));
 
     it('should increase fail count', () => {

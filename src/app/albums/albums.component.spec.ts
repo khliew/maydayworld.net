@@ -3,19 +3,14 @@ import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { asyncData, RouterLinkDirectiveStub } from '../../testing';
-import { Album, Discography } from '../model';
-import { SidenavServiceStub, TitleServiceStub } from '../model/testing';
+import { AlbumMetadata, Discography } from '../model';
 import { getTestDiscography } from '../model/testing/test-discography';
 import { DataService } from '../services/data.service';
-import { SidenavService } from '../services/sidenav.service';
-import { TitleService } from '../services/title.service';
 import { AlbumsComponent } from './albums.component';
 
 describe('AlbumsComponent', () => {
   let fixture: ComponentFixture<AlbumsComponent>;
   let comp: AlbumsComponent;
-  let sidenavService: SidenavService;
-  let titleService: TitleService;
   let testDiscography: Discography;
 
   beforeEach(async(() => {
@@ -31,8 +26,6 @@ describe('AlbumsComponent', () => {
       ],
       providers: [
         { provide: DataService, useValue: dataService },
-        { provide: SidenavService, useClass: SidenavServiceStub },
-        { provide: TitleService, useClass: TitleServiceStub }
       ]
     })
       .compileComponents();
@@ -40,20 +33,8 @@ describe('AlbumsComponent', () => {
     fixture = TestBed.createComponent(AlbumsComponent);
     comp = fixture.componentInstance;
 
-    const injector = fixture.debugElement.injector;
-    sidenavService = injector.get(SidenavService);
-    titleService = injector.get(TitleService);
-
     fixture.detectChanges(); // ngOnInit()
   }));
-
-  it('should hide the sidenav', () => {
-    expect(sidenavService.setEnabled).toHaveBeenCalledWith(false);
-  });
-
-  it('should reset the document title', () => {
-    expect(titleService.resetTitle).toHaveBeenCalled();
-  });
 
   it('should get a discography', () => {
     expect(comp.discography).toBe(testDiscography);
@@ -70,7 +51,7 @@ describe('AlbumsComponent', () => {
   }));
 
   describe('Album', () => {
-    let testAlbum: Album;
+    let testAlbum: AlbumMetadata;
     let albumEl;
 
     beforeEach(fakeAsync(() => {

@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { RouterLinkDirectiveStub } from 'src/testing';
-import { Album, Song } from '../model';
+import { Album, Track } from '../model';
 import { getTestAlbum, SidenavServiceStub, TitleServiceStub } from '../model/testing';
 import { SidenavService } from '../services/sidenav.service';
 import { TitleService } from '../services/title.service';
@@ -103,10 +103,10 @@ describe('AlbumDetailsComponent', () => {
   describe('tracks', () => {
     let albumDetailEl: HTMLElement;
     let songEl: HTMLElement;
-    let testSong: Song;
+    let testSong: Track;
 
     beforeEach(() => {
-      testSong = testAlbum.songs[0];
+      testSong = testAlbum.songs['1'];
       albumDetailEl = fixture.nativeElement;
       songEl = albumDetailEl.querySelector('.track-item');
     });

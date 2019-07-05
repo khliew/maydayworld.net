@@ -2,7 +2,7 @@ import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { asyncData, RouterLinkDirectiveStub } from 'src/testing';
-import { Album, Discography } from '../model';
+import { AlbumMetadata, Discography } from '../model';
 import { getTestDiscography } from '../model/testing';
 import { DataService } from '../services/data.service';
 import { SharedModule } from '../shared/shared.module';
@@ -52,7 +52,7 @@ describe('AlbumListComponent', () => {
   }));
 
   describe('Album', () => {
-    let testAlbum: Album;
+    let testAlbum: AlbumMetadata;
     let albumEl;
 
     beforeEach(fakeAsync(() => {

@@ -2,7 +2,7 @@ import { Song } from '../song';
 
 export function getTestSong(): Song {
   return {
-    songId: 'songId',
+    id: 'songId',
     title: {
       chinese: { zht: 'zht', zhp: 'zhp', eng: 'eng' },
       english: 'english'

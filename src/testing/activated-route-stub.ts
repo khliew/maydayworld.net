@@ -2,8 +2,8 @@
 Source: angular.io testing guide
 */
 
-import { convertToParamMap, ParamMap, Params } from '@angular/router';
-import { ReplaySubject, Observable, of } from 'rxjs';
+import { convertToParamMap, ParamMap } from '@angular/router';
+import { ReplaySubject } from 'rxjs';
 
 /**
  * An ActivateRoute test double with a `paramMap` observable.
@@ -14,7 +14,7 @@ export class ActivatedRouteStub {
   // and pump new values into the `paramMap` observable
   private subject = new ReplaySubject<ParamMap>();
 
-  constructor(initialParams?: Params) {
+  constructor(initialParams?) {
     this.setParamMap(initialParams);
   }
 
@@ -22,9 +22,7 @@ export class ActivatedRouteStub {
   readonly paramMap = this.subject.asObservable();
 
   /** Set the paramMap observables's next value */
-  setParamMap(params?: Params) {
+  setParamMap(params?) {
     this.subject.next(convertToParamMap(params));
   }
-
 }
-

@@ -83,7 +83,7 @@ describe('SongListComponent', () => {
     let testSong: Track;
 
     beforeEach(() => {
-      testSong = testAlbum.songs[0];
+      testSong = testAlbum.songs['1'];
       songListEl = fixture.nativeElement;
       songEl = songListEl.querySelector('.track-item');
     });

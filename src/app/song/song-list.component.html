@@ -14,9 +14,8 @@
   <mat-nav-list class="track-list">
     <ng-container *ngFor="let trackKey of trackKeys;">
       <a mat-list-item *ngIf="album.songs[trackKey]; let song" [routerLink]="['/album', album.id, 'song', song.id]"
-        class="track-item" [class.disabled]="song.disabled" routerLinkActive="active-nav-item">
-        {{trackKey}}. {{song.title.chinese.zht}}
-      </a>
+        class="track-item" [class.disabled]="song.disabled" routerLinkActive="active-nav-item">{{trackKey}}.
+        {{song.title.chinese.zht}}</a>
     </ng-container>
   </mat-nav-list>
 </ng-container>
